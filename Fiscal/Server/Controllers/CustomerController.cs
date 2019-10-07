@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Server.Data;
 using Server.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Server.Controllers
 {
@@ -31,8 +32,16 @@ namespace Server.Controllers
         {
             var customer = (from c in _context.Customers
                              where c.CustomerId == id
-                             select c).SingleOrDefault();
-            _context.Entry(customer).Collection(c => c.Invoices).Load();
+                             select c)
+                             .Include(c => c.Invoices)
+                             .ThenInclude(c => c.InvoiceIteams)
+                             .ThenInclude(c => c.Product)
+                             .SingleOrDefault();
+            //_context.Entry(customer).Collection(c => c.Invoices).Load();
+            //foreach(Invoice inv in customer.Invoices)
+            //{
+            //    _context.Entry(inv).Collection(inv => inv.InvoiceIteams).Load();
+            //}
 
             return customer;
         }

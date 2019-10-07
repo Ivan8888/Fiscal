@@ -24,15 +24,13 @@ namespace Server.Controllers
         [Route("[action]")]
         public ActionResult<List<Product>> GetAll()
         {
+            var products = _context.Products.ToList();
 
-            //var result = _context.Products.ToList();
-            var products = _context.Products
-                            .Include(i => i.InvoiceIteams)
-                            .ToList();
-            //foreach(Product p in products)
-            //{
-            //    _context.Entry(p).Collection(p => p.InvoiceIteams).Load();
-            //}
+            //explicit loading of list element
+            foreach(Product p in products)
+            {
+                _context.Entry(p).Collection(p => p.InvoiceIteams).Load();
+            }
 
             return products;
         }
@@ -46,7 +44,8 @@ namespace Server.Controllers
                           where p.ProductId == id
                           select p)
                           .SingleOrDefault();
-            //explicit loading
+
+            //explicit loading of single element
             _context.Entry(product).Collection(p => p.InvoiceIteams).Load();
             
             return product;
