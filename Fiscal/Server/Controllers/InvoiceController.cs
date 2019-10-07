@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Server.Data;
 using Server.Models;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace Server.Controllers
 {
@@ -25,8 +27,12 @@ namespace Server.Controllers
         {
             try
             {
-                var result = _context.Invoices.ToList();
-                return result;
+                var invoices = _context.Invoices
+                    .Include(i => i.Customer)
+                    .Include(i => i.InvoiceIteams)
+                    .ToList();
+
+                return invoices;
             }
             catch
             {
