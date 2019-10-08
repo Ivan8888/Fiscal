@@ -32,8 +32,10 @@ namespace Server
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
 
-            services.AddDbContext<FiscalContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<FiscalContext>(options =>options
+            //setting for lazy loading
+            //.UseLazyLoadingProxies()
+            .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

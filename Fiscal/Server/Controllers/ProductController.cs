@@ -24,13 +24,15 @@ namespace Server.Controllers
         [Route("[action]")]
         public ActionResult<List<Product>> GetAll()
         {
-            var products = _context.Products.ToList();
+            var products = _context.Products
+                .Include(p => p.InvoiceIteams)
+                .ToList();
 
             //explicit loading of list element
-            foreach(Product p in products)
-            {
-                _context.Entry(p).Collection(p => p.InvoiceIteams).Load();
-            }
+            //foreach(Product p in products)
+            //{
+            //    _context.Entry(p).Collection(p => p.InvoiceIteams).Load();
+            //}
 
             return products;
         }

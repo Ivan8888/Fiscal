@@ -45,9 +45,19 @@ namespace Server.Controllers
         {
             try
             {
-                var invoice = _context.Invoices.SingleOrDefault(i => i.InvoiceId == id);
-                _context.Entry(invoice).Collection(i => i.InvoiceIteams).Load();
-                _context.Entry(invoice).Reference(i => i.Customer).Load();
+                var invoice = _context.Invoices
+                    .Include(i => i.Customer)
+                    .Include(i => i.InvoiceIteams)
+                    .ThenInclude(i => i.Product)
+                    .SingleOrDefault(i => i.InvoiceId == id);
+
+                //explicit loading
+                //_context.Entry(invoice).Collection(i => i.InvoiceIteams).Load();
+                //_context.Entry(invoice).Reference(i => i.Customer).Load();
+                //foreach(var iteam in invoice.InvoiceIteams)
+                //{
+                //    _context.Entry(iteam).Reference(i => i.Product).Load();
+                //}
 
                 return invoice;
             }

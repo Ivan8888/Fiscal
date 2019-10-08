@@ -37,6 +37,8 @@ namespace Server.Controllers
                              .ThenInclude(c => c.InvoiceIteams)
                              .ThenInclude(c => c.Product)
                              .SingleOrDefault();
+
+            //explicit loading
             //_context.Entry(customer).Collection(c => c.Invoices).Load();
             //foreach(Invoice inv in customer.Invoices)
             //{
