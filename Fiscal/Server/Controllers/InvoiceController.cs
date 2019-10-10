@@ -41,6 +41,7 @@ namespace Server.Controllers
         }
 
         [HttpGet("[action]/{id}")]
+        //[Produces("application/xml")]
         public ActionResult<Invoice> GetById(int id)
         {
             try
