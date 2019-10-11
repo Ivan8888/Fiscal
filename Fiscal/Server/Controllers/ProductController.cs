@@ -28,12 +28,6 @@ namespace Server.Controllers
                 .Include(p => p.InvoiceIteams)
                 .ToList();
 
-            //explicit loading of list element
-            //foreach(Product p in products)
-            //{
-            //    _context.Entry(p).Collection(p => p.InvoiceIteams).Load();
-            //}
-
             return products;
         }
 
@@ -41,7 +35,6 @@ namespace Server.Controllers
         [Route("[action]/{id}")]
         public ActionResult<Product> GetById(int id)
         {
-            //var result = _context.Products.SingleOrDefault(p => p.ProductId == id);
             var product = (from p in _context.Products
                           where p.ProductId == id
                           select p)
@@ -51,6 +44,15 @@ namespace Server.Controllers
             _context.Entry(product).Collection(p => p.InvoiceIteams).Load();
             
             return product;
+        }
+
+        [HttpPost]
+        [Route("[action]")]
+        public ActionResult<Product> Create(Product product)
+        {
+            _context.Add(product);
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(GetById), new { id = product.ProductId }, product);
         }
     }
 }
