@@ -31,18 +31,23 @@ namespace Server.Controllers
         public ActionResult<Customer> GetById(int id) 
         {
             var customer = (from c in _context.Customers
-                             where c.CustomerId == id
-                             select c)
+                            where c.CustomerId == id
+                            select c)
                              .Include(c => c.Invoices)
                              .ThenInclude(c => c.InvoiceIteams)
                              .ThenInclude(c => c.Product)
                              .SingleOrDefault();
 
             //explicit loading
+            //var customer = _context.Customers.SingleOrDefault(c => c.CustomerId == id);
+
             //_context.Entry(customer).Collection(c => c.Invoices).Load();
             //foreach(Invoice inv in customer.Invoices)
             //{
             //    _context.Entry(inv).Collection(inv => inv.InvoiceIteams).Load();
+            //    foreach(InvoiceIteam iteam in inv.InvoiceIteams) {
+            //        _context.Entry(iteam).Reference(i => i.Product).Load();
+            //    }
             //}
 
             return customer;

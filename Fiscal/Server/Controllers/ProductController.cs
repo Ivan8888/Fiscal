@@ -50,9 +50,26 @@ namespace Server.Controllers
         [Route("[action]")]
         public ActionResult<Product> Create(Product product)
         {
-            _context.Add(product);
+            //_context.Add(product);
+            _context.Products.Add(product);
             _context.SaveChanges();
             return CreatedAtAction(nameof(GetById), new { id = product.ProductId }, product);
+        }
+
+        [HttpDelete("[action]/{id}")]
+        public IActionResult Delete(int id)
+        {
+            Product product = _context.Products.SingleOrDefault(p => p.ProductId == id);
+            if(product != null)
+            {
+                _context.Products.Remove(product);
+                _context.SaveChanges();
+                return NoContent();
+            }
+            else
+            {
+                return NotFound();
+            }
         }
     }
 }
