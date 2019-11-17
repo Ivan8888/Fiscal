@@ -28,6 +28,11 @@ namespace Server.Controllers
                 .Include(p => p.InvoiceIteams)
                 .ToList();
 
+            if (products.Count() == 0)
+            {
+                return NotFound();
+            }
+
             return products;
         }
 
@@ -56,7 +61,8 @@ namespace Server.Controllers
             return CreatedAtAction(nameof(GetById), new { id = product.ProductId }, product);
         }
 
-        [HttpDelete("[action]/{id}")]
+        [HttpDelete]
+        [Route("[action]/{id}")]
         public IActionResult Delete(int id)
         {
             Product product = _context.Products.SingleOrDefault(p => p.ProductId == id);
