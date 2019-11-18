@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ClientMVC.Models;
+using ClientMVC.Data;
 
 namespace ClientMVC.Controllers
 {
@@ -13,15 +14,18 @@ namespace ClientMVC.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        FiscalContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, FiscalContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index(int id)
         {
-            return new ContentResult() { Content = string.Format("Index method. ID:{0}", id) };
+            
+            return new ContentResult() { Content = string.Format("Name of first product is: {0}", _context.Products.First().Name) };
         }
 
         [Route("Test/{id}/{value:int}")]

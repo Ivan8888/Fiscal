@@ -11,6 +11,9 @@ using Microsoft.Extensions.Hosting;
 using System.IO;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Mvc;
+using ClientMVC.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace ClientMVC
 {
@@ -26,12 +29,16 @@ namespace ClientMVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<FiscalContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvcCore();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, FiscalContext context)
         {
+            context.Database.EnsureDeleted();
+            context.Database.EnsureCreated();
+
             app.UseStaticFiles(new StaticFileOptions()
             {
                 RequestPath = "/wwwroot"
