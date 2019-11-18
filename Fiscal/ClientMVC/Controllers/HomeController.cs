@@ -24,7 +24,6 @@ namespace ClientMVC.Controllers
 
         public IActionResult Index(int id)
         {
-            
             return new ContentResult() { Content = string.Format("Name of first product is: {0}", _context.Products.First().Name) };
         }
 

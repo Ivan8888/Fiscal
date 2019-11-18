@@ -25,7 +25,7 @@ namespace Server.Controllers
         public ActionResult<List<Product>> GetAll()
         {
             var products = _context.Products
-                .Include(p => p.InvoiceIteams)
+                .Include(p => p.InvoiceItems)
                 .ToList();
 
             if (products.Count() == 0)
@@ -46,7 +46,7 @@ namespace Server.Controllers
                           .SingleOrDefault();
 
             //explicit loading of single element
-            _context.Entry(product).Collection(p => p.InvoiceIteams).Load();
+            _context.Entry(product).Collection(p => p.InvoiceItems).Load();
             
             return product;
         }

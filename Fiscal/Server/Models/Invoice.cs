@@ -11,6 +11,6 @@ namespace Server.Models
         public int CustomerId { get; set; }
         public DateTime DateCreated { get; set; }
         public virtual Customer Customer { get; set; }
-        public virtual ICollection<InvoiceIteam> InvoiceIteams { get; set; }
+        public virtual ICollection<InvoiceItem> InvoiceItems { get; set; }
     }
 }

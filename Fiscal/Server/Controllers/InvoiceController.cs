@@ -27,16 +27,30 @@ namespace Server.Controllers
         {
             try
             {
+                //eager loading
                 var invoices = _context.Invoices
                     .Include(i => i.Customer)
-                    .Include(i => i.InvoiceIteams)
+                    .Include(i => i.InvoiceItems)
                     .ToList();
+
+                //
+                //var invoices = _context.Invoices.ToList();
+                //foreach (var inv in invoices)
+                //{
+                //    _context.Entry(inv).Reference(c => c.Customer).Load();
+                //    _context.Entry(inv).Collection(c => c.InvoiceItems).Load();
+                //}
+
+                //lazy loading
+                //var invoices = _context.Invoices.ToList();
+                //string customerName = invoices.First().Customer.Name;
+                //int iteamNumber = invoices.First().InvoiceItems.Count();
 
                 return invoices;
             }
-            catch
+            catch(Exception ex)
             {
-                return StatusCode(500,"Server error!");
+                return StatusCode(500, ex.Message);
             }
         }
 
@@ -46,19 +60,21 @@ namespace Server.Controllers
         {
             try
             {
-                var invoice = _context.Invoices
-                    .Include(i => i.Customer)
-                    .Include(i => i.InvoiceIteams)
-                    .ThenInclude(i => i.Product)
-                    .SingleOrDefault(i => i.InvoiceId == id);
+                //var invoice = _context.Invoices
+                //    .Include(i => i.Customer)
+                //    .Include(i => i.InvoiceItems)
+                //    .ThenInclude(i => i.Product)
+                //    .SingleOrDefault(i => i.InvoiceId == id);
 
                 //explicit loading
-                //_context.Entry(invoice).Collection(i => i.InvoiceIteams).Load();
-                //_context.Entry(invoice).Reference(i => i.Customer).Load();
-                //foreach(var iteam in invoice.InvoiceIteams)
-                //{
-                //    _context.Entry(iteam).Reference(i => i.Product).Load();
-                //}
+                var invoice = _context.Invoices.SingleOrDefault(i => i.InvoiceId == id);
+
+                _context.Entry(invoice).Collection(i => i.InvoiceItems).Load();
+                _context.Entry(invoice).Reference(i => i.Customer).Load();
+                foreach(var iteam in invoice.InvoiceItems)
+                {
+                    _context.Entry(iteam).Reference(i => i.Product).Load();
+                }   
 
                 return invoice;
             }

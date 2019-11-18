@@ -11,6 +11,6 @@ namespace Server.Models
         public int ProductId { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
-        public virtual ICollection<InvoiceIteam> InvoiceIteams { get; set; }
+        public virtual ICollection<InvoiceItem> InvoiceItems { get; set; }
     }
 }

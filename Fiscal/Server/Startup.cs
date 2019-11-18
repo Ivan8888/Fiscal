@@ -38,7 +38,7 @@ namespace Server
 
             services.AddDbContext<FiscalContext>(options =>options
             //setting for lazy loading
-            //.UseLazyLoadingProxies()
+            .UseLazyLoadingProxies()
             .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 

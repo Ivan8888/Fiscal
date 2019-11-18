@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Server.Models
 {
-    public class InvoiceIteam
+    public class InvoiceItem
     {
-        public int InvoiceIteamId { get; set; }
+        public int InvoiceItemId { get; set; }
         public int InvoiceId { get; set; }
         public int ProductID { get; set; }
         public decimal Quantity { get; set; }

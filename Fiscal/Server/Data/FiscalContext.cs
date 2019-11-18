@@ -18,7 +18,7 @@ namespace Server.Data
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
         
-        public DbSet<InvoiceIteam> InvoiceIteams { get; set; }
+        public DbSet<InvoiceItem> InvoiceItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -71,31 +71,31 @@ namespace Server.Data
                 }
             );
 
-            modelBuilder.Entity<InvoiceIteam>().HasData(
-                new InvoiceIteam
+            modelBuilder.Entity<InvoiceItem>().HasData(
+                new InvoiceItem
                 {
-                     InvoiceIteamId = 1,
+                     InvoiceItemId = 1,
                      InvoiceId = 1,
                      ProductID = 1,
                      Quantity = 10
                 },
-                new InvoiceIteam
+                new InvoiceItem
                 {
-                    InvoiceIteamId = 2,
+                    InvoiceItemId = 2,
                     InvoiceId = 1,
                     ProductID = 2,
                     Quantity = 2
                 },
-                new InvoiceIteam
+                new InvoiceItem
                 {
-                    InvoiceIteamId = 3,
+                    InvoiceItemId = 3,
                     InvoiceId = 2,
                     ProductID = 1,
                     Quantity = 20
                 },
-                new InvoiceIteam
+                new InvoiceItem
                 {
-                    InvoiceIteamId = 4,
+                    InvoiceItemId = 4,
                     InvoiceId = 2,
                     ProductID = 3,
                     Quantity = 3
