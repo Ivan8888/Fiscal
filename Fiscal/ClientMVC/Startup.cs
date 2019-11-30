@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 using ClientMVC.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using ClientMVC.Services;
 
 namespace ClientMVC
 {
@@ -30,14 +31,15 @@ namespace ClientMVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<FiscalContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddMvcCore();
+            services.AddScoped<IProductNumber, ProductNumber>();
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, FiscalContext context)
         {
-            context.Database.EnsureDeleted();
-            context.Database.EnsureCreated();
+            //context.Database.EnsureDeleted();
+            //context.Database.EnsureCreated();
 
             app.UseStaticFiles(new StaticFileOptions()
             {

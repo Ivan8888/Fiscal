@@ -1,0 +1,32 @@
+﻿@model ClientMVC.Models.Product
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Product</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        @using (Html.BeginForm("CreateHtml", "Product", FormMethod.Post))
+        {
+            @Html.ValidationSummary(false)
+
+            @Html.LabelFor(p => p.Name)
+            @Html.EditorFor(p => p.Name)
+            @Html.ValidationMessageFor(p => p.Name)
+            <br />
+            @Html.LabelFor(p => p.Price)
+            @Html.EditorFor(p => p.Price)
+            @Html.ValidationMessageFor(p => p.Price)
+            <br/>
+            <input type="submit" value="Insert" />
+        }
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

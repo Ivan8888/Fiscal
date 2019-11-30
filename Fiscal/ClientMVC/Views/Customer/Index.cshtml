@@ -1,0 +1,40 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<ClientMVC.Models.Customer>
+
+<h1>Customers list</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var iteam in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(c => iteam.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(c => iteam.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(c => iteam.Email)
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+
+

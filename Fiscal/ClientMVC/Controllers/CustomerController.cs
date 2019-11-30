@@ -1,29 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using ClientMVC.Models;
 using ClientMVC.Data;
+using ClientMVC.Models;
 
 namespace ClientMVC.Controllers
 {
-    public class HomeController : Controller
+    public class CustomerController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         FiscalContext _context;
 
-        public HomeController(ILogger<HomeController> logger, FiscalContext context)
+        public CustomerController(FiscalContext context)
         {
-            _logger = logger;
             _context = context;
         }
 
         public IActionResult Index()
         {
-            return View();
+            List<Customer> customers = _context.Customers.ToList();
+            return View(customers);
         }
     }
 }
