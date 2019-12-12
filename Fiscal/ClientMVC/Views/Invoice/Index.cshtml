@@ -1,0 +1,37 @@
+﻿@using ClientMVC.Models
+@model IEnumerable<Invoice>
+
+<h1>Invoice List</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(i => i.InvoiceId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(i => i.DateCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(i => i.Customer.Name)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var iteam in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(i => iteam.InvoiceId)
+            </td>
+            <td>
+                @Html.DisplayFor(i => iteam.DateCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(i => iteam.Customer.Name)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+

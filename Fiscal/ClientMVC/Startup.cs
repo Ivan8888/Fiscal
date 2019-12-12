@@ -38,8 +38,8 @@ namespace ClientMVC
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, FiscalContext context)
         {
-            //context.Database.EnsureDeleted();
-            //context.Database.EnsureCreated();
+            context.Database.EnsureDeleted();
+            context.Database.EnsureCreated();
 
             app.UseStaticFiles(new StaticFileOptions()
             {

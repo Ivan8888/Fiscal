@@ -5,14 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ClientMVC.Models;
 using ClientMVC.Data;
+using System.Collections;
+using Microsoft.EntityFrameworkCore;
 using ClientMVC.Services;
 
 namespace ClientMVC.Controllers
 {
     public class ProductController : Controller
     {
-        FiscalContext _context;
-        IProductNumber _productNumber;
+        private FiscalContext _context;
+        private IProductNumber _productNumber;
 
         public ProductController(FiscalContext context, IProductNumber productNumber)
         {
@@ -22,13 +24,15 @@ namespace ClientMVC.Controllers
 
         public IActionResult Index()
         {
-            return View(_context.Products.ToList());
+            List<Product> products = _context.Products.ToList();
+            return View(products);
         }
 
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
-        } 
+        }
 
         [HttpPost]
         public IActionResult Create(Product product)
@@ -37,7 +41,8 @@ namespace ClientMVC.Controllers
             {
                 _context.Products.Add(product);
                 _context.SaveChanges();
-                return RedirectToAction("Index");
+                _productNumber.AddProductCount();
+                return RedirectToAction(nameof(Index));
             }
             else
             {
@@ -45,25 +50,50 @@ namespace ClientMVC.Controllers
             }
         }
 
-        public IActionResult CreateHtml()
+        [HttpGet]
+        public IActionResult Edit(int id)
         {
-            return View();
+            Product product = _context.Products.SingleOrDefault(p => p.ProductId == id);
+            if(product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
         }
 
         [HttpPost]
-        public IActionResult CreateHtml(Product product)
+        public async Task<IActionResult> Edit(int? id)
         {
-            if (ModelState.IsValid)
+            Product productToUpdate = _context.Products.SingleOrDefault(p => p.ProductId == id);
+
+            if (await TryUpdateModelAsync<Product>(productToUpdate, "", p => p.Name, p => p.Price))
             {
-                _context.Products.Add(product);
-                _context.SaveChanges();
-                _productNumber.AddProductCount();
-                return RedirectToAction("Index");
+                try
+                {
+                    _context.SaveChanges();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch(DbUpdateException)
+                {
+                    ModelState.AddModelError("", "Eror while updating product, try again latter!");
+                }
             }
-            else
+
+            return View(productToUpdate);
+        }
+
+        public IActionResult Delete(int id) 
+        {
+            Product product = _context.Products.SingleOrDefault(p => p.ProductId == id);
+            if(product == null)
             {
-                return View();
+                return NotFound();
             }
+
+            _context.Products.Remove(product);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
         }
     }
 }

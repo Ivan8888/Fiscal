@@ -15,26 +15,35 @@
             <th>
                 @Html.DisplayNameFor(model => model.Email)
             </th>
+            <th>
+                Edit links
+            </th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var iteam in Model)
+        @foreach (var item in Model)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(c => iteam.Name)
+                    @Html.DisplayFor(c => item.Name) 
                 </td>
                 <td>
-                    @Html.DisplayFor(c => iteam.Address)
+                    @Html.DisplayFor(c => item.Address)
                 </td>
                 <td>
-                    @Html.DisplayFor(c => iteam.Email)
+                    @Html.DisplayFor(c => item.Email)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id= "@item.CustomerId">Edit</a>
+                    @*@Html.ActionLink("Delete this customer", "Delete", new { id = item.CustomerId });*@
+                    <a asp-action="Delete" asp-route-id="@item.CustomerId">Delete konacno</a>
                 </td>
             </tr>
         }
     </tbody>
-
 </table>
+
+<a asp-action="Create">Create new</a>
 
 
 

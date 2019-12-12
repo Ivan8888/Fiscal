@@ -1,34 +1,23 @@
-﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+﻿@using ClientMVC.Models
+@model Product
 
-@model ClientMVC.Models.Product
-
-@{
-    ViewData["Title"] = "Create";
-}
 
 <h1>Create</h1>
 
-<h4>Product</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-controller="Product" asp-action="Create" method="post">
-            <div asp-validation-summary="All"></div>
-            <label asp-for="Name"></label>
-            <input asp-for="Name" />
-            <span asp-validation-for="Name"></span>
-            <br />
-            <label asp-for="Price" ></label>
-            <input asp-for="Price" />
-            <span asp-validation-for="Price"></span>
-            <br />
-            @*@Html.EditorForModel()*@
-            <input type="submit" value="Create" class="btn btn-primary" />
-        </form>
-    </div>
-</div>
+@using (@Html.BeginForm("Create", "Product", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    @Html.LabelFor(p => p.Name)
+    @Html.EditorFor(p => p.Name)
+    @Html.ValidationMessageFor(p => p.Name)
+    <br />
+
+    @Html.LabelFor(p => p.Price)
+    @Html.EditorFor(p => p.Price)
+    @Html.ValidationMessageFor(p => p.Price)
+    <br />
+
+    <input name="Insert" type="submit" />
+}
 

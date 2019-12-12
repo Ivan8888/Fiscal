@@ -14,7 +14,7 @@ namespace ClientMVC.Services
         public ProductNumber(FiscalContext context)
         {
             _context = context;
-            Number = context.Products.Count();
+            Number = _context.Products.Count();
         }
 
         public void AddProductCount()

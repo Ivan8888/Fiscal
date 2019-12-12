@@ -1,0 +1,33 @@
+﻿@using ClientMVC.Models
+
+@model Customer
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create new Customer</h1>
+
+<form asp-controller="Customer" asp-action="Create" method="post">
+    <div asp-validation-summary="All"></div>
+
+    <label asp-for="Name"></label>
+    <input asp-for="Name" />
+    <span asp-validation-for="Name" ></span>
+    <br />
+
+    <label asp-for="Address"></label>
+    <input asp-for="Address" />
+    <span asp-validation-for="Address" ></span>
+    <br />
+
+    <label asp-for="Email"></label>
+    <input asp-for="Email" />
+    <span asp-validation-for="Email" ></span>
+    <br />
+
+    <input type="submit" name="Insert new customer" />
+</form>
+
+<a asp-action="Index">Return to list</a>
+
