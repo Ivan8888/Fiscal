@@ -14,6 +14,9 @@ using Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace Server
 {
@@ -46,10 +49,38 @@ namespace Server
         public void Configure(IApplicationBuilder app,IWebHostEnvironment env, FiscalContext fiscalContext)
         {
             //fiscalContext.Database.EnsureDeleted();
-            fiscalContext.Database.EnsureCreated();
+            //fiscalContext.Database.EnsureCreated();
 
+            app.UseStaticFiles(new StaticFileOptions() {
+                RequestPath = "/root"
+            });
 
-            if(env.IsDevelopment())
+            app.UseStaticFiles(new StaticFileOptions() {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "StaticFolder")), 
+                RequestPath = "/static"
+            });
+
+            app.Use(async (context, next) => {
+                await context.Response.WriteAsync($"Path is: {context.Request.Path.Value}   ");
+                await next.Invoke();
+            });
+
+            app.Map("/map", (aplicationBuilder) => {
+                aplicationBuilder.Use(async (c, next) => {
+                    await c.Response.WriteAsync("Inside use middleware, in map");
+                    await next.Invoke();
+                });
+
+                //aplicationBuilder.Run(async (c) => {
+                //    await c.Response.WriteAsync("Inside run middleware, in map");
+                //});
+            });
+
+            app.Run(async (context) => {
+                await context.Response.WriteAsync("Inside run middleware, not in map! ");
+            });
+
+            if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
