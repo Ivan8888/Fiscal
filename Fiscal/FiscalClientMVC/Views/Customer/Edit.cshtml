@@ -1,0 +1,28 @@
+﻿@model FiscalClientMVC.Models.Customer
+
+<h1>Edit customer</h1>
+
+<form asp-controller="Customer" asp-action="Edit" method="post">
+    <br />
+    <label asp-for="Name"></label>
+    <br />
+    <input asp-for="Name" />
+    <br />
+
+    <label asp-for="Address"></label>
+    <br />
+    <input asp-for="Address" />
+    <br />
+
+    <label asp-for="Email"></label>
+    <br />
+    <input asp-for="Email" />
+    <br />
+
+    <label asp-for="IsRetail"></label>
+    <br />
+    <input asp-for="IsRetail" />
+    <br />
+
+    <input type="submit" value="Edit Customer" />
+</form>

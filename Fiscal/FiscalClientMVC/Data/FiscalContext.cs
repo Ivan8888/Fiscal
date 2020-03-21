@@ -43,14 +43,20 @@ namespace FiscalClientMVC.Data
                 new Customer
                 {
                     CustomerId = 1,
-                    Name = "DrinkStore"
+                    Name = "DrinkStore",
+                    Address = "Drink Store Address",
+                    Email = "drinkstore@gmail.com",
+                    IsRetail = false
                 },
                 new Customer
                 {
                     CustomerId = 2,
-                    Name = "Ivan"
+                    Name = "Ivan",
+                    Address = "Ivan Address",
+                    Email = "ivan@gmail.com",
+                    IsRetail = true
                 }
-            );
+            ) ;
 
             modelBuilder.Entity<Invoice>().HasData(
                 new Invoice

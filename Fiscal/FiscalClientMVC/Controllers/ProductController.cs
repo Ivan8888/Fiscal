@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using FiscalClientMVC.Data;
+using FiscalClientMVC.Models;
 
 namespace FiscalClientMVC.Controllers
 {
@@ -15,9 +16,17 @@ namespace FiscalClientMVC.Controllers
         {
             _dbcontext = dbcontext;
         }
-        public IActionResult Index()
+
+        public IActionResult Create()
         {
-            return Content(_dbcontext.Products.First(p => p.ProductId == 1).Name);
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            Product product = _dbcontext.Products.First(p => p.ProductId == id);
+            return View(product); 
         }
     }
 }

@@ -32,7 +32,7 @@ namespace FiscalClientMVC
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, FiscalContext context)
         {
-            context.Database.EnsureDeleted();
+            //context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
 
             if (env.IsDevelopment())
