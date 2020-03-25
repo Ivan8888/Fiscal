@@ -6,24 +6,30 @@
 
 @using (@Html.BeginForm("Create", "Customer", FormMethod.Post))
 {
+    @Html.ValidationSummary(true);
+
     @Html.LabelFor(c => c.Name)
     <br />
     @Html.EditorFor(c => c.Name)
+    @Html.ValidationMessageFor(c => c.Name)
     <br />
 
     @Html.LabelFor(c => c.Email)
     <br />
     @Html.EditorFor(c => c.Email)
+    @Html.ValidationMessageFor(c => c.Email)
     <br />
 
     @Html.LabelFor(c => c.Address)
     <br />
     @Html.EditorFor(c => c.Address)
+    @Html.ValidationMessageFor(c => c.Address)
     <br />
 
     @Html.LabelFor(c => c.IsRetail)
     <br />
     @Html.EditorFor(c => c.IsRetail)
+    @Html.ValidationMessageFor(c => c.IsRetail)
     <br />
 
     <input type="submit" value="Save Customer" />

@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using FiscalClientMVC.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using FiscalClientMVC.Services;
 
 namespace FiscalClientMVC
 {
@@ -27,12 +28,13 @@ namespace FiscalClientMVC
             services.AddDbContext<FiscalContext>(
                 option => option.UseSqlServer(_config.GetConnectionString("Default")));
 
+            services.AddSingleton<ICustomerCount, CustomerCountService>();
             services.AddMvc();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, FiscalContext context)
         {
-            //context.Database.EnsureDeleted();
+            context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
 
             if (env.IsDevelopment())

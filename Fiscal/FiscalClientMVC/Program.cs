@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 namespace FiscalClientMVC {
     public class Program {
         public static void Main(string[] args) {
-            CreateHostBuilder(args).Build().Run();
+            CreateHostBuilder(args).UseDefaultServiceProvider(o => o.ValidateScopes = false).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

@@ -3,25 +3,32 @@
 <h1>Edit customer</h1>
 
 <form asp-controller="Customer" asp-action="Edit" method="post">
+    <br/>
+    <div asp-validation-summary="All"></div>
+
     <br />
     <label asp-for="Name"></label>
     <br />
     <input asp-for="Name" />
+    <span asp-validation-for="Name"></span>
     <br />
 
     <label asp-for="Address"></label>
     <br />
     <input asp-for="Address" />
+    <span asp-validation-for="Address" ></span>
     <br />
 
     <label asp-for="Email"></label>
     <br />
     <input asp-for="Email" />
+    <span asp-validation-for="Email"></span>
     <br />
 
     <label asp-for="IsRetail"></label>
     <br />
     <input asp-for="IsRetail" />
+    <span asp-validation-for="IsRetail"></span>
     <br />
 
     <input type="submit" value="Edit Customer" />

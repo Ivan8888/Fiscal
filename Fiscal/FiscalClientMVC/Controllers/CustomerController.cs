@@ -6,21 +6,25 @@ using Microsoft.AspNetCore.Mvc;
 using FiscalClientMVC.Data;
 using FiscalClientMVC.Models;
 using Microsoft.EntityFrameworkCore;
+using FiscalClientMVC.Services;
 
 namespace FiscalClientMVC.Controllers
 {
     public class CustomerController : Controller
     {
         FiscalContext _dbcontext;
+        ICustomerCount _customerCount;
 
-        public CustomerController(FiscalContext context)
+        public CustomerController(FiscalContext context, ICustomerCount customerCount)
         {
             _dbcontext = context;
+            _customerCount = customerCount;
         }
 
         public IActionResult Index()
         {
-            return View();
+            List<Customer> customers = _dbcontext.Customers.ToList();
+            return View(customers);
         }
 
         public IActionResult Details(int id)
@@ -38,10 +42,16 @@ namespace FiscalClientMVC.Controllers
         [HttpPost]
         public IActionResult Create(Customer customer)
         {
-            _dbcontext.Customers.Add(customer);
-            _dbcontext.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                _dbcontext.Customers.Add(customer);
+                _dbcontext.SaveChanges();
+                _customerCount.AddCustomerNumber();
 
-            return Content("Uspešno sačuvano");
+                return RedirectToAction("Index");
+            }
+
+            return View();
         }
 
         [HttpGet]
@@ -61,7 +71,7 @@ namespace FiscalClientMVC.Controllers
             }
 
             Customer customerToUpdate = _dbcontext.Customers.FirstOrDefault(c => c.CustomerId == id);
-            if (await TryUpdateModelAsync<Customer>(customerToUpdate, "", c => c.Name, c => c.Address, c => c.Email))
+            if (await TryUpdateModelAsync<Customer>(customerToUpdate, "", c => c.Name, c => c.Address, c => c.Email, c => c.IsRetail))
             {
                 try
                 {
@@ -74,7 +84,7 @@ namespace FiscalClientMVC.Controllers
                 }
             }
 
-            return View(customerToUpdate);
+            return RedirectToAction(nameof(Index));
         }
     }
 }
