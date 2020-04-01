@@ -7,6 +7,7 @@ using FiscalClientMVC.Data;
 using FiscalClientMVC.Models;
 using Microsoft.EntityFrameworkCore;
 using FiscalClientMVC.Services;
+using Microsoft.Extensions.Logging;
 
 namespace FiscalClientMVC.Controllers
 {
@@ -14,15 +15,24 @@ namespace FiscalClientMVC.Controllers
     {
         FiscalContext _dbcontext;
         ICustomerCount _customerCount;
+        ILogger<CustomerController> _logger;
 
-        public CustomerController(FiscalContext context, ICustomerCount customerCount)
-        {
+        public CustomerController(FiscalContext context, ICustomerCount customerCount, ILogger<CustomerController> logger)
+       {
             _dbcontext = context;
             _customerCount = customerCount;
+            _logger = logger;
+            _logger.LogDebug("CustomerController constructor.");
+            _logger.LogInformation("CustomerController constructor.");
+
+            int id = 5;
+            _logger.LogInformation(100, new Exception("This is exception for loging!"), "Getting item {Id} at {RequestTime}", id, DateTime.Now);
         }
 
         public IActionResult Index()
         {
+            _logger.LogDebug("Index action");
+            _logger.LogInformation("Index action");
             List<Customer> customers = _dbcontext.Customers.ToList();
             return View(customers);
         }

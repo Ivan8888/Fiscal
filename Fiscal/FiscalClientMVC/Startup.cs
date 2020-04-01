@@ -11,16 +11,19 @@ using FiscalClientMVC.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using FiscalClientMVC.Services;
+using Microsoft.Extensions.Logging;
 
 namespace FiscalClientMVC
 {
     public class Startup
     {
         IConfiguration _config;
+        IWebHostEnvironment _env;
 
-        public Startup(IConfiguration config)
+        public Startup(IConfiguration config, IWebHostEnvironment env)
         {
             _config = config;
+            _env = env;
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -32,12 +35,12 @@ namespace FiscalClientMVC
             services.AddMvc();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, FiscalContext context)
+        public void Configure(IApplicationBuilder app, FiscalContext context, ILogger<Startup> logger)
         {
             context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
 
-            if (env.IsDevelopment())
+            if (_env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
