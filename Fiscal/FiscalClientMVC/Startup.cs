@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using FiscalClientMVC.Services;
 using Microsoft.Extensions.Logging;
+using FiscalClientMVC.Models;
 
 namespace FiscalClientMVC
 {
@@ -31,6 +32,9 @@ namespace FiscalClientMVC
             services.AddDbContext<FiscalContext>(
                 option => option.UseSqlServer(_config.GetConnectionString("Default")));
 
+            services.AddDefaultIdentity<AppUser>()
+                .AddEntityFrameworkStores<FiscalContext>();
+
             services.AddSingleton<ICustomerCount, CustomerCountService>();
             services.AddMvc();
         }
@@ -39,6 +43,8 @@ namespace FiscalClientMVC
         {
             context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
+
+            app.UseAuthentication();
 
             if (_env.IsDevelopment())
             {

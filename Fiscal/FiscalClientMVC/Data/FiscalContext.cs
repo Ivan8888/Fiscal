@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FiscalClientMVC.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace FiscalClientMVC.Data
 {
-    public class FiscalContext : DbContext
+    public class FiscalContext : IdentityDbContext<AppUser>
     {
-        public FiscalContext(DbContextOptions options) : base(options){}
+        public FiscalContext(DbContextOptions<FiscalContext> options) : base(options){}
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Customer> Customers { get; set; }
@@ -18,6 +20,8 @@ namespace FiscalClientMVC.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Product>().HasData(
                 new Product
                 {

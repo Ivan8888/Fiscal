@@ -1,0 +1,39 @@
+﻿@model FiscalClientMVC.ViewModels.RegisterViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View</title>
+</head>
+<body>
+    <form asp-action="Register" method="post">
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" />
+        <br />
+
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" />
+        <br />
+
+        <label asp-for="Age"></label>
+        <input asp-for="Age" />
+        <br />
+
+        <label asp-for="UserName"></label>
+        <input asp-for="UserName" />
+        <br />
+
+        <label asp-for="Password"></label>
+        <input asp-for="Password" />
+        <br />
+
+        <input type="submit" value="Create User" />
+    </form>
+</body>
+</html>
