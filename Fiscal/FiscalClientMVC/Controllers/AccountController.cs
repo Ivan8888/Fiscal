@@ -6,6 +6,8 @@ using FiscalClientMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using FiscalClientMVC.ViewModels;
+using System.Security;
+using System.Security.Claims;
 
 namespace FiscalClientMVC.Controllers
 {
@@ -39,6 +41,7 @@ namespace FiscalClientMVC.Controllers
                 {
                     FirstName = model.FirstName,
                     LastName = model.LastName,
+                    Email = model.Email,
                     Age = model.Age,
                     UserName = model.UserName
                 };
@@ -46,11 +49,19 @@ namespace FiscalClientMVC.Controllers
                 IdentityResult result = await _userManager.CreateAsync(app_user, model.Password);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction(nameof(Login));
+                    AppUser user = await _userManager.FindByNameAsync(app_user.UserName);
+
+                    if (!string.IsNullOrWhiteSpace(user.Email))
+                    {
+                        Claim claim = new Claim(ClaimTypes.Email, user.Email);
+                        await _userManager.AddClaimAsync(user, claim); 
+                    }
+
+                    return RedirectToAction(nameof(Index));
                 }
             }
 
-            return View();
+            return View(model);
         }
 
         public ViewResult Login()

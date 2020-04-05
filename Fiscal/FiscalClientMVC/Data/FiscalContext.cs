@@ -11,7 +11,11 @@ namespace FiscalClientMVC.Data
 {
     public class FiscalContext : IdentityDbContext<AppUser>
     {
-        public FiscalContext(DbContextOptions<FiscalContext> options) : base(options){}
+        private readonly UserManager<AppUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        public FiscalContext(DbContextOptions<FiscalContext> options) : base(options)
+        {
+        }
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Customer> Customers { get; set; }

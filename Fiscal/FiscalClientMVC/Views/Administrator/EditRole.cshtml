@@ -1,0 +1,61 @@
+﻿@model FiscalClientMVC.ViewModels.EditRoleViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EditRole</title>
+</head>
+<body>
+    <h1>Edit Role</h1>
+    <br />
+    <form asp-action="EditRole" method="post">
+        <div asp-validation-summary="ModelOnly"></div>
+        <br />
+        <label asp-for="RoleId"></label>
+        <br />
+        <input asp-for="RoleId" />
+        <br />
+        <span asp-validation-for="RoleId"></span>
+        <br />
+
+        <label asp-for="RoleName"></label>
+        <br />
+        <input asp-for="RoleName" />
+        <br />
+        <span asp-validation-for="RoleName"></span>
+        <br />
+
+        <input type="submit" value="Edit" />
+        <a asp-action="ListRoles">Cancel</a>
+        <br />
+
+        <h2>Users</h2>
+        <br />
+        <div>
+            @if (Model.Users.Any())
+            {
+                foreach (var iteam in Model.Users)
+                {
+                    @iteam
+                    <br />
+                }
+            }
+            else
+            {
+                @: No users in current role
+                <br />
+            }
+
+            <a asp-action="EditUsersInRole" asp-controller="Administrator" asp-route-roleId ="@Model.RoleId">AddOrRemoveUsersInRole</a>
+
+        </div>
+    </form>
+
+</body>
+</html>

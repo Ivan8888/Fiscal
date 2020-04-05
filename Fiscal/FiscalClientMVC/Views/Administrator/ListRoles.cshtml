@@ -1,0 +1,49 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@model IEnumerable<IdentityRole>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ListRoles</title>
+</head>
+<body>
+    <h1>All Roles</h1>
+    <br />
+    <a asp-action="CreateRole">Create New Role</a>
+    <br />
+    <br />
+    <br />
+
+    @if (Model.Any())
+    {
+        foreach (var role in Model)
+        {
+            <div>
+                <label>@role.Id</label>
+                <br />
+                <label>@role.Name</label>
+            </div>
+            <div>
+                <a asp-action="EditRole" asp-route-id="@role.Id">Edit</a>
+                <a asp-action="DeleteRole">Delete</a>
+            </div>
+
+            <br />
+            <br />
+            <br />
+        }
+    }
+    else
+    {
+        <div>
+            There is no roles!
+        </div>
+    }
+</body>
+</html>

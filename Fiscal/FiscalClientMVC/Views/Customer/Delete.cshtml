@@ -1,0 +1,27 @@
+﻿@using FiscalClientMVC.Models
+@model Customer
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <form asp-action="Delete" method="post">
+        Are you sure that you want to delete customer: @Html.DisplayFor(c => c.Name)
+        <input type="submit" value="Confirm" />
+    </form>
+
+    <br />
+
+    @Html.ActionLink("BackToList", "Index");
+    <br />
+    <a asp-action="Index">Back to list</a>
+</body>
+</html>

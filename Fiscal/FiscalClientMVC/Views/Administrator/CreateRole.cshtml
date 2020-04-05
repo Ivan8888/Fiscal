@@ -1,0 +1,24 @@
+﻿@using FiscalClientMVC.ViewModels
+@model CreateRoleViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CreateRole</title>
+</head>
+<body>
+    <form asp-action="CreateRole" method="post">
+        <div asp-validation-summary="All"></div>
+        <label asp-for="RoleName"></label>
+        <input asp-for="RoleName" />
+        <span asp-validation-for="RoleName"></span>
+        <input type="submit" value="Create Role"/>
+    </form>
+</body>
+</html>

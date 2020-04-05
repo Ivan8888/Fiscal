@@ -8,6 +8,7 @@ using FiscalClientMVC.Models;
 using Microsoft.EntityFrameworkCore;
 using FiscalClientMVC.Services;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FiscalClientMVC.Controllers
 {
@@ -22,18 +23,14 @@ namespace FiscalClientMVC.Controllers
             _dbcontext = context;
             _customerCount = customerCount;
             _logger = logger;
-            _logger.LogDebug("CustomerController constructor.");
-            _logger.LogInformation("CustomerController constructor.");
-
-            int id = 5;
-            _logger.LogInformation(100, new Exception("This is exception for loging!"), "Getting item {Id} at {RequestTime}", id, DateTime.Now);
+            _logger.LogDebug("In constructor.");
         }
 
         public IActionResult Index()
         {
-            _logger.LogDebug("Index action");
-            _logger.LogInformation("Index action");
+            _logger.LogDebug(" - started", nameof(Index), Request.Method);
             List<Customer> customers = _dbcontext.Customers.ToList();
+            _logger.LogInformation("{action}:{metod} - number of customers returned is: {number}", nameof(Index), Request.Method, customers.Count());
             return View(customers);
         }
 
@@ -65,22 +62,42 @@ namespace FiscalClientMVC.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit(int id)
+        public IActionResult Edit(int? id)
         {
-            Customer customer = _dbcontext.Customers.Single(c => c.CustomerId == id);
-            return View(customer);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
+            if(id == null)
             {
+                _logger.LogError("{action}:{method} - id is null", nameof(Edit), Request.Method);
+                return BadRequest();
+            }
+
+            Customer customer = _dbcontext.Customers.SingleOrDefault(c => c.CustomerId == id);
+            if(customer == null)
+            {
+                _logger.LogError("{action}:{method} - customer is null", nameof(Edit), Request.Method);
                 return NotFound();
             }
 
-            Customer customerToUpdate = _dbcontext.Customers.FirstOrDefault(c => c.CustomerId == id);
+            return View(customer);
+        }
+
+        [HttpPost, ActionName("Edit")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditPost(int? id)
+        {
+            if (id == null)
+            {
+                _logger.LogError("{action}:{method} - id is null", nameof(EditPost), Request.Method);
+                return BadRequest();
+            }
+
+            Customer customerToUpdate = _dbcontext.Customers.SingleOrDefault(c => c.CustomerId == id);
+
+            if (customerToUpdate == null)
+            {
+                _logger.LogError("{action}:{method} - customer is null", nameof(EditPost), Request.Method);
+                return NotFound();
+            }
+
             if (await TryUpdateModelAsync<Customer>(customerToUpdate, "", c => c.Name, c => c.Address, c => c.Email, c => c.IsRetail))
             {
                 try
@@ -95,6 +112,27 @@ namespace FiscalClientMVC.Controllers
             }
 
             return RedirectToAction(nameof(Index));
+        }
+
+        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "RequireEmail")]
+        public IActionResult Delete(int id)
+        {
+            var customer = _dbcontext.Customers.SingleOrDefault(c => c.CustomerId == id);
+            return View(customer);
+        }
+
+
+        [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "RequireEmail")]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var customer = _dbcontext.Customers.SingleOrDefault(c => c.CustomerId == id);
+            _dbcontext.Customers.Remove(customer);
+            _dbcontext.SaveChanges();
+
+            return View(nameof(Index));
         }
     }
 }
