@@ -14,11 +14,15 @@
 <body>
     @using (@Html.BeginForm("Login"))
     {
+        @Html.ValidationSummary(true);
+
         @Html.LabelFor(a => a.UserName)
         @Html.EditorFor(a => a.UserName)
+        @Html.ValidationMessageFor(a => a.UserName)
         <br />
         @Html.LabelFor(a => a.Password)
         @Html.EditorFor(a => a.Password)
+        @Html.ValidationMessageFor(a => a.Password)
         <br />
         <input type="submit" value="LogIn" />
     }

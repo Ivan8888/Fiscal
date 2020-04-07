@@ -35,11 +35,11 @@ namespace FiscalClientMVC
                 option => option.UseSqlServer(_config.GetConnectionString("Default")));
 
             services.AddIdentity<AppUser, IdentityRole>(identityOptions => {
-                identityOptions.User.RequireUniqueEmail = true;
+                identityOptions.User.RequireUniqueEmail = false;
 
                 identityOptions.Lockout.AllowedForNewUsers = true;
-                identityOptions.Lockout.MaxFailedAccessAttempts = 3;
-                identityOptions.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1);
+                identityOptions.Lockout.MaxFailedAccessAttempts = 2;
+                identityOptions.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(3);
 
                 identityOptions.Password.RequiredLength = 4;
                 identityOptions.Password.RequiredUniqueChars = 2;
@@ -48,31 +48,34 @@ namespace FiscalClientMVC
                 identityOptions.Password.RequireUppercase = false;
                 identityOptions.Password.RequireLowercase = true;
 
-                identityOptions.SignIn.RequireConfirmedEmail = true;
+                identityOptions.SignIn.RequireConfirmedEmail = false;
                 identityOptions.SignIn.RequireConfirmedPhoneNumber = false;
-             })
+            })
                 .AddEntityFrameworkStores<FiscalContext>();
 
             services.ConfigureApplicationCookie(cookieAuthtenticationOptions => {
                 cookieAuthtenticationOptions.Cookie.Name = "AuthenticationCookie";
-                cookieAuthtenticationOptions.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+                cookieAuthtenticationOptions.ExpireTimeSpan = TimeSpan.FromMinutes(1);
                 cookieAuthtenticationOptions.SlidingExpiration = false;
             });
 
-            services.AddAuthorization(o =>
-            o.AddPolicy("EmailPolicy", p => p.RequireClaim(ClaimTypes.Email))
-            );
+            services.AddAuthorization(authorizationOptions => {
+                authorizationOptions.AddPolicy("CanDeleteCustomer", p => p.RequireRole("User")
+                                                          .RequireClaim(ClaimTypes.Email));
+                authorizationOptions.AddPolicy("RequireEmail", p => p.RequireClaim(ClaimTypes.Email));
+            });
 
             services.AddSingleton<ICustomerCount, CustomerCountService>();
             services.AddMvc();
         }
 
-        public void Configure(IApplicationBuilder app, FiscalContext context, ILogger<Startup> logger, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager)
+        public void Configure(IApplicationBuilder app, FiscalContext context, ILogger<Startup> logger, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<AppUser> signInManager)
         {
             context.Database.EnsureDeleted();
-            context.Database.EnsureCreated();
-
-            SeedUsersAndRoles.CreateInitialUsers(userManager, roleManager);
+            if (context.Database.EnsureCreated())
+            {
+                SeedUsersAndRoles.CreateInitialUsers(userManager, roleManager, signInManager);
+            }
 
             app.UseAuthentication();
 

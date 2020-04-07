@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Identity;
 using FiscalClientMVC.ViewModels;
 using System.Security;
 using System.Security.Claims;
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace FiscalClientMVC.Controllers
 {
@@ -15,16 +17,20 @@ namespace FiscalClientMVC.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly IOptions<IdentityOptions> _identityOptions;
+        private readonly IOptions<CookieAuthenticationOptions> _cookieAuthenticationOptions;
 
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IOptions<IdentityOptions> identityOptions, IOptions<CookieAuthenticationOptions> cookieAuthenticationOptions)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _identityOptions = identityOptions;
+            _cookieAuthenticationOptions = cookieAuthenticationOptions;
         }
 
         public IActionResult Index()
         {
-            return Content($"Current user is: {User.Identity.Name}");
+            return Content($"Current user is: {User.Identity.Name}. Cookie expires for {_cookieAuthenticationOptions.Value.ExpireTimeSpan.TotalMinutes} minutes.");
         }
 
         public IActionResult Register()
@@ -64,6 +70,7 @@ namespace FiscalClientMVC.Controllers
             return View(model);
         }
 
+        [HttpGet]
         public ViewResult Login()
         {
             return View();
@@ -74,7 +81,7 @@ namespace FiscalClientMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, true, false);
+                Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, isPersistent:true, lockoutOnFailure:true);
                 if (result.Succeeded)
                 {
                     if (Request.Query.Keys.Contains("ReturnUrl"))
@@ -86,9 +93,34 @@ namespace FiscalClientMVC.Controllers
                         return RedirectToAction(nameof(Index));
                     }
                 }
+                else
+                {
+                    string error_desc = GetLoginError(result);
+                    ModelState.AddModelError("", error_desc);
+                }
             }
 
             return View();
+        }
+
+        private string GetLoginError(Microsoft.AspNetCore.Identity.SignInResult result)
+        {
+            if (result.IsLockedOut)
+            {
+                return $"User is locked out for: {_identityOptions.Value.Lockout.DefaultLockoutTimeSpan.TotalMinutes} minutes";
+            }
+            else if(result.IsNotAllowed)
+            {
+                return "Not allowed to sign in";
+            }
+            else if(result.RequiresTwoFactor)
+            {
+                return "Requires two factor autentification";
+            }
+            else
+            {
+                return "Probably wrong user name or password, try again.";
+            }
         }
     }
 }

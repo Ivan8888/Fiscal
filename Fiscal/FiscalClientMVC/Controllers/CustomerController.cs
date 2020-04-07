@@ -114,8 +114,7 @@ namespace FiscalClientMVC.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [Authorize(Roles = "Admin")]
-        [Authorize(Policy = "RequireEmail")]
+        [Authorize(Policy = "CanDeleteCustomer")]
         public IActionResult Delete(int id)
         {
             var customer = _dbcontext.Customers.SingleOrDefault(c => c.CustomerId == id);
@@ -124,15 +123,14 @@ namespace FiscalClientMVC.Controllers
 
 
         [HttpPost, ActionName("Delete")]
-        [Authorize(Roles = "Admin")]
-        [Authorize(Policy = "RequireEmail")]
+        [Authorize(Policy = "CanDeleteCustomer")]
         public IActionResult DeleteConfirmed(int id)
         {
             var customer = _dbcontext.Customers.SingleOrDefault(c => c.CustomerId == id);
             _dbcontext.Customers.Remove(customer);
             _dbcontext.SaveChanges();
 
-            return View(nameof(Index));
+            return RedirectToAction(nameof(Index));
         }
     }
 }

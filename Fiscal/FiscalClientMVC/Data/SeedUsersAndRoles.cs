@@ -10,7 +10,7 @@ namespace FiscalClientMVC.Data
 {
     public class SeedUsersAndRoles
     {
-        public static void CreateInitialUsers(UserManager<AppUser> _userManager, RoleManager<IdentityRole> _roleManager)
+        public static void CreateInitialUsers(UserManager<AppUser> _userManager, RoleManager<IdentityRole> _roleManager, SignInManager<AppUser> _signInManager)
         {
             IdentityRole admin = new IdentityRole("Administrator");
             IdentityRole support = new IdentityRole("Support");
@@ -18,8 +18,6 @@ namespace FiscalClientMVC.Data
             _roleManager.CreateAsync(admin).Wait();
             _roleManager.CreateAsync(support).Wait();
             _roleManager.CreateAsync(user).Wait();
-
-            AppUser temp_user;
 
             AppUser admin_user = new AppUser()
             {
@@ -30,8 +28,7 @@ namespace FiscalClientMVC.Data
                 UserName = "admin_user",
             };
             _userManager.CreateAsync(admin_user, "adminuser").Wait();
-            temp_user =  _userManager.FindByNameAsync(admin_user.FirstName).Result;
-            _userManager.AddToRoleAsync(temp_user, admin.Name).Wait();
+            _userManager.AddToRoleAsync(admin_user, admin.Name).Wait();
 
             AppUser support_user = new AppUser()
             {
@@ -42,8 +39,7 @@ namespace FiscalClientMVC.Data
                 UserName = "support_user",
             };
             _userManager.CreateAsync(support_user, "supportuser").Wait();
-            temp_user = _userManager.FindByNameAsync(support_user.FirstName).Result;
-            _userManager.AddToRoleAsync(temp_user, support.Name).Wait();
+            _userManager.AddToRoleAsync(support_user, support.Name).Wait();
 
             AppUser user17 = new AppUser()
             {
@@ -54,8 +50,7 @@ namespace FiscalClientMVC.Data
                 UserName = "user17",
             };
             _userManager.CreateAsync(user17, "user17").Wait();
-            temp_user = _userManager.FindByNameAsync(user17.FirstName).Result;
-            _userManager.AddToRoleAsync(temp_user, user.Name).Wait();
+            _userManager.AddToRoleAsync(user17, user.Name).Wait();
 
             AppUser user21 = new AppUser()
             {
@@ -66,12 +61,11 @@ namespace FiscalClientMVC.Data
                 UserName = "user21",
             };
             _userManager.CreateAsync(user21, "user21").Wait();
-            temp_user = _userManager.FindByNameAsync(user21.FirstName).Result;
-            _userManager.AddToRoleAsync(temp_user, user.Name).Wait();
+            _userManager.AddToRoleAsync(user21, user.Name).Wait();
 
             var users_list = _userManager.Users.ToList();
             //add claims
-            foreach(var iteam in users_list)
+            foreach (var iteam in users_list)
             {
                 if (!string.IsNullOrWhiteSpace(iteam.Email))
                 {
