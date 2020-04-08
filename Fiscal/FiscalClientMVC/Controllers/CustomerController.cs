@@ -41,12 +41,14 @@ namespace FiscalClientMVC.Controllers
         }
 
         [HttpGet]
+        [Authorize(Policy = "CanInsertCustomer")]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize(Policy = "CanInsertCustomer")]
         public IActionResult Create(Customer customer)
         {
             if (ModelState.IsValid)

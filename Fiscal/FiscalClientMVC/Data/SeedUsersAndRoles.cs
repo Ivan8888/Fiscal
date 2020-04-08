@@ -34,7 +34,7 @@ namespace FiscalClientMVC.Data
             {
                 FirstName = "Zoran",
                 LastName = "Zoranovic",
-                Email = "support@gmail.com",
+                Email = "",
                 Age = 25,
                 UserName = "support_user",
             };

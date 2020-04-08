@@ -60,9 +60,19 @@ namespace FiscalClientMVC
             });
 
             services.AddAuthorization(authorizationOptions => {
-                authorizationOptions.AddPolicy("CanDeleteCustomer", p => p.RequireRole("User")
-                                                          .RequireClaim(ClaimTypes.Email));
-                authorizationOptions.AddPolicy("RequireEmail", p => p.RequireClaim(ClaimTypes.Email));
+                authorizationOptions.AddPolicy("CanDelete", p => p.RequireClaim(ClaimTypes.Role, "Admin"));
+
+                authorizationOptions.AddPolicy("CanEdit", p => p.RequireClaim(ClaimTypes.Role, "Admin"));
+
+                authorizationOptions.AddPolicy("CanInsert", p => p.RequireAssertion(context =>
+                    context.User.IsInRole("Admin") || context.User.IsInRole("Support")
+                ));
+
+                //authorizationOptions.AddPolicy("RequireAdult", p => p.RequireAssertion(contex =>
+                //    contex.User.FindFirstValue(
+                //));
+
+
             });
 
             services.AddSingleton<ICustomerCount, CustomerCountService>();
