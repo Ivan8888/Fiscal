@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using FiscalClientMVC.ViewModels;
 using FiscalClientMVC.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FiscalClientMVC.Controllers
 {
@@ -31,6 +32,7 @@ namespace FiscalClientMVC.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "CanUpdateRole")]
         public async Task<IActionResult> CreateRole(CreateRoleViewModel model)
         {
             if (ModelState.IsValid)
@@ -56,6 +58,7 @@ namespace FiscalClientMVC.Controllers
         }
 
         [HttpGet]
+        [Authorize(Policy = "CanUpdateRole")]
         public async Task<IActionResult> EditRole(string id)
         {
             IdentityRole role = await _roleManager.FindByIdAsync(id);

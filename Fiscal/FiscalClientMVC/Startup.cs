@@ -15,6 +15,8 @@ using Microsoft.Extensions.Logging;
 using FiscalClientMVC.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
+using FiscalClientMVC.Security;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FiscalClientMVC
 {
@@ -68,12 +70,10 @@ namespace FiscalClientMVC
                     context.User.IsInRole("Admin") || context.User.IsInRole("Support")
                 ));
 
-                //authorizationOptions.AddPolicy("RequireAdult", p => p.RequireAssertion(contex =>
-                //    contex.User.FindFirstValue(
-                //));
-
-
+                authorizationOptions.AddPolicy("CanUpdateRole", p => p.AddRequirements(new UserEditRoleAuthorizationRequirement()));
             });
+
+            services.AddSingleton<IAuthorizationHandler, UserCanNotEditDepandingRoleAuthorizationHandler>();
 
             services.AddSingleton<ICustomerCount, CustomerCountService>();
             services.AddMvc();
