@@ -63,6 +63,8 @@ namespace FiscalClientMVC.Controllers
                         await _userManager.AddClaimAsync(user, claim); 
                     }
 
+                    _userManager.AddClaimAsync(user, new Claim("AgeClaim", Convert.ToString(user.Age))).Wait();
+
                     return RedirectToAction(nameof(Index));
                 }
             }

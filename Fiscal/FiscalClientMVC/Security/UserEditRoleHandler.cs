@@ -9,18 +9,18 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace FiscalClientMVC.Security
 {
-    public class UserCanNotEditDepandingRoleAuthorizationHandler : AuthorizationHandler<UserEditRoleAuthorizationRequirement>
+    public class UserEditRoleHandler : AuthorizationHandler<UserEditRoleRequirement>
     {
 
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly RoleManager<IdentityRole> _roleManager;
-        public UserCanNotEditDepandingRoleAuthorizationHandler(IHttpContextAccessor httpContextAccessor, RoleManager<IdentityRole> roleManager)
+        public UserEditRoleHandler(IHttpContextAccessor httpContextAccessor, RoleManager<IdentityRole> roleManager)
         {
             _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
             _roleManager = roleManager;
 
         }
-        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, UserEditRoleAuthorizationRequirement requirement)
+        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, UserEditRoleRequirement requirement)
         {   
             string role_id = (string)_httpContextAccessor.HttpContext.Request.RouteValues["id"];
             IdentityRole role = _roleManager.FindByIdAsync(role_id).Result;

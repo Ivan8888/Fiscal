@@ -62,7 +62,7 @@ namespace FiscalClientMVC
             });
 
             services.AddAuthorization(authorizationOptions => {
-                authorizationOptions.AddPolicy("CanDelete", p => p.RequireClaim(ClaimTypes.Role, "Admin"));
+                authorizationOptions.AddPolicy("CanDelete", p => p.RequireRole("Admin"));
 
                 authorizationOptions.AddPolicy("CanEdit", p => p.RequireClaim(ClaimTypes.Role, "Admin"));
 
@@ -70,10 +70,15 @@ namespace FiscalClientMVC
                     context.User.IsInRole("Admin") || context.User.IsInRole("Support")
                 ));
 
-                authorizationOptions.AddPolicy("CanUpdateRole", p => p.AddRequirements(new UserEditRoleAuthorizationRequirement()));
+                authorizationOptions.AddPolicy("CanUpdateRole", p => p.AddRequirements(new UserEditRoleRequirement()));
+
+                authorizationOptions.AddPolicy("JustForAdult", p => p.AddRequirements(new AccessBasedOnYearRequirement(17)));
+
             });
 
-            services.AddSingleton<IAuthorizationHandler, UserCanNotEditDepandingRoleAuthorizationHandler>();
+            services.AddSingleton<IAuthorizationHandler, UserEditRoleHandler>();
+
+            services.AddSingleton<IAuthorizationHandler, AccessBasedOnYearHandler>();
 
             services.AddSingleton<ICustomerCount, CustomerCountService>();
             services.AddMvc();
