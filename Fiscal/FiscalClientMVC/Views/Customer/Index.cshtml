@@ -1,43 +1,49 @@
 ﻿@using FiscalClientMVC.Models
+@using Microsoft.AspNetCore.Authorization
 @model IEnumerable<Customer>
 
+@inject IAuthorizationService service
 
-    <table>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Retail/Corporate</th>
+        <th>Details</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    @foreach (var iteam in Model)
+    {
         <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Address</th>
-            <th>Retail/Corporate</th>
-            <th>Details</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <td>
+                @iteam.Name
+            </td>
+            <td>
+                @iteam.Email
+            </td>
+            <td>
+                @iteam.Address
+            </td>
+            <td>
+                @(iteam.IsRetail ? "Retail" : "Corporate")
+            </td>
+            <td>
+                <a href="@Url.Action("Details", new { id = iteam.CustomerId})">Details</a>
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = iteam.CustomerId })
+            </td>
+            <td>
+                <a asp-action="Delete" asp-route-id="@iteam.CustomerId">Delete</a>
+            </td>
         </tr>
-        @foreach (var iteam in Model)
-        {
-            <tr>
-                <td>
-                    @iteam.Name
-                </td>
-                <td>
-                    @iteam.Email
-                </td>
-                <td>
-                    @iteam.Address
-                </td>
-                <td>
-                    @(iteam.IsRetail ? "Retail" : "Corporate")
-                </td>
-                <td>
-                    <a href="@Url.Action("Details", new { id = iteam.CustomerId})">Details</a>
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = iteam.CustomerId})
-                </td>
-                <td>
-                    <a asp-action="Delete" asp-route-id="@iteam.CustomerId">Delete</a>
-                </td>
-            </tr>
-        }
-    </table>
+    }
+</table>
 
+@if ((await service.AuthorizeAsync(User, "CanInsert")).Succeeded)
+{
     <a asp-action="Create">Create New</a>
+}
+

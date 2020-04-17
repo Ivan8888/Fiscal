@@ -24,7 +24,7 @@ namespace FiscalClientMVC.Data
                 FirstName = "Ivan",
                 LastName = "Milutinovic",
                 Email = "admin@gmail.com",
-                Age = 15,
+                Age = 31,
                 UserName = "admin_user",
             };
             _userManager.CreateAsync(admin_user, "adminuser").Wait();
@@ -72,7 +72,7 @@ namespace FiscalClientMVC.Data
                     _userManager.AddClaimAsync(iteam, new Claim(ClaimTypes.Email, iteam.Email)).Wait();
                 }
 
-                _userManager.AddClaimAsync(iteam, new Claim("YearClaim", Convert.ToString(iteam.Age))).Wait();
+                _userManager.AddClaimAsync(iteam, new Claim("AgeClaim", Convert.ToString(iteam.Age))).Wait();
             }
         }
     }

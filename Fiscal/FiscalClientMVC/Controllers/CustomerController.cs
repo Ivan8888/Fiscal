@@ -9,11 +9,9 @@ using Microsoft.EntityFrameworkCore;
 using FiscalClientMVC.Services;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
 
 namespace FiscalClientMVC.Controllers
 {
-    //[EnableCors("EnableGoogleCors")]
     public class CustomerController : Controller
     {
         FiscalContext _dbcontext;
@@ -43,14 +41,14 @@ namespace FiscalClientMVC.Controllers
         }
 
         [HttpGet]
-        [Authorize(Policy = "CanInsertCustomer")]
+        [Authorize(Policy = "CanInsert")]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-        [Authorize(Policy = "CanInsertCustomer")]
+        [Authorize(Policy = "CanInsert")]
         public IActionResult Create(Customer customer)
         {
             if (ModelState.IsValid)
@@ -66,7 +64,7 @@ namespace FiscalClientMVC.Controllers
         }
 
         [HttpGet]
-        [Authorize(Policy = "JustFor18AndAdmin")]
+        [Authorize(Policy = "JustForAdult")]
         public IActionResult Edit(int? id)
         {
             if(id == null)
@@ -87,7 +85,7 @@ namespace FiscalClientMVC.Controllers
 
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        [Authorize(Policy = "JustFor18AndAdmin")]
+        [Authorize(Policy = "JustForAdult")]
         public async Task<IActionResult> EditPost(int? id)
         {
             if (id == null)
@@ -121,7 +119,6 @@ namespace FiscalClientMVC.Controllers
         }
 
         [Authorize(Policy = "CanDelete")]
-        [DisableCors]
         public IActionResult Delete(int id)
         {
             var customer = _dbcontext.Customers.SingleOrDefault(c => c.CustomerId == id);
@@ -131,7 +128,6 @@ namespace FiscalClientMVC.Controllers
 
         [HttpPost, ActionName("Delete")]
         [Authorize(Policy = "CanDelete")]
-        [DisableCors]
         public IActionResult DeleteConfirmed(int id)
         {
             var customer = _dbcontext.Customers.SingleOrDefault(c => c.CustomerId == id);

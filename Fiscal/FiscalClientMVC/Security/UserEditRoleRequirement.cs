@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FiscalClientMVC.Security
 {
-    public class UserEditRoleAuthorizationRequirement : IAuthorizationRequirement
+    public class UserEditRoleRequirement : IAuthorizationRequirement
     {
     }
 }
