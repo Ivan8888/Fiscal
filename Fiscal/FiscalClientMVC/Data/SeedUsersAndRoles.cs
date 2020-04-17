@@ -12,7 +12,7 @@ namespace FiscalClientMVC.Data
     {
         public static void CreateInitialUsers(UserManager<AppUser> _userManager, RoleManager<IdentityRole> _roleManager, SignInManager<AppUser> _signInManager)
         {
-            IdentityRole admin = new IdentityRole("Administrator");
+            IdentityRole admin = new IdentityRole("Admin");
             IdentityRole support = new IdentityRole("Support");
             IdentityRole user = new IdentityRole("User");
             _roleManager.CreateAsync(admin).Wait();
@@ -24,7 +24,7 @@ namespace FiscalClientMVC.Data
                 FirstName = "Ivan",
                 LastName = "Milutinovic",
                 Email = "admin@gmail.com",
-                Age = 31,
+                Age = 15,
                 UserName = "admin_user",
             };
             _userManager.CreateAsync(admin_user, "adminuser").Wait();
@@ -71,6 +71,8 @@ namespace FiscalClientMVC.Data
                 {
                     _userManager.AddClaimAsync(iteam, new Claim(ClaimTypes.Email, iteam.Email)).Wait();
                 }
+
+                _userManager.AddClaimAsync(iteam, new Claim("YearClaim", Convert.ToString(iteam.Age))).Wait();
             }
         }
     }

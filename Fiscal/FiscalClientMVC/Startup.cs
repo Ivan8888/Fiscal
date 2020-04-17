@@ -36,6 +36,9 @@ namespace FiscalClientMVC
             services.AddDbContext<FiscalContext>(
                 option => option.UseSqlServer(_config.GetConnectionString("Default")));
 
+            services.AddCors(corsOptions =>
+            corsOptions.AddPolicy("EnableGoogleCors", corsPolicyBuilder => corsPolicyBuilder.WithOrigins("https://www.google.com/", "http://www.google.com/")));
+
             services.AddIdentity<AppUser, IdentityRole>(identityOptions => {
                 identityOptions.User.RequireUniqueEmail = false;
 
@@ -62,18 +65,23 @@ namespace FiscalClientMVC
             });
 
             services.AddAuthorization(authorizationOptions => {
-                authorizationOptions.AddPolicy("CanDelete", p => p.RequireClaim(ClaimTypes.Role, "Admin"));
+                authorizationOptions.AddPolicy("CanDelete", p => p.RequireRole("Admin"));
 
                 authorizationOptions.AddPolicy("CanEdit", p => p.RequireClaim(ClaimTypes.Role, "Admin"));
 
                 authorizationOptions.AddPolicy("CanInsert", p => p.RequireAssertion(context =>
-                    context.User.IsInRole("Admin") || context.User.IsInRole("Support")
-                ));
+                    context.User.IsInRole("Admin") || context.User.IsInRole("Support")));
 
+                authorizationOptions.AddPolicy("JustFor18AndAdmin", p => p.AddRequirements(new MinYearRequirement(18)));
                 authorizationOptions.AddPolicy("CanUpdateRole", p => p.AddRequirements(new UserEditRoleAuthorizationRequirement()));
+
+                //after one authorization handler for requirement return failure, don't check other handler for that requirement
+                authorizationOptions.InvokeHandlersAfterFailure = false;
             });
 
             services.AddSingleton<IAuthorizationHandler, UserCanNotEditDepandingRoleAuthorizationHandler>();
+            services.AddSingleton<IAuthorizationHandler, MinYearHandler>();
+            services.AddSingleton<IAuthorizationHandler, MinYearAdminHandler>();
 
             services.AddSingleton<ICustomerCount, CustomerCountService>();
             services.AddMvc();
@@ -86,6 +94,9 @@ namespace FiscalClientMVC
             {
                 SeedUsersAndRoles.CreateInitialUsers(userManager, roleManager, signInManager);
             }
+
+            //there is some problem with cors in 3.0 version
+            //app.UseCors();
 
             app.UseAuthentication();
 
