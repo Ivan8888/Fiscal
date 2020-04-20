@@ -24,7 +24,7 @@
         @Html.EditorFor(a => a.Password)
         @Html.ValidationMessageFor(a => a.Password)
         <br />
-        <input type="submit" value="LogIn" />
-    }
+        <input @*asp-route-ReturnUrl="@ViewBag.ReturnUrl"*@ type="submit" value="LogIn" />
+}
 </body>
 </html>

@@ -28,19 +28,19 @@ namespace FiscalClientMVC.Data
                 new Product
                 {
                     ProductId = 1,
-                    Name = "beer",
+                    Name = "Beer",
                     Price = 100
                 },
                 new Product
                 {
                     ProductId = 2,
-                    Name = "vodka",
+                    Name = "Vodka",
                     Price = 500
                 },
                 new Product
                 {
                     ProductId = 3,
-                    Name = "tequila",
+                    Name = "Tequila",
                     Price = 1200
                 }
             );

@@ -1,0 +1,28 @@
+﻿@using FiscalClientMVC.Models
+@model Product
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h1>Delete product</h1>
+    <br />
+
+    <form asp-action="Delete" method="post">
+        Are you sure that you want to delete product: @Html.DisplayFor(p => p.Name)
+
+        <input type="submit" value="Confirm" />
+    </form>
+    <br />
+    <a asp-action="Index">Back To List</a>
+</body>
+</html>

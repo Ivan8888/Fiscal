@@ -57,22 +57,27 @@ namespace FiscalClientMVC
 
             services.ConfigureApplicationCookie(cookieAuthtenticationOptions => {
                 cookieAuthtenticationOptions.Cookie.Name = "AuthenticationCookie";
-                cookieAuthtenticationOptions.ExpireTimeSpan = TimeSpan.FromMinutes(1);
+                cookieAuthtenticationOptions.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+                //cookieAuthtenticationOptions.Cookie.Expiration
                 cookieAuthtenticationOptions.SlidingExpiration = false;
             });
 
             services.AddAuthorization(authorizationOptions => {
-                authorizationOptions.AddPolicy("CanDelete", p => p.RequireRole("Admin"));
+
+                authorizationOptions.AddPolicy("CanView", p => p.RequireAssertion(context =>
+                    context.User.IsInRole("Admin") || context.User.IsInRole("Support") || context.User.IsInRole("User")));
+
+                //authorizationOptions.AddPolicy("CanView", p => p.RequireRole("Admin", "Support", "User"));
+
+                authorizationOptions.AddPolicy("CanCreate", p => p.RequireAssertion(context =>
+                    context.User.IsInRole("Admin") || context.User.IsInRole("Support")));
 
                 authorizationOptions.AddPolicy("CanEdit", p => p.RequireClaim(ClaimTypes.Role, "Admin"));
-
-                authorizationOptions.AddPolicy("CanInsert", p => p.RequireAssertion(context =>
-                    context.User.IsInRole("Admin") || context.User.IsInRole("Support")
-                ));
-
-                authorizationOptions.AddPolicy("CanUpdateRole", p => p.AddRequirements(new UserEditRoleRequirement()));
+                authorizationOptions.AddPolicy("CanDelete", p => p.RequireRole("Admin"));
 
                 authorizationOptions.AddPolicy("JustForAdult", p => p.AddRequirements(new AccessBasedOnYearRequirement(17)));
+
+                authorizationOptions.AddPolicy("CanUpdateRole", p => p.AddRequirements(new UserEditRoleRequirement()));
 
             });
 
@@ -82,15 +87,29 @@ namespace FiscalClientMVC
 
             services.AddSingleton<ICustomerCount, CustomerCountService>();
             services.AddMvc();
+
+            services.AddCors(o => o.AddPolicy("FromGoogle", p => p.WithOrigins("www.google.com")));
+
+            services.AddDistributedMemoryCache();
+            services.AddSession(sessionOptions => {
+                sessionOptions.IdleTimeout = TimeSpan.FromMinutes(5);
+            });
+
+            services.AddMemoryCache();
         }
 
         public void Configure(IApplicationBuilder app, FiscalContext context, ILogger<Startup> logger, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<AppUser> signInManager)
         {
-            context.Database.EnsureDeleted();
+            //context.Database.EnsureDeleted();
             if (context.Database.EnsureCreated())
             {
                 SeedUsersAndRoles.CreateInitialUsers(userManager, roleManager, signInManager);
             }
+
+            //app.UseCookiePolicy();
+            app.UseSession();
+
+            app.UseCors();
 
             app.UseAuthentication();
 

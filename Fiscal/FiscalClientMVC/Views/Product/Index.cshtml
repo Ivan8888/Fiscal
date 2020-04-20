@@ -1,0 +1,75 @@
+﻿@using FiscalClientMVC.Models
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Authorization
+@inject SignInManager<AppUser> signInManager
+@inject IAuthorizationService authorizationService 
+
+@model List<Product>
+
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>List of products for user: @User.Identity.Name</title>
+</head>
+<body>
+    <h1>List of products for user: @User.Identity.Name</h1>
+    <br />
+    @*look is it anabled, pay attention on expiration*@
+    <cache enabled="false" vary-by-user="true" expires-after=TimeSpan.FromMinutes(5) priority=Microsoft.Extensions.Caching.Memory.CacheItemPriority.NeverRemove>
+        <table>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Price
+                </th>
+                <th>
+                    Edit
+                </th>
+                <th>
+                    Delete
+                </th>
+            </tr>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(p => product.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(p => product.Price)
+                    </td>
+                    <td>
+                        @if (!signInManager.IsSignedIn(User) || (signInManager.IsSignedIn(User) && (await authorizationService.AuthorizeAsync(User, "CanEdit")).Succeeded))
+                        {
+                            <a asp-action="Edit" asp-route-id="@product.ProductId">Edit</a>
+                        }
+                    </td>
+                    <td>
+                        @if (!signInManager.IsSignedIn(User) || (signInManager.IsSignedIn(User) && (await authorizationService.AuthorizeAsync(User, "CanDelete")).Succeeded))
+                        {
+                            <a asp-action="Delete" asp-route-id="@product.ProductId">Delete</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+        <br />
+        @if (!signInManager.IsSignedIn(User) || (signInManager.IsSignedIn(User) && (await authorizationService.AuthorizeAsync(User, "CanCreate")).Succeeded))
+        {
+            <a asp-action="Create">Create new product</a>
+        }
+        <br />
+        @Html.ActionLink("Home page", "Index", "Home")
+    </cache>
+    
+</body>
+</html>

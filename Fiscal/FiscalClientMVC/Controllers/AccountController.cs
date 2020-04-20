@@ -28,17 +28,13 @@ namespace FiscalClientMVC.Controllers
             _cookieAuthenticationOptions = cookieAuthenticationOptions;
         }
 
-        public IActionResult Index()
-        {
-            return Content($"Current user is: {User.Identity.Name}. Cookie expires for {_cookieAuthenticationOptions.Value.ExpireTimeSpan.TotalMinutes} minutes.");
-        }
-
         public IActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
@@ -65,7 +61,7 @@ namespace FiscalClientMVC.Controllers
 
                     _userManager.AddClaimAsync(user, new Claim("AgeClaim", Convert.ToString(user.Age))).Wait();
 
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(Login));
                 }
             }
 
@@ -75,10 +71,21 @@ namespace FiscalClientMVC.Controllers
         [HttpGet]
         public ViewResult Login()
         {
+            //if (Request.Query.ContainsKey("ReturnUrl"))
+            //{
+            //    ViewBag.ReturnUrl = Request.Query["ReturnUrl"].First();
+            //}
+
+            if (Request.Query.ContainsKey("ReturnUrl"))
+            {
+                TempData["ReturnUrl"] = Request.Query["ReturnUrl"].First();
+            }
+
             return View();
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
@@ -86,13 +93,27 @@ namespace FiscalClientMVC.Controllers
                 Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, isPersistent:true, lockoutOnFailure:true);
                 if (result.Succeeded)
                 {
-                    if (Request.Query.Keys.Contains("ReturnUrl"))
+                    //if (Request.Query.Keys.Contains("ReturnUrl"))
+                    //{
+                    //    return Redirect(Request.Query["ReturnUrl"].First());
+                    //}
+                    //else
+                    //{
+                    //    return RedirectToAction("Index", "Home");
+                    //}
+
+                    object returnUrl = TempData["ReturnUrl"];
+
+
+                    if (returnUrl != null)
                     {
-                        return Redirect(Request.Query["ReturnUrl"].First());
+                        //return Redirect(302), TempData only deleted when return OK(200), must be manualy remove in this case
+                        TempData.Remove("ReturnUrl");
+                        return Redirect((string)returnUrl);
                     }
                     else
                     {
-                        return RedirectToAction(nameof(Index));
+                        return RedirectToAction("Index", "Home");
                     }
                 }
                 else
@@ -103,6 +124,12 @@ namespace FiscalClientMVC.Controllers
             }
 
             return View();
+        }
+
+        public async Task<IActionResult>  Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
 
         private string GetLoginError(Microsoft.AspNetCore.Identity.SignInResult result)

@@ -1,3 +1,19 @@
 ﻿@model FiscalClientMVC.Models.Product
 
-@Html.EditorForModel()
+<h1>Create new product</h1>
+<br />
+
+<form asp-action="Create" method="Post">
+    <div asp-validation-summary="ModelOnly"></div>
+    <label asp-for="Name"></label>
+    <input asp-for="Name" />
+    <span asp-validation-for="Name"></span>
+    <br />
+    <label asp-for="Price"></label>
+    <input asp-for="Price" />
+    <span asp-validation-for="Price"></span>
+    <br />
+    <input type="submit" value="Create" />
+</form>
+<br />
+<a asp-action="Index">Back To List</a>

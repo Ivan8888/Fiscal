@@ -1,0 +1,62 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Authorization
+@using FiscalClientMVC.Models
+@inject SignInManager<AppUser> signInManager
+@inject IAuthorizationService authorizationService
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <h1>Home page</h1>
+    <br />
+    <h2>Number of visit is: @ViewBag.NumVisit</h2>
+    <a asp-action="Index" asp-controller="Product">Product List</a>
+    <br />
+    <a asp-action="Register" asp-controller="Account">Register</a>
+    <br />
+    @if (signInManager.IsSignedIn(User)@*&& authorizationService.AuthorizeAsync(User, "CanView").IsCompletedSuccessfully*@)
+{
+@:Current login user is: @User.Identity.Name
+<br />
+<a asp-action="Logout" asp-controller="Account">Logout</a>
+}
+else
+{
+<a asp-action="Login" asp-controller="Account">Login</a>
+}
+    <br />
+    <button onclick="VisitNumber()">HTML5 Web Storage Api</button>
+
+    <script>
+        var storage_key = "num_of_visit"
+        var numVisitLocal = 1;
+        var numVisitSession = 1
+
+        var numVisitLocalString = localStorage.getItem(storage_key);
+        var numVisitSessionString = sessionStorage.getItem(storage_key);
+
+        if (numVisitLocalString) {
+            numVisitLocal = parseInt(numVisitLocalString) + 1
+        }
+        localStorage.setItem(storage_key, numVisitLocal)
+
+        if (numVisitSessionString) {
+            numVisitSession = parseInt(numVisitSessionString) + 1
+        }
+        sessionStorage.setItem(storage_key, numVisitSession)
+
+        function VisitNumber() {
+            alert("Local visit: " + numVisitLocal + " Session visit: " + numVisitSession)
+        }
+    </script>
+</body>
+</html>
