@@ -34,6 +34,7 @@ namespace FiscalClientMVC.Controllers
                 MemoryCacheEntryOptions options = new MemoryCacheEntryOptions();
                 //cache duration will be one minute
                 options.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(1);
+                options.SlidingExpiration = TimeSpan.FromSeconds(10);
                 _memoryCache.Set(cache_products_key, products, options);
             }
 
