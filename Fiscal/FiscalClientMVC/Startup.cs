@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using FiscalClientMVC.Security;
 using Microsoft.AspNetCore.Authorization;
+using FiscalClientMVC.Hubs;
 
 namespace FiscalClientMVC
 {
@@ -96,6 +97,8 @@ namespace FiscalClientMVC
             });
 
             services.AddMemoryCache();
+
+            services.AddSignalR();
         }
 
         public void Configure(IApplicationBuilder app, FiscalContext context, ILogger<Startup> logger, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<AppUser> signInManager)
@@ -117,6 +120,10 @@ namespace FiscalClientMVC
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSignalR(hubRootBuilder => {
+                hubRootBuilder.MapHub<ChatHub>("/chathub");
+            });
 
             app.UseRouting();
 
