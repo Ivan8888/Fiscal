@@ -4,45 +4,48 @@
 
 @inject IAuthorizationService service
 
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Address</th>
-        <th>Retail/Corporate</th>
-        <th>Details</th>
-        <th>Edit</th>
-        <th>Delete</th>
-    </tr>
-    @foreach (var iteam in Model)
-    {
+<distributed-cache enabled="true" name="customer_list" expires-after="TimeSpan.FromMinutes(1)">
+    <table>
         <tr>
-            <td>
-                @iteam.Name
-            </td>
-            <td>
-                @iteam.Email
-            </td>
-            <td>
-                @iteam.Address
-            </td>
-            <td>
-                @(iteam.IsRetail ? "Retail" : "Corporate")
-            </td>
-            <td>
-                <a href="@Url.Action("Details", new { id = iteam.CustomerId})">Details</a>
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = iteam.CustomerId })
-            </td>
-            <td>
-                <a asp-action="Delete" asp-route-id="@iteam.CustomerId">Delete</a>
-            </td>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Retail/Corporate</th>
+            <th>Details</th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
-    }
-</table>
+        @foreach (var iteam in Model)
+        {
+            <tr>
+                <td>
+                    @iteam.Name
+                </td>
+                <td>
+                    @iteam.Email
+                </td>
+                <td>
+                    @iteam.Address
+                </td>
+                <td>
+                    @(iteam.IsRetail ? "Retail" : "Corporate")
+                </td>
+                <td>
+                    <a href="@Url.Action("Details", new { id = iteam.CustomerId})">Details</a>
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = iteam.CustomerId })
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@iteam.CustomerId">Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
+</distributed-cache>
 
-@if ((await service.AuthorizeAsync(User, "CanInsert")).Succeeded)
+
+@if ((await service.AuthorizeAsync(User, "CanCreate")).Succeeded)
 {
     <a asp-action="Create">Create New</a>
 }

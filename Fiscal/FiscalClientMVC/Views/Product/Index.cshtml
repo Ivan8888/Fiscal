@@ -22,54 +22,58 @@
     <h1>List of products for user: @User.Identity.Name</h1>
     <br />
     @*look is it anabled, pay attention on expiration*@
-    <cache enabled="false" vary-by-user="true" expires-after=TimeSpan.FromMinutes(5) priority=Microsoft.Extensions.Caching.Memory.CacheItemPriority.NeverRemove>
-        <table>
-            <tr>
-                <th>
-                    Name
-                </th>
-                <th>
-                    Price
-                </th>
-                <th>
-                    Edit
-                </th>
-                <th>
-                    Delete
-                </th>
-            </tr>
-            @foreach (var product in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(p => product.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(p => product.Price)
-                    </td>
-                    <td>
-                        @if (!signInManager.IsSignedIn(User) || (signInManager.IsSignedIn(User) && (await authorizationService.AuthorizeAsync(User, "CanEdit")).Succeeded))
-                        {
-                            <a asp-action="Edit" asp-route-id="@product.ProductId">Edit</a>
-                        }
-                    </td>
-                    <td>
-                        @if (!signInManager.IsSignedIn(User) || (signInManager.IsSignedIn(User) && (await authorizationService.AuthorizeAsync(User, "CanDelete")).Succeeded))
-                        {
-                            <a asp-action="Delete" asp-route-id="@product.ProductId">Delete</a>
-                        }
-                    </td>
-                </tr>
-            }
-        </table>
-        <br />
-        @if (!signInManager.IsSignedIn(User) || (signInManager.IsSignedIn(User) && (await authorizationService.AuthorizeAsync(User, "CanCreate")).Succeeded))
+<cache enabled="false" vary-by-user="true" expires-after=TimeSpan.FromMinutes(1) priority=Microsoft.Extensions.Caching.Memory.CacheItemPriority.NeverRemove>
+    @*distributed cache have name property, that is id of distributed cache and can be used in more than one place with same name, same caching data
+        will be return. This is the diference in sintax between <cache> and <distributed-cache>, one <cache> is used in one location only*@
+    @*<distributed-cache name="customer_list" expires-after="TimeSpan.FromMinutes(1)">*@
+    <table>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Edit
+            </th>
+            <th>
+                Delete
+            </th>
+        </tr>
+        @foreach (var product in Model)
         {
-            <a asp-action="Create">Create new product</a>
+            <tr>
+                <td>
+                    @Html.DisplayFor(p => product.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(p => product.Price)
+                </td>
+                <td>
+                    @if (!signInManager.IsSignedIn(User) || (signInManager.IsSignedIn(User) && (await authorizationService.AuthorizeAsync(User, "CanEdit")).Succeeded))
+                    {
+                        <a asp-action="Edit" asp-route-id="@product.ProductId">Edit</a>
+                    }
+                </td>
+                <td>
+                    @if (!signInManager.IsSignedIn(User) || (signInManager.IsSignedIn(User) && (await authorizationService.AuthorizeAsync(User, "CanDelete")).Succeeded))
+                    {
+                        <a asp-action="Delete" asp-route-id="@product.ProductId">Delete</a>
+                    }
+                </td>
+            </tr>
         }
-        <br />
-        @Html.ActionLink("Home page", "Index", "Home")
-    </cache>
-    
+    </table>
+    <br />
+    @if (!signInManager.IsSignedIn(User) || (signInManager.IsSignedIn(User) && (await authorizationService.AuthorizeAsync(User, "CanCreate")).Succeeded))
+    {
+        <a asp-action="Create">Create new product</a>
+    }
+    <br />
+    @Html.ActionLink("Home page", "Index", "Home")
+</cache>
+    @*</distributed-cache>*@
+
 </body>
 </html>
