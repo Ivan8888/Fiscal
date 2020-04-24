@@ -18,6 +18,8 @@ using System.Security.Claims;
 using FiscalClientMVC.Security;
 using Microsoft.AspNetCore.Authorization;
 using FiscalClientMVC.Hubs;
+using System.IO;
+using Microsoft.Extensions.FileProviders;
 
 namespace FiscalClientMVC
 {
@@ -101,13 +103,23 @@ namespace FiscalClientMVC
             services.AddSignalR();
         }
 
-        public void Configure(IApplicationBuilder app, FiscalContext context, ILogger<Startup> logger, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<AppUser> signInManager)
+        public void Configure(IApplicationBuilder app, FiscalContext context, ILogger<Startup> logger, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<AppUser> signInManager, IWebHostEnvironment environment)
         {
             //context.Database.EnsureDeleted();
             if (context.Database.EnsureCreated())
             {
                 SeedUsersAndRoles.CreateInitialUsers(userManager, roleManager, signInManager);
             }
+
+            app.UseStaticFiles();
+
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(environment.ContentRootPath, "node_modules")),
+                RequestPath = "/node_modules"
+            });
+
+            app.UseNodeModules();
 
             //app.UseCookiePolicy();
             app.UseSession();
