@@ -1,8 +1,12 @@
 ﻿@using FiscalClientMVC.Models
 @using Microsoft.AspNetCore.Identity
 @using Microsoft.AspNetCore.Authorization
+@using Microsoft.Extensions.Caching.Memory
+
 @inject SignInManager<AppUser> signInManager
-@inject IAuthorizationService authorizationService 
+@inject IAuthorizationService authorizationService
+@*just example of injecting memory cache in view*@ 
+@inject IMemoryCache memoryCache
 
 @model List<Product>
 
