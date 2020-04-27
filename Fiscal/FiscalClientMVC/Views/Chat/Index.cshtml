@@ -12,13 +12,33 @@
 </head>
 <body>
     <div>
-        <input type="text" class="message" />
-    </div>
-    <div>
-        <input type="button" class="all" value="Send To All" />
-    </div>
-    <div class="chatLog">
+        <h3>Admin group</h3>
+        <div>
+            <input type="text" class="message_admin" />
+        </div>
+        <div>
+            <input type="button" class="send_admin" value="Send To All" />
+            <input type="button" class="join_admin" value="Join group" />
+            <input type="button" class="leave_admin" value="Leave admin" />
+        </div>
+        <div class="chatLog_admin">
 
+        </div>
+    </div>
+
+    <div>
+        <h3>Support group</h3>
+        <div>
+            <input type="text" class="message_support" />
+        </div>
+        <div>
+            <input type="button" class="send_support" value="Send To All" />
+            <input type="button" class="join_support" value="Join group" />
+            <input type="button" class="leave_support" value="Leave admin" />
+        </div>
+        <div class="chatLog_support">
+
+        </div>
     </div>
 
     <script src="~/node_modules/@@aspnet/signalr/dist/browser/signalr.js"></script>

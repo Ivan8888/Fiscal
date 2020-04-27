@@ -60,7 +60,7 @@ namespace FiscalClientMVC
 
             services.ConfigureApplicationCookie(cookieAuthtenticationOptions => {
                 cookieAuthtenticationOptions.Cookie.Name = "AuthenticationCookie";
-                cookieAuthtenticationOptions.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+                cookieAuthtenticationOptions.ExpireTimeSpan = TimeSpan.FromMinutes(60);
                 //cookieAuthtenticationOptions.Cookie.Expiration
                 cookieAuthtenticationOptions.SlidingExpiration = false;
             });
@@ -100,7 +100,13 @@ namespace FiscalClientMVC
 
             services.AddMemoryCache();
 
-            services.AddSignalR();
+            services.AddSignalR(hubOpitons => {
+                hubOpitons.HandshakeTimeout = TimeSpan.FromSeconds(30);
+                hubOpitons.KeepAliveInterval = TimeSpan.FromSeconds(30);
+                hubOpitons.EnableDetailedErrors = true;
+            });
+
+            services.AddSingleton<HubUserService>();
         }
 
         public void Configure(IApplicationBuilder app, FiscalContext context, ILogger<Startup> logger, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<AppUser> signInManager, IWebHostEnvironment environment)
