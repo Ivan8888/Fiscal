@@ -60,10 +60,10 @@ namespace Server
                 RequestPath = "/static"
             });
 
-            app.Use(async (context, next) => {
-                await context.Response.WriteAsync($"Path is: {context.Request.Path.Value}   ");
-                await next.Invoke();
-            });
+            //app.Use(async (context, next) => {
+            //    await context.Response.WriteAsync($"Path is: {context.Request.Path.Value}   ");
+            //    await next.Invoke();
+            //});
 
             app.Map("/map", (aplicationBuilder) => {
                 aplicationBuilder.Use(async (c, next) => {
@@ -76,9 +76,9 @@ namespace Server
                 //});
             });
 
-            app.Run(async (context) => {
-                await context.Response.WriteAsync("Inside run middleware, not in map! ");
-            });
+            //app.Run(async (context) => {
+            //    await context.Response.WriteAsync("Inside run middleware, not in map! ");
+            //});
 
             if (env.IsDevelopment())
             {
