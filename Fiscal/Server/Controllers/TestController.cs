@@ -9,13 +9,25 @@ using Microsoft.AspNetCore.Hosting;
 namespace Server.Controllers
 {
     [Route("api/[controller]/[action]")]
-    public class TestController : Controller
+    [ApiController]
+    public class TestController : ControllerBase
     {
         IWebHostEnvironment _environment;
-
         public TestController(IWebHostEnvironment environment)
         {
             _environment = environment;
+        }
+
+        public class Person
+        {
+           public string Name { get; set; }
+        }
+
+        [HttpGet]
+        //[HttpGet]
+        public IActionResult GetProduct(Person person)
+        {
+            return Content($"GetProduct: name: {person.Name}");
         }
 
         [AcceptVerbs("Get")]
@@ -24,8 +36,8 @@ namespace Server.Controllers
             return Content("GettAll");
         }
 
-        [HttpPost]
-        [ActionName("GetAll")]
+        [HttpPost("dodajjosovo")]
+        [ActionName("GlupaAkcija")]
         public IActionResult InsertProduct(/*Product product*/)
         {
             return Content("InsertProduct");
