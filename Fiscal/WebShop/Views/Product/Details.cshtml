@@ -1,0 +1,12 @@
+﻿@model Product
+
+    <cache enabled="false" expires-after="TimeSpan.FromMinutes(1)" priority="CacheItemPriority.Normal" vary-by="@Model.ProductId">
+        <div>
+            @Html.DisplayNameFor(p => p.Name)
+            @Html.DisplayFor(p => p.Name)
+            <br />
+            @Html.DisplayNameFor(p => p.Price)
+            @Html.DisplayFor(p => p.Price)
+            <br />
+        </div>
+    </cache>

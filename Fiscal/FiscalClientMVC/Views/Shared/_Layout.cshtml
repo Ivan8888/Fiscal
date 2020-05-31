@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+@using Microsoft.AspNetCore.Identity
+@using FiscalClientMVC.Models
+
+@inject SignInManager<AppUser> _signInManager
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <h1>This is layout view. Current user is: @(_signInManager.IsSignedIn(User) ? User.Identity.Name.ToString() : "not sign in") </h1>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

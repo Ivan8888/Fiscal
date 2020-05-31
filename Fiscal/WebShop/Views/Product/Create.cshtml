@@ -1,0 +1,32 @@
+﻿@using WebShop.Models
+@model Product
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+@using (@Html.BeginForm("Create", "Product", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+
+    @Html.LabelFor(p => p.Name)
+    @Html.EditorFor(p => p.Name)
+    @Html.ValidationMessageFor(p => p.Name);
+    <br />
+
+    @Html.LabelFor(p => p.Price)
+    @Html.EditorFor(p => p.Price)
+    @Html.ValidationMessageFor(p => p.Price)
+    <br />
+
+    <input id="main_input" type="submit" onclick="ShowCustomAlert('you clicked create button')" name="Insert" />
+}
+
+<script>
+    $(function () {
+        $("#main_input").click(function (event) {
+            alert('button main_input clicked')
+        })
+    })
+</script>
+

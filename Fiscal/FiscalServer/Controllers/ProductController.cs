@@ -8,7 +8,7 @@ using FiscalServer.Data;
 
 namespace FiscalServer.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     [FormatFilter]
     public class ProductController : ControllerBase
@@ -25,12 +25,25 @@ namespace FiscalServer.Controllers
             return _context.Products.ToList();
         }
 
-        [HttpGet("{id}.{format?}")]
+        [HttpGet("[action]/{id}.{format?}")]
+        //[HttpGet]
         //[Produces("application/xml")]
+        //[Route("[action]/{id}")]
         public ActionResult<Product> GetById(int id)
         {
             Product product = _context.Products.SingleOrDefault(p => p.ProductId == id);
             return product;
         }
+
+        [HttpGet("[action]/{id}")]
+        public ActionResult<string> Get(string id)
+        {
+            if (id == "1")
+                return NotFound();
+
+            return "ivan";
+        }
+
+
     }
 }

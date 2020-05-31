@@ -30,8 +30,10 @@ namespace FiscalServer
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
             );
 
-            services.AddControllers(mvcOptions =>
-            mvcOptions.OutputFormatters.Add(new XmlSerializerOutputFormatter()));
+            //services.AddControllers(mvcOptions =>
+            //mvcOptions.OutputFormatters.Add(new XmlSerializerOutputFormatter()));
+
+            services.AddMvc();
 
             //services.AddControllers().AddXmlSerializerFormatters();
         }

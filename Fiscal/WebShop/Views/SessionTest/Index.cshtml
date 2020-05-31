@@ -1,0 +1,25 @@
+﻿<h2>Page number visit in backend session</h2>
+
+The page is visited: @ViewBag.num_visit  in this session
+
+<div>
+    <p id="p_local"></p>
+</div>
+
+<div>
+    <p id="p_session"></p>
+</div>
+
+<div>
+    <p class="api_result"></p>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        ShowLocalStorageVisit();
+        ShowSessionStorageVisit();
+        CallWebApi();
+    });
+
+</script>

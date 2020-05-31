@@ -1,0 +1,66 @@
+﻿@using WebShop.Models;
+@using Microsoft.Extensions.Caching.Memory;
+@model IEnumerable<Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@section section1
+{
+    <p>This is section1</p>
+}
+
+<h1>Index</h1>
+
+<cache enabled="false" expires-after="TimeSpan.FromMinutes(1)" priority="CacheItemPriority.Low" vary-by-user=true>
+    <table class="maintable">
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Details</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+
+        @foreach (var iteam in Model)
+        {
+            //ViewBag.Id = iteam.ProductId;
+            <tr>
+                @*@await Html.PartialAsync("_ProductInfo")*@
+                @await Component.InvokeAsync("ProductCard", iteam.ProductId)
+                @*<vc:ProductCard id = iteam.ProductId></vc:ProductCard>*@
+            </tr>
+        }
+    </table>
+</cache>
+
+
+@Html.ActionLink("Create New", "Create")
+
+@section section2
+{
+    <p>This is section2</p>
+}
+
+<script>
+    ShowCustomAlert('You are in the index view!');
+</script>
+
+<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalWindow">
+    Click to Open a Modal Window
+</button>
+
+<div id="modalWindow" class="modal" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>This is a modal window</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -13,17 +13,12 @@
 
 
 @{
-    Layout = null;
+    ViewBag.Title = "Index";
+    Layout = "_Layout";
 }
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>List of products for user: @User.Identity.Name</title>
-</head>
-<body>
-    <h1>List of products for user: @User.Identity.Name</h1>
+
+    <h2>List of products for user: @User.Identity.Name</h2>
     <br />
     @*look is it anabled, pay attention on expiration*@
 <cache enabled="false" vary-by-user="true" expires-after=TimeSpan.FromMinutes(1) priority=Microsoft.Extensions.Caching.Memory.CacheItemPriority.NeverRemove>
@@ -78,6 +73,3 @@
     @Html.ActionLink("Home page", "Index", "Home")
 </cache>
     @*</distributed-cache>*@
-
-</body>
-</html>

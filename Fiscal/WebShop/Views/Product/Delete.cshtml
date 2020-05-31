@@ -1,0 +1,17 @@
+﻿@model Product
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+@using (Html.BeginForm())
+{
+    @: Are you sure that you want to delete: @Model.Name
+
+    <input type="submit" name="Confirm" />
+}
+
+@Html.ActionLink("Back to list", "Index", "Product")
+

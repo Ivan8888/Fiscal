@@ -1,0 +1,1063 @@
+2020-05-29T19:18:51.2032627+02:00  [INF] User profile is available. Using '"C:\Users\Ivan\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2020-05-29T19:18:58.2008444+02:00  [WRN] No type was specified for the decimal column '"Quantity"' on entity type '"InvoiceIteam"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'. (3a0db05f)
+2020-05-29T19:18:58.2036024+02:00  [WRN] No type was specified for the decimal column '"Price"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'. (3a0db05f)
+2020-05-29T19:18:58.2810882+02:00  [INF] Entity Framework Core "3.1.3" initialized '"ShopContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "using lazy-loading proxies " (9958f5bb)
+2020-05-29T19:19:01.6334385+02:00  [INF] Executed DbCommand ("87"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2020-05-29T19:19:01.9326865+02:00  [INF] Executed DbCommand ("131"ms) [Parameters=[""], CommandType='Text', CommandTimeout='60']"
+""IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [WebShopDB] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+END;" (0723d8ff)
+2020-05-29T19:19:02.2974631+02:00  [INF] Executed DbCommand ("320"ms) [Parameters=[""], CommandType='Text', CommandTimeout='60']"
+""DROP DATABASE [WebShopDB];" (0723d8ff)
+2020-05-29T19:19:12.6468142+02:00  [INF] Executed DbCommand ("257"ms) [Parameters=[""], CommandType='Text', CommandTimeout='60']"
+""CREATE DATABASE [WebShopDB];" (0723d8ff)
+2020-05-29T19:19:12.7252572+02:00  [INF] Executed DbCommand ("70"ms) [Parameters=[""], CommandType='Text', CommandTimeout='60']"
+""IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [WebShopDB] SET READ_COMMITTED_SNAPSHOT ON;
+END;" (0723d8ff)
+2020-05-29T19:19:12.7514949+02:00  [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2020-05-29T19:19:13.6243900+02:00  [INF] Executed DbCommand ("21"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE [AspNetRoles] (
+    [Id] nvarchar(450) NOT NULL,
+    [Name] nvarchar(256) NULL,
+    [NormalizedName] nvarchar(256) NULL,
+    [ConcurrencyStamp] nvarchar(max) NULL,
+    CONSTRAINT [PK_AspNetRoles] PRIMARY KEY ([Id])
+);" (0723d8ff)
+2020-05-29T19:19:13.6367676+02:00  [INF] Executed DbCommand ("6"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE [AspNetUsers] (
+    [Id] nvarchar(450) NOT NULL,
+    [UserName] nvarchar(256) NULL,
+    [NormalizedUserName] nvarchar(256) NULL,
+    [Email] nvarchar(256) NULL,
+    [NormalizedEmail] nvarchar(256) NULL,
+    [EmailConfirmed] bit NOT NULL,
+    [PasswordHash] nvarchar(max) NULL,
+    [SecurityStamp] nvarchar(max) NULL,
+    [ConcurrencyStamp] nvarchar(max) NULL,
+    [PhoneNumber] nvarchar(max) NULL,
+    [PhoneNumberConfirmed] bit NOT NULL,
+    [TwoFactorEnabled] bit NOT NULL,
+    [LockoutEnd] datetimeoffset NULL,
+    [LockoutEnabled] bit NOT NULL,
+    [AccessFailedCount] int NOT NULL,
+    [FirstName] nvarchar(max) NULL,
+    [LastName] nvarchar(max) NULL,
+    [Age] int NOT NULL,
+    CONSTRAINT [PK_AspNetUsers] PRIMARY KEY ([Id])
+);" (0723d8ff)
+2020-05-29T19:19:13.6469110+02:00  [INF] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE [Customers] (
+    [CustomerId] int NOT NULL IDENTITY,
+    [Name] nvarchar(max) NULL,
+    [Address] nvarchar(max) NULL,
+    [Email] nvarchar(max) NULL,
+    [IsRetail] bit NOT NULL,
+    CONSTRAINT [PK_Customers] PRIMARY KEY ([CustomerId])
+);" (0723d8ff)
+2020-05-29T19:19:13.6580298+02:00  [INF] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE [ProductTable] (
+    [ProductId] int NOT NULL IDENTITY,
+    [Name] nvarchar(10) NOT NULL,
+    [Price] decimal(18,2) NOT NULL,
+    CONSTRAINT [PK_ProductTable] PRIMARY KEY ([ProductId])
+);" (0723d8ff)
+2020-05-29T19:19:13.6707863+02:00  [INF] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE [AspNetRoleClaims] (
+    [Id] int NOT NULL IDENTITY,
+    [RoleId] nvarchar(450) NOT NULL,
+    [ClaimType] nvarchar(max) NULL,
+    [ClaimValue] nvarchar(max) NULL,
+    CONSTRAINT [PK_AspNetRoleClaims] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_AspNetRoleClaims_AspNetRoles_RoleId] FOREIGN KEY ([RoleId]) REFERENCES [AspNetRoles] ([Id]) ON DELETE CASCADE
+);" (0723d8ff)
+2020-05-29T19:19:13.6858338+02:00  [INF] Executed DbCommand ("6"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE [AspNetUserClaims] (
+    [Id] int NOT NULL IDENTITY,
+    [UserId] nvarchar(450) NOT NULL,
+    [ClaimType] nvarchar(max) NULL,
+    [ClaimValue] nvarchar(max) NULL,
+    CONSTRAINT [PK_AspNetUserClaims] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_AspNetUserClaims_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);" (0723d8ff)
+2020-05-29T19:19:13.7034803+02:00  [INF] Executed DbCommand ("9"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE [AspNetUserLogins] (
+    [LoginProvider] nvarchar(450) NOT NULL,
+    [ProviderKey] nvarchar(450) NOT NULL,
+    [ProviderDisplayName] nvarchar(max) NULL,
+    [UserId] nvarchar(450) NOT NULL,
+    CONSTRAINT [PK_AspNetUserLogins] PRIMARY KEY ([LoginProvider], [ProviderKey]),
+    CONSTRAINT [FK_AspNetUserLogins_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);" (0723d8ff)
+2020-05-29T19:19:13.7238844+02:00  [INF] Executed DbCommand ("11"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE [AspNetUserRoles] (
+    [UserId] nvarchar(450) NOT NULL,
+    [RoleId] nvarchar(450) NOT NULL,
+    CONSTRAINT [PK_AspNetUserRoles] PRIMARY KEY ([UserId], [RoleId]),
+    CONSTRAINT [FK_AspNetUserRoles_AspNetRoles_RoleId] FOREIGN KEY ([RoleId]) REFERENCES [AspNetRoles] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_AspNetUserRoles_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);" (0723d8ff)
+2020-05-29T19:19:13.7405804+02:00  [INF] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE [AspNetUserTokens] (
+    [UserId] nvarchar(450) NOT NULL,
+    [LoginProvider] nvarchar(450) NOT NULL,
+    [Name] nvarchar(450) NOT NULL,
+    [Value] nvarchar(max) NULL,
+    CONSTRAINT [PK_AspNetUserTokens] PRIMARY KEY ([UserId], [LoginProvider], [Name]),
+    CONSTRAINT [FK_AspNetUserTokens_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);" (0723d8ff)
+2020-05-29T19:19:13.7576617+02:00  [INF] Executed DbCommand ("6"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE [Invoices] (
+    [InvoiceId] int NOT NULL IDENTITY,
+    [DateCreated] datetime2 NOT NULL,
+    [CustomerId] int NOT NULL,
+    CONSTRAINT [PK_Invoices] PRIMARY KEY ([InvoiceId]),
+    CONSTRAINT [FK_Invoices_Customers_CustomerId] FOREIGN KEY ([CustomerId]) REFERENCES [Customers] ([CustomerId]) ON DELETE CASCADE
+);" (0723d8ff)
+2020-05-29T19:19:13.7743914+02:00  [INF] Executed DbCommand ("6"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE [InvoiceIteams] (
+    [InvoiceIteamId] int NOT NULL IDENTITY,
+    [InvoiceId] int NOT NULL,
+    [ProductId] int NOT NULL,
+    [Quantity] decimal(18,2) NOT NULL,
+    CONSTRAINT [PK_InvoiceIteams] PRIMARY KEY ([InvoiceIteamId]),
+    CONSTRAINT [FK_InvoiceIteams_Invoices_InvoiceId] FOREIGN KEY ([InvoiceId]) REFERENCES [Invoices] ([InvoiceId]) ON DELETE CASCADE,
+    CONSTRAINT [FK_InvoiceIteams_ProductTable_ProductId] FOREIGN KEY ([ProductId]) REFERENCES [ProductTable] ([ProductId]) ON DELETE CASCADE
+);" (0723d8ff)
+2020-05-29T19:19:13.8470949+02:00  [INF] Executed DbCommand ("63"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'CustomerId', N'Address', N'Email', N'IsRetail', N'Name') AND [object_id] = OBJECT_ID(N'[Customers]'))
+    SET IDENTITY_INSERT [Customers] ON;
+INSERT INTO [Customers] ([CustomerId], [Address], [Email], [IsRetail], [Name])
+VALUES (1, N'Drink Store Address', N'drinkstore@gmail.com', CAST(0 AS bit), N'DrinkStore'),
+(2, N'Ivan Address', N'ivan@gmail.com', CAST(1 AS bit), N'Ivan');
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'CustomerId', N'Address', N'Email', N'IsRetail', N'Name') AND [object_id] = OBJECT_ID(N'[Customers]'))
+    SET IDENTITY_INSERT [Customers] OFF;" (0723d8ff)
+2020-05-29T19:19:13.8742122+02:00  [INF] Executed DbCommand ("19"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'ProductId', N'Name', N'Price') AND [object_id] = OBJECT_ID(N'[ProductTable]'))
+    SET IDENTITY_INSERT [ProductTable] ON;
+INSERT INTO [ProductTable] ([ProductId], [Name], [Price])
+VALUES (1, N'Beer', 100.0),
+(2, N'Vodka', 500.0),
+(3, N'Tequila', 1200.0);
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'ProductId', N'Name', N'Price') AND [object_id] = OBJECT_ID(N'[ProductTable]'))
+    SET IDENTITY_INSERT [ProductTable] OFF;" (0723d8ff)
+2020-05-29T19:19:13.8961820+02:00  [INF] Executed DbCommand ("14"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'InvoiceId', N'CustomerId', N'DateCreated') AND [object_id] = OBJECT_ID(N'[Invoices]'))
+    SET IDENTITY_INSERT [Invoices] ON;
+INSERT INTO [Invoices] ([InvoiceId], [CustomerId], [DateCreated])
+VALUES (1, 1, '2020-05-29T00:00:00.0000000+02:00');
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'InvoiceId', N'CustomerId', N'DateCreated') AND [object_id] = OBJECT_ID(N'[Invoices]'))
+    SET IDENTITY_INSERT [Invoices] OFF;" (0723d8ff)
+2020-05-29T19:19:13.9170645+02:00  [INF] Executed DbCommand ("13"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'InvoiceId', N'CustomerId', N'DateCreated') AND [object_id] = OBJECT_ID(N'[Invoices]'))
+    SET IDENTITY_INSERT [Invoices] ON;
+INSERT INTO [Invoices] ([InvoiceId], [CustomerId], [DateCreated])
+VALUES (2, 2, '2020-05-29T00:00:00.0000000+02:00');
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'InvoiceId', N'CustomerId', N'DateCreated') AND [object_id] = OBJECT_ID(N'[Invoices]'))
+    SET IDENTITY_INSERT [Invoices] OFF;" (0723d8ff)
+2020-05-29T19:19:13.9482107+02:00  [INF] Executed DbCommand ("24"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'InvoiceIteamId', N'InvoiceId', N'ProductId', N'Quantity') AND [object_id] = OBJECT_ID(N'[InvoiceIteams]'))
+    SET IDENTITY_INSERT [InvoiceIteams] ON;
+INSERT INTO [InvoiceIteams] ([InvoiceIteamId], [InvoiceId], [ProductId], [Quantity])
+VALUES (1, 1, 1, 10.0),
+(2, 1, 2, 2.0),
+(3, 2, 1, 20.0),
+(4, 2, 3, 3.0);
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'InvoiceIteamId', N'InvoiceId', N'ProductId', N'Quantity') AND [object_id] = OBJECT_ID(N'[InvoiceIteams]'))
+    SET IDENTITY_INSERT [InvoiceIteams] OFF;" (0723d8ff)
+2020-05-29T19:19:13.9719677+02:00  [INF] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE INDEX [IX_AspNetRoleClaims_RoleId] ON [AspNetRoleClaims] ([RoleId]);" (0723d8ff)
+2020-05-29T19:19:13.9849662+02:00  [INF] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE UNIQUE INDEX [RoleNameIndex] ON [AspNetRoles] ([NormalizedName]) WHERE [NormalizedName] IS NOT NULL;" (0723d8ff)
+2020-05-29T19:19:13.9967975+02:00  [INF] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE INDEX [IX_AspNetUserClaims_UserId] ON [AspNetUserClaims] ([UserId]);" (0723d8ff)
+2020-05-29T19:19:14.0086135+02:00  [INF] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE INDEX [IX_AspNetUserLogins_UserId] ON [AspNetUserLogins] ([UserId]);" (0723d8ff)
+2020-05-29T19:19:14.0202044+02:00  [INF] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE INDEX [IX_AspNetUserRoles_RoleId] ON [AspNetUserRoles] ([RoleId]);" (0723d8ff)
+2020-05-29T19:19:14.0317254+02:00  [INF] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE INDEX [EmailIndex] ON [AspNetUsers] ([NormalizedEmail]);" (0723d8ff)
+2020-05-29T19:19:14.0421399+02:00  [INF] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE UNIQUE INDEX [UserNameIndex] ON [AspNetUsers] ([NormalizedUserName]) WHERE [NormalizedUserName] IS NOT NULL;" (0723d8ff)
+2020-05-29T19:19:14.0565500+02:00  [INF] Executed DbCommand ("6"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE INDEX [IX_InvoiceIteams_InvoiceId] ON [InvoiceIteams] ([InvoiceId]);" (0723d8ff)
+2020-05-29T19:19:14.0716819+02:00  [INF] Executed DbCommand ("6"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE INDEX [IX_InvoiceIteams_ProductId] ON [InvoiceIteams] ([ProductId]);" (0723d8ff)
+2020-05-29T19:19:14.0851804+02:00  [INF] Executed DbCommand ("6"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE INDEX [IX_Invoices_CustomerId] ON [Invoices] ([CustomerId]);" (0723d8ff)
+2020-05-29T19:19:14.7308284+02:00  [INF] Executed DbCommand ("115"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-05-29T19:19:14.9048285+02:00  [INF] Executed DbCommand ("7"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (Size = 4000), @p2='?' (Size = 256), @p3='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [AspNetRoles] ([Id], [ConcurrencyStamp], [Name], [NormalizedName])
+VALUES (@p0, @p1, @p2, @p3);" (0723d8ff)
+2020-05-29T19:19:15.0033883+02:00  [INF] Executed DbCommand ("12"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-05-29T19:19:15.0607743+02:00  [INF] Executed DbCommand ("3"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (Size = 4000), @p2='?' (Size = 256), @p3='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [AspNetRoles] ([Id], [ConcurrencyStamp], [Name], [NormalizedName])
+VALUES (@p0, @p1, @p2, @p3);" (0723d8ff)
+2020-05-29T19:19:15.0987650+02:00  [INF] Executed DbCommand ("4"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-05-29T19:19:15.1476735+02:00  [INF] Executed DbCommand ("8"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (Size = 4000), @p2='?' (Size = 256), @p3='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [AspNetRoles] ([Id], [ConcurrencyStamp], [Name], [NormalizedName])
+VALUES (@p0, @p1, @p2, @p3);" (0723d8ff)
+2020-05-29T19:19:15.3687669+02:00  [INF] Executed DbCommand ("8"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[Age], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2020-05-29T19:19:15.5614142+02:00  [INF] Executed DbCommand ("20"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (Size = 4000), @p4='?' (Size = 256), @p5='?' (DbType = Boolean), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (DbType = Boolean), @p9='?' (DbType = DateTimeOffset), @p10='?' (Size = 256), @p11='?' (Size = 256), @p12='?' (Size = 4000), @p13='?' (Size = 4000), @p14='?' (DbType = Boolean), @p15='?' (Size = 4000), @p16='?' (DbType = Boolean), @p17='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [AspNetUsers] ([Id], [AccessFailedCount], [Age], [ConcurrencyStamp], [Email], [EmailConfirmed], [FirstName], [LastName], [LockoutEnabled], [LockoutEnd], [NormalizedEmail], [NormalizedUserName], [PasswordHash], [PhoneNumber], [PhoneNumberConfirmed], [SecurityStamp], [TwoFactorEnabled], [UserName])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17);" (0723d8ff)
+2020-05-29T19:19:15.6447740+02:00  [INF] Executed DbCommand ("6"ms) [Parameters=["@__normalizedRoleName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0" (0723d8ff)
+2020-05-29T19:19:15.7184831+02:00  [INF] Executed DbCommand ("5"ms) [Parameters=["@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE ([a].[UserId] = @__p_0) AND ([a].[RoleId] = @__p_1)" (0723d8ff)
+2020-05-29T19:19:15.7509145+02:00  [INF] Executed DbCommand ("3"ms) [Parameters=["@__normalizedRoleName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0" (0723d8ff)
+2020-05-29T19:19:15.8019250+02:00  [INF] Executed DbCommand ("8"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[Age], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2020-05-29T19:19:15.8682675+02:00  [INF] Executed DbCommand ("7"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [AspNetUserRoles] ([UserId], [RoleId])
+VALUES (@p0, @p1);" (0723d8ff)
+2020-05-29T19:19:15.8995596+02:00  [INF] Executed DbCommand ("12"ms) [Parameters=["@p17='?' (Size = 450), @p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (Size = 4000), @p18='?' (Size = 4000), @p3='?' (Size = 256), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (DbType = Boolean), @p8='?' (DbType = DateTimeOffset), @p9='?' (Size = 256), @p10='?' (Size = 256), @p11='?' (Size = 4000), @p12='?' (Size = 4000), @p13='?' (DbType = Boolean), @p14='?' (Size = 4000), @p15='?' (DbType = Boolean), @p16='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [Age] = @p1, [ConcurrencyStamp] = @p2, [Email] = @p3, [EmailConfirmed] = @p4, [FirstName] = @p5, [LastName] = @p6, [LockoutEnabled] = @p7, [LockoutEnd] = @p8, [NormalizedEmail] = @p9, [NormalizedUserName] = @p10, [PasswordHash] = @p11, [PhoneNumber] = @p12, [PhoneNumberConfirmed] = @p13, [SecurityStamp] = @p14, [TwoFactorEnabled] = @p15, [UserName] = @p16
+WHERE [Id] = @p17 AND [ConcurrencyStamp] = @p18;
+SELECT @@ROWCOUNT;" (0723d8ff)
+2020-05-29T19:19:15.9658105+02:00  [INF] Executed DbCommand ("5"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[Age], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2020-05-29T19:19:16.0225044+02:00  [INF] Executed DbCommand ("4"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (Size = 4000), @p4='?' (Size = 256), @p5='?' (DbType = Boolean), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (DbType = Boolean), @p9='?' (DbType = DateTimeOffset), @p10='?' (Size = 256), @p11='?' (Size = 256), @p12='?' (Size = 4000), @p13='?' (Size = 4000), @p14='?' (DbType = Boolean), @p15='?' (Size = 4000), @p16='?' (DbType = Boolean), @p17='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [AspNetUsers] ([Id], [AccessFailedCount], [Age], [ConcurrencyStamp], [Email], [EmailConfirmed], [FirstName], [LastName], [LockoutEnabled], [LockoutEnd], [NormalizedEmail], [NormalizedUserName], [PasswordHash], [PhoneNumber], [PhoneNumberConfirmed], [SecurityStamp], [TwoFactorEnabled], [UserName])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17);" (0723d8ff)
+2020-05-29T19:19:16.0708323+02:00  [INF] Executed DbCommand ("7"ms) [Parameters=["@__normalizedRoleName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0" (0723d8ff)
+2020-05-29T19:19:16.1075171+02:00  [INF] Executed DbCommand ("4"ms) [Parameters=["@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE ([a].[UserId] = @__p_0) AND ([a].[RoleId] = @__p_1)" (0723d8ff)
+2020-05-29T19:19:16.1346789+02:00  [INF] Executed DbCommand ("5"ms) [Parameters=["@__normalizedRoleName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0" (0723d8ff)
+2020-05-29T19:19:16.1651363+02:00  [INF] Executed DbCommand ("4"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[Age], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2020-05-29T19:19:16.2181425+02:00  [INF] Executed DbCommand ("4"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [AspNetUserRoles] ([UserId], [RoleId])
+VALUES (@p0, @p1);" (0723d8ff)
+2020-05-29T19:19:16.2366121+02:00  [INF] Executed DbCommand ("9"ms) [Parameters=["@p17='?' (Size = 450), @p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (Size = 4000), @p18='?' (Size = 4000), @p3='?' (Size = 256), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (DbType = Boolean), @p8='?' (DbType = DateTimeOffset), @p9='?' (Size = 256), @p10='?' (Size = 256), @p11='?' (Size = 4000), @p12='?' (Size = 4000), @p13='?' (DbType = Boolean), @p14='?' (Size = 4000), @p15='?' (DbType = Boolean), @p16='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [Age] = @p1, [ConcurrencyStamp] = @p2, [Email] = @p3, [EmailConfirmed] = @p4, [FirstName] = @p5, [LastName] = @p6, [LockoutEnabled] = @p7, [LockoutEnd] = @p8, [NormalizedEmail] = @p9, [NormalizedUserName] = @p10, [PasswordHash] = @p11, [PhoneNumber] = @p12, [PhoneNumberConfirmed] = @p13, [SecurityStamp] = @p14, [TwoFactorEnabled] = @p15, [UserName] = @p16
+WHERE [Id] = @p17 AND [ConcurrencyStamp] = @p18;
+SELECT @@ROWCOUNT;" (0723d8ff)
+2020-05-29T19:19:16.2968911+02:00  [INF] Executed DbCommand ("6"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[Age], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2020-05-29T19:19:16.3830893+02:00  [INF] Executed DbCommand ("14"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (Size = 4000), @p4='?' (Size = 256), @p5='?' (DbType = Boolean), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (DbType = Boolean), @p9='?' (DbType = DateTimeOffset), @p10='?' (Size = 256), @p11='?' (Size = 256), @p12='?' (Size = 4000), @p13='?' (Size = 4000), @p14='?' (DbType = Boolean), @p15='?' (Size = 4000), @p16='?' (DbType = Boolean), @p17='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [AspNetUsers] ([Id], [AccessFailedCount], [Age], [ConcurrencyStamp], [Email], [EmailConfirmed], [FirstName], [LastName], [LockoutEnabled], [LockoutEnd], [NormalizedEmail], [NormalizedUserName], [PasswordHash], [PhoneNumber], [PhoneNumberConfirmed], [SecurityStamp], [TwoFactorEnabled], [UserName])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17);" (0723d8ff)
+2020-05-29T19:19:16.4507858+02:00  [INF] Executed DbCommand ("8"ms) [Parameters=["@__normalizedRoleName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0" (0723d8ff)
+2020-05-29T19:19:16.5013932+02:00  [INF] Executed DbCommand ("5"ms) [Parameters=["@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE ([a].[UserId] = @__p_0) AND ([a].[RoleId] = @__p_1)" (0723d8ff)
+2020-05-29T19:19:16.5652470+02:00  [INF] Executed DbCommand ("5"ms) [Parameters=["@__normalizedRoleName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0" (0723d8ff)
+2020-05-29T19:19:16.6083379+02:00  [INF] Executed DbCommand ("7"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[Age], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2020-05-29T19:19:16.9050055+02:00  [INF] Executed DbCommand ("72"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [AspNetUserRoles] ([UserId], [RoleId])
+VALUES (@p0, @p1);" (0723d8ff)
+2020-05-29T19:19:17.0724522+02:00  [INF] Executed DbCommand ("49"ms) [Parameters=["@p17='?' (Size = 450), @p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (Size = 4000), @p18='?' (Size = 4000), @p3='?' (Size = 256), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (DbType = Boolean), @p8='?' (DbType = DateTimeOffset), @p9='?' (Size = 256), @p10='?' (Size = 256), @p11='?' (Size = 4000), @p12='?' (Size = 4000), @p13='?' (DbType = Boolean), @p14='?' (Size = 4000), @p15='?' (DbType = Boolean), @p16='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [Age] = @p1, [ConcurrencyStamp] = @p2, [Email] = @p3, [EmailConfirmed] = @p4, [FirstName] = @p5, [LastName] = @p6, [LockoutEnabled] = @p7, [LockoutEnd] = @p8, [NormalizedEmail] = @p9, [NormalizedUserName] = @p10, [PasswordHash] = @p11, [PhoneNumber] = @p12, [PhoneNumberConfirmed] = @p13, [SecurityStamp] = @p14, [TwoFactorEnabled] = @p15, [UserName] = @p16
+WHERE [Id] = @p17 AND [ConcurrencyStamp] = @p18;
+SELECT @@ROWCOUNT;" (0723d8ff)
+2020-05-29T19:19:17.2194435+02:00  [INF] Executed DbCommand ("18"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[Age], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2020-05-29T19:19:17.2972316+02:00  [INF] Executed DbCommand ("8"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (Size = 4000), @p4='?' (Size = 256), @p5='?' (DbType = Boolean), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (DbType = Boolean), @p9='?' (DbType = DateTimeOffset), @p10='?' (Size = 256), @p11='?' (Size = 256), @p12='?' (Size = 4000), @p13='?' (Size = 4000), @p14='?' (DbType = Boolean), @p15='?' (Size = 4000), @p16='?' (DbType = Boolean), @p17='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [AspNetUsers] ([Id], [AccessFailedCount], [Age], [ConcurrencyStamp], [Email], [EmailConfirmed], [FirstName], [LastName], [LockoutEnabled], [LockoutEnd], [NormalizedEmail], [NormalizedUserName], [PasswordHash], [PhoneNumber], [PhoneNumberConfirmed], [SecurityStamp], [TwoFactorEnabled], [UserName])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17);" (0723d8ff)
+2020-05-29T19:19:17.3689367+02:00  [INF] Executed DbCommand ("7"ms) [Parameters=["@__normalizedRoleName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0" (0723d8ff)
+2020-05-29T19:19:17.4064859+02:00  [INF] Executed DbCommand ("5"ms) [Parameters=["@__p_0='?' (Size = 450), @__p_1='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE ([a].[UserId] = @__p_0) AND ([a].[RoleId] = @__p_1)" (0723d8ff)
+2020-05-29T19:19:17.4415348+02:00  [INF] Executed DbCommand ("5"ms) [Parameters=["@__normalizedRoleName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0" (0723d8ff)
+2020-05-29T19:19:17.5693643+02:00  [INF] Executed DbCommand ("18"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[Age], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2020-05-29T19:19:17.6340801+02:00  [INF] Executed DbCommand ("5"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [AspNetUserRoles] ([UserId], [RoleId])
+VALUES (@p0, @p1);" (0723d8ff)
+2020-05-29T19:19:17.6468245+02:00  [INF] Executed DbCommand ("3"ms) [Parameters=["@p17='?' (Size = 450), @p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (Size = 4000), @p18='?' (Size = 4000), @p3='?' (Size = 256), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (DbType = Boolean), @p8='?' (DbType = DateTimeOffset), @p9='?' (Size = 256), @p10='?' (Size = 256), @p11='?' (Size = 4000), @p12='?' (Size = 4000), @p13='?' (DbType = Boolean), @p14='?' (Size = 4000), @p15='?' (DbType = Boolean), @p16='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [Age] = @p1, [ConcurrencyStamp] = @p2, [Email] = @p3, [EmailConfirmed] = @p4, [FirstName] = @p5, [LastName] = @p6, [LockoutEnabled] = @p7, [LockoutEnd] = @p8, [NormalizedEmail] = @p9, [NormalizedUserName] = @p10, [PasswordHash] = @p11, [PhoneNumber] = @p12, [PhoneNumberConfirmed] = @p13, [SecurityStamp] = @p14, [TwoFactorEnabled] = @p15, [UserName] = @p16
+WHERE [Id] = @p17 AND [ConcurrencyStamp] = @p18;
+SELECT @@ROWCOUNT;" (0723d8ff)
+2020-05-29T19:19:17.7101965+02:00  [INF] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [a].[Id], [a].[AccessFailedCount], [a].[Age], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]" (0723d8ff)
+2020-05-29T19:19:17.7921227+02:00  [INF] Executed DbCommand ("3"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[Age], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2020-05-29T19:19:17.8402548+02:00  [INF] Executed DbCommand ("7"ms) [Parameters=["@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [AspNetUserClaims] ([ClaimType], [ClaimValue], [UserId])
+VALUES (@p0, @p1, @p2);
+SELECT [Id]
+FROM [AspNetUserClaims]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();" (0723d8ff)
+2020-05-29T19:19:17.8880062+02:00  [INF] Executed DbCommand ("3"ms) [Parameters=["@p17='?' (Size = 450), @p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (Size = 4000), @p18='?' (Size = 4000), @p3='?' (Size = 256), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (DbType = Boolean), @p8='?' (DbType = DateTimeOffset), @p9='?' (Size = 256), @p10='?' (Size = 256), @p11='?' (Size = 4000), @p12='?' (Size = 4000), @p13='?' (DbType = Boolean), @p14='?' (Size = 4000), @p15='?' (DbType = Boolean), @p16='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [Age] = @p1, [ConcurrencyStamp] = @p2, [Email] = @p3, [EmailConfirmed] = @p4, [FirstName] = @p5, [LastName] = @p6, [LockoutEnabled] = @p7, [LockoutEnd] = @p8, [NormalizedEmail] = @p9, [NormalizedUserName] = @p10, [PasswordHash] = @p11, [PhoneNumber] = @p12, [PhoneNumberConfirmed] = @p13, [SecurityStamp] = @p14, [TwoFactorEnabled] = @p15, [UserName] = @p16
+WHERE [Id] = @p17 AND [ConcurrencyStamp] = @p18;
+SELECT @@ROWCOUNT;" (0723d8ff)
+2020-05-29T19:19:17.9466154+02:00  [INF] Executed DbCommand ("5"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[Age], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2020-05-29T19:19:18.0163570+02:00  [INF] Executed DbCommand ("6"ms) [Parameters=["@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [AspNetUserClaims] ([ClaimType], [ClaimValue], [UserId])
+VALUES (@p0, @p1, @p2);
+SELECT [Id]
+FROM [AspNetUserClaims]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();" (0723d8ff)
+2020-05-29T19:19:18.0412009+02:00  [INF] Executed DbCommand ("4"ms) [Parameters=["@p17='?' (Size = 450), @p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (Size = 4000), @p18='?' (Size = 4000), @p3='?' (Size = 256), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (DbType = Boolean), @p8='?' (DbType = DateTimeOffset), @p9='?' (Size = 256), @p10='?' (Size = 256), @p11='?' (Size = 4000), @p12='?' (Size = 4000), @p13='?' (DbType = Boolean), @p14='?' (Size = 4000), @p15='?' (DbType = Boolean), @p16='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [Age] = @p1, [ConcurrencyStamp] = @p2, [Email] = @p3, [EmailConfirmed] = @p4, [FirstName] = @p5, [LastName] = @p6, [LockoutEnabled] = @p7, [LockoutEnd] = @p8, [NormalizedEmail] = @p9, [NormalizedUserName] = @p10, [PasswordHash] = @p11, [PhoneNumber] = @p12, [PhoneNumberConfirmed] = @p13, [SecurityStamp] = @p14, [TwoFactorEnabled] = @p15, [UserName] = @p16
+WHERE [Id] = @p17 AND [ConcurrencyStamp] = @p18;
+SELECT @@ROWCOUNT;" (0723d8ff)
+2020-05-29T19:19:18.0961368+02:00  [INF] Executed DbCommand ("4"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[Age], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2020-05-29T19:19:18.1441651+02:00  [INF] Executed DbCommand ("5"ms) [Parameters=["@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [AspNetUserClaims] ([ClaimType], [ClaimValue], [UserId])
+VALUES (@p0, @p1, @p2);
+SELECT [Id]
+FROM [AspNetUserClaims]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();" (0723d8ff)
+2020-05-29T19:19:18.1679287+02:00  [INF] Executed DbCommand ("5"ms) [Parameters=["@p17='?' (Size = 450), @p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (Size = 4000), @p18='?' (Size = 4000), @p3='?' (Size = 256), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (DbType = Boolean), @p8='?' (DbType = DateTimeOffset), @p9='?' (Size = 256), @p10='?' (Size = 256), @p11='?' (Size = 4000), @p12='?' (Size = 4000), @p13='?' (DbType = Boolean), @p14='?' (Size = 4000), @p15='?' (DbType = Boolean), @p16='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [Age] = @p1, [ConcurrencyStamp] = @p2, [Email] = @p3, [EmailConfirmed] = @p4, [FirstName] = @p5, [LastName] = @p6, [LockoutEnabled] = @p7, [LockoutEnd] = @p8, [NormalizedEmail] = @p9, [NormalizedUserName] = @p10, [PasswordHash] = @p11, [PhoneNumber] = @p12, [PhoneNumberConfirmed] = @p13, [SecurityStamp] = @p14, [TwoFactorEnabled] = @p15, [UserName] = @p16
+WHERE [Id] = @p17 AND [ConcurrencyStamp] = @p18;
+SELECT @@ROWCOUNT;" (0723d8ff)
+2020-05-29T19:19:18.2460305+02:00  [INF] Executed DbCommand ("7"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[Age], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2020-05-29T19:19:18.2975980+02:00  [INF] Executed DbCommand ("5"ms) [Parameters=["@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [AspNetUserClaims] ([ClaimType], [ClaimValue], [UserId])
+VALUES (@p0, @p1, @p2);
+SELECT [Id]
+FROM [AspNetUserClaims]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();" (0723d8ff)
+2020-05-29T19:19:18.3182836+02:00  [INF] Executed DbCommand ("4"ms) [Parameters=["@p17='?' (Size = 450), @p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (Size = 4000), @p18='?' (Size = 4000), @p3='?' (Size = 256), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (DbType = Boolean), @p8='?' (DbType = DateTimeOffset), @p9='?' (Size = 256), @p10='?' (Size = 256), @p11='?' (Size = 4000), @p12='?' (Size = 4000), @p13='?' (DbType = Boolean), @p14='?' (Size = 4000), @p15='?' (DbType = Boolean), @p16='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [Age] = @p1, [ConcurrencyStamp] = @p2, [Email] = @p3, [EmailConfirmed] = @p4, [FirstName] = @p5, [LastName] = @p6, [LockoutEnabled] = @p7, [LockoutEnd] = @p8, [NormalizedEmail] = @p9, [NormalizedUserName] = @p10, [PasswordHash] = @p11, [PhoneNumber] = @p12, [PhoneNumberConfirmed] = @p13, [SecurityStamp] = @p14, [TwoFactorEnabled] = @p15, [UserName] = @p16
+WHERE [Id] = @p17 AND [ConcurrencyStamp] = @p18;
+SELECT @@ROWCOUNT;" (0723d8ff)
+2020-05-29T19:19:18.3663033+02:00  [INF] Executed DbCommand ("6"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[Age], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2020-05-29T19:19:18.4154833+02:00  [INF] Executed DbCommand ("4"ms) [Parameters=["@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [AspNetUserClaims] ([ClaimType], [ClaimValue], [UserId])
+VALUES (@p0, @p1, @p2);
+SELECT [Id]
+FROM [AspNetUserClaims]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();" (0723d8ff)
+2020-05-29T19:19:18.4321977+02:00  [INF] Executed DbCommand ("3"ms) [Parameters=["@p17='?' (Size = 450), @p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (Size = 4000), @p18='?' (Size = 4000), @p3='?' (Size = 256), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (DbType = Boolean), @p8='?' (DbType = DateTimeOffset), @p9='?' (Size = 256), @p10='?' (Size = 256), @p11='?' (Size = 4000), @p12='?' (Size = 4000), @p13='?' (DbType = Boolean), @p14='?' (Size = 4000), @p15='?' (DbType = Boolean), @p16='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [Age] = @p1, [ConcurrencyStamp] = @p2, [Email] = @p3, [EmailConfirmed] = @p4, [FirstName] = @p5, [LastName] = @p6, [LockoutEnabled] = @p7, [LockoutEnd] = @p8, [NormalizedEmail] = @p9, [NormalizedUserName] = @p10, [PasswordHash] = @p11, [PhoneNumber] = @p12, [PhoneNumberConfirmed] = @p13, [SecurityStamp] = @p14, [TwoFactorEnabled] = @p15, [UserName] = @p16
+WHERE [Id] = @p17 AND [ConcurrencyStamp] = @p18;
+SELECT @@ROWCOUNT;" (0723d8ff)
+2020-05-29T19:19:18.4812221+02:00  [INF] Executed DbCommand ("3"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[Age], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2020-05-29T19:19:18.5319017+02:00  [INF] Executed DbCommand ("3"ms) [Parameters=["@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [AspNetUserClaims] ([ClaimType], [ClaimValue], [UserId])
+VALUES (@p0, @p1, @p2);
+SELECT [Id]
+FROM [AspNetUserClaims]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();" (0723d8ff)
+2020-05-29T19:19:18.5477338+02:00  [INF] Executed DbCommand ("4"ms) [Parameters=["@p17='?' (Size = 450), @p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (Size = 4000), @p18='?' (Size = 4000), @p3='?' (Size = 256), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (DbType = Boolean), @p8='?' (DbType = DateTimeOffset), @p9='?' (Size = 256), @p10='?' (Size = 256), @p11='?' (Size = 4000), @p12='?' (Size = 4000), @p13='?' (DbType = Boolean), @p14='?' (Size = 4000), @p15='?' (DbType = Boolean), @p16='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [Age] = @p1, [ConcurrencyStamp] = @p2, [Email] = @p3, [EmailConfirmed] = @p4, [FirstName] = @p5, [LastName] = @p6, [LockoutEnabled] = @p7, [LockoutEnd] = @p8, [NormalizedEmail] = @p9, [NormalizedUserName] = @p10, [PasswordHash] = @p11, [PhoneNumber] = @p12, [PhoneNumberConfirmed] = @p13, [SecurityStamp] = @p14, [TwoFactorEnabled] = @p15, [UserName] = @p16
+WHERE [Id] = @p17 AND [ConcurrencyStamp] = @p18;
+SELECT @@ROWCOUNT;" (0723d8ff)
+2020-05-29T19:19:23.7945035+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-05-29T19:19:23.8017874+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2020-05-29T19:19:23.8152746+02:00  [INF] Content root path: "C:\GitRoot\Fiscal\Fiscal\WebShop" (b5d60022)
+2020-05-29T19:19:23.8766426+02:00 80000051-0002-f800-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/   (ca22a1cb)
+2020-05-29T19:19:24.2386691+02:00 80000051-0002-f800-b63f-84710c7967bb [INF] Executing endpoint '"WebShop.Controllers.HomeController.Index (WebShop)"' (500cc934)
+2020-05-29T19:19:24.3092233+02:00 80000051-0002-f800-b63f-84710c7967bb [INF] Route matched with "{action = \"Index\", controller = \"Home\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "WebShop.Controllers.HomeController" ("WebShop"). (122b2fdf)
+2020-05-29T19:19:24.6061882+02:00 80000051-0002-f800-b63f-84710c7967bb [INF] Executing ViewResult, running view "Index". (c83d0e25)
+2020-05-29T19:19:25.2096157+02:00 80000051-0002-f800-b63f-84710c7967bb [INF] Executed ViewResult - view "Index" executed in 652.9208ms. (f66409e9)
+2020-05-29T19:19:25.2139507+02:00 80000051-0002-f800-b63f-84710c7967bb [INF] Executed action "WebShop.Controllers.HomeController.Index (WebShop)" in 878.0621ms (afa2e885)
+2020-05-29T19:19:25.2182871+02:00 80000051-0002-f800-b63f-84710c7967bb [INF] Executed endpoint '"WebShop.Controllers.HomeController.Index (WebShop)"' (99874f2b)
+2020-05-29T19:19:25.2396141+02:00 80000051-0002-f800-b63f-84710c7967bb [INF] Request finished in 1368.0103ms 200 text/html; charset=utf-8 (791a596a)
+2020-05-29T19:19:25.3350447+02:00 800000a7-0001-fa00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/jquery-validation/dist/jquery.validate.js   (ca22a1cb)
+2020-05-29T19:19:25.3430694+02:00 80000010-0001-f800-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/jquery/dist/jquery.js   (ca22a1cb)
+2020-05-29T19:19:25.3862830+02:00 800001d6-0001-fc00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js   (ca22a1cb)
+2020-05-29T19:19:25.3895405+02:00 80000053-0002-fe00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/scripts/functions.js   (ca22a1cb)
+2020-05-29T19:19:25.6529589+02:00 800001d6-0001-fc00-b63f-84710c7967bb [INF] Sending file. Request path: '"/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js"' (27b0a520)
+2020-05-29T19:19:25.6849807+02:00 80000053-0002-fe00-b63f-84710c7967bb [INF] Sending file. Request path: '"/scripts/functions.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\wwwroot\scripts\functions.js"' (27b0a520)
+2020-05-29T19:19:25.6913235+02:00 80000159-0002-fb00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/bootstrap/dist/css/bootstrap.css   (ca22a1cb)
+2020-05-29T19:19:25.6957222+02:00 80000053-0002-fe00-b63f-84710c7967bb [INF] Request finished in 382.0942ms 200 application/javascript (791a596a)
+2020-05-29T19:19:25.7003267+02:00 800001d6-0001-fc00-b63f-84710c7967bb [INF] Request finished in 381.0197ms 200 application/javascript (791a596a)
+2020-05-29T19:19:25.7103163+02:00 80000052-0002-f800-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/css/style.css   (ca22a1cb)
+2020-05-29T19:19:25.7468592+02:00 800000a7-0001-fa00-b63f-84710c7967bb [INF] Sending file. Request path: '"/jquery-validation/dist/jquery.validate.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\jquery-validation\dist\jquery.validate.js"' (27b0a520)
+2020-05-29T19:19:25.7505178+02:00 80000054-0002-fe00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/@aspnet/signalr/dist/browser/signalr.js   (ca22a1cb)
+2020-05-29T19:19:25.7547494+02:00 800000a7-0001-fa00-b63f-84710c7967bb [INF] Request finished in 453.083ms 200 application/javascript (791a596a)
+2020-05-29T19:19:25.7593675+02:00 800001d7-0001-fc00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/bootstrap/dist/js/bootstrap.js   (ca22a1cb)
+2020-05-29T19:19:25.7655911+02:00 80000052-0002-f800-b63f-84710c7967bb [INF] Sending file. Request path: '"/css/style.css"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\wwwroot\css\style.css"' (27b0a520)
+2020-05-29T19:19:25.7730412+02:00 80000052-0002-f800-b63f-84710c7967bb [INF] Request finished in 64.1472ms 200 text/css (791a596a)
+2020-05-29T19:19:25.9372243+02:00 80000010-0001-f800-b63f-84710c7967bb [INF] Sending file. Request path: '"/jquery/dist/jquery.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\jquery\dist\jquery.js"' (27b0a520)
+2020-05-29T19:19:25.9701643+02:00 800000a8-0001-fa00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/popper.js/dist/umd/popper.js   (ca22a1cb)
+2020-05-29T19:19:25.9775603+02:00 80000010-0001-f800-b63f-84710c7967bb [INF] Request finished in 635.325ms 200 application/javascript (791a596a)
+2020-05-29T19:19:26.0370089+02:00 80000054-0002-fe00-b63f-84710c7967bb [INF] Sending file. Request path: '"/@aspnet/signalr/dist/browser/signalr.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\@aspnet\signalr\dist\browser\signalr.js"' (27b0a520)
+2020-05-29T19:19:26.0494225+02:00 80000159-0002-fb00-b63f-84710c7967bb [INF] Sending file. Request path: '"/bootstrap/dist/css/bootstrap.css"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\bootstrap\dist\css\bootstrap.css"' (27b0a520)
+2020-05-29T19:19:26.0644919+02:00 80000054-0002-fe00-b63f-84710c7967bb [INF] Request finished in 293.4569ms 200 application/javascript (791a596a)
+2020-05-29T19:19:26.0874839+02:00 80000159-0002-fb00-b63f-84710c7967bb [INF] Request finished in 367.407ms 200 text/css (791a596a)
+2020-05-29T19:19:26.1127193+02:00 800000a8-0001-fa00-b63f-84710c7967bb [INF] Sending file. Request path: '"/popper.js/dist/umd/popper.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\popper.js\dist\umd\popper.js"' (27b0a520)
+2020-05-29T19:19:26.1404672+02:00 800000a8-0001-fa00-b63f-84710c7967bb [INF] Request finished in 225.6432ms 200 application/javascript (791a596a)
+2020-05-29T19:19:26.2596368+02:00 800001d7-0001-fc00-b63f-84710c7967bb [INF] Sending file. Request path: '"/bootstrap/dist/js/bootstrap.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\bootstrap\dist\js\bootstrap.js"' (27b0a520)
+2020-05-29T19:19:26.3073559+02:00 800001d7-0001-fc00-b63f-84710c7967bb [INF] Request finished in 503.7193ms 200 application/javascript (791a596a)
+2020-05-29T19:21:26.3185028+02:00  [INF] User profile is available. Using '"C:\Users\Ivan\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2020-05-29T19:21:32.4072758+02:00  [WRN] No type was specified for the decimal column '"Quantity"' on entity type '"InvoiceIteam"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'. (3a0db05f)
+2020-05-29T19:21:32.4117604+02:00  [WRN] No type was specified for the decimal column '"Price"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'. (3a0db05f)
+2020-05-29T19:21:32.6544690+02:00  [INF] Entity Framework Core "3.1.3" initialized '"ShopContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "using lazy-loading proxies " (9958f5bb)
+2020-05-29T19:21:34.1884389+02:00  [INF] Executed DbCommand ("190"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2020-05-29T19:21:35.3744154+02:00  [INF] Executed DbCommand ("970"ms) [Parameters=[""], CommandType='Text', CommandTimeout='60']"
+""IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [WebShopDB] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+END;" (0723d8ff)
+2020-05-29T19:21:36.7530701+02:00  [INF] Executed DbCommand ("1,165"ms) [Parameters=[""], CommandType='Text', CommandTimeout='60']"
+""DROP DATABASE [WebShopDB];" (0723d8ff)
+2020-05-29T19:21:49.2420638+02:00  [INF] Executed DbCommand ("2,230"ms) [Parameters=[""], CommandType='Text', CommandTimeout='60']"
+""CREATE DATABASE [WebShopDB];" (0723d8ff)
+2020-05-29T19:21:49.5857167+02:00  [INF] Executed DbCommand ("328"ms) [Parameters=[""], CommandType='Text', CommandTimeout='60']"
+""IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [WebShopDB] SET READ_COMMITTED_SNAPSHOT ON;
+END;" (0723d8ff)
+2020-05-29T19:21:49.6813500+02:00  [INF] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2020-05-29T19:21:51.6633412+02:00  [INF] Executed DbCommand ("387"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE [AspNetRoles] (
+    [Id] nvarchar(450) NOT NULL,
+    [Name] nvarchar(256) NULL,
+    [NormalizedName] nvarchar(256) NULL,
+    [ConcurrencyStamp] nvarchar(max) NULL,
+    CONSTRAINT [PK_AspNetRoles] PRIMARY KEY ([Id])
+);" (0723d8ff)
+2020-05-29T19:21:51.8313847+02:00  [INF] Executed DbCommand ("92"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE [AspNetUsers] (
+    [Id] nvarchar(450) NOT NULL,
+    [UserName] nvarchar(256) NULL,
+    [NormalizedUserName] nvarchar(256) NULL,
+    [Email] nvarchar(256) NULL,
+    [NormalizedEmail] nvarchar(256) NULL,
+    [EmailConfirmed] bit NOT NULL,
+    [PasswordHash] nvarchar(max) NULL,
+    [SecurityStamp] nvarchar(max) NULL,
+    [ConcurrencyStamp] nvarchar(max) NULL,
+    [PhoneNumber] nvarchar(max) NULL,
+    [PhoneNumberConfirmed] bit NOT NULL,
+    [TwoFactorEnabled] bit NOT NULL,
+    [LockoutEnd] datetimeoffset NULL,
+    [LockoutEnabled] bit NOT NULL,
+    [AccessFailedCount] int NOT NULL,
+    [FirstName] nvarchar(max) NULL,
+    [LastName] nvarchar(max) NULL,
+    [Age] int NOT NULL,
+    CONSTRAINT [PK_AspNetUsers] PRIMARY KEY ([Id])
+);" (0723d8ff)
+2020-05-29T19:21:51.9456524+02:00  [INF] Executed DbCommand ("63"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE [Customers] (
+    [CustomerId] int NOT NULL IDENTITY,
+    [Name] nvarchar(max) NULL,
+    [Address] nvarchar(max) NULL,
+    [Email] nvarchar(max) NULL,
+    [IsRetail] bit NOT NULL,
+    CONSTRAINT [PK_Customers] PRIMARY KEY ([CustomerId])
+);" (0723d8ff)
+2020-05-29T19:21:52.1461485+02:00  [INF] Executed DbCommand ("61"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE [ProductTable] (
+    [ProductId] int NOT NULL IDENTITY,
+    [Name] nvarchar(10) NOT NULL,
+    [Price] decimal(18,2) NOT NULL,
+    CONSTRAINT [PK_ProductTable] PRIMARY KEY ([ProductId])
+);" (0723d8ff)
+2020-05-29T19:21:52.2009248+02:00  [INF] Executed DbCommand ("24"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE [AspNetRoleClaims] (
+    [Id] int NOT NULL IDENTITY,
+    [RoleId] nvarchar(450) NOT NULL,
+    [ClaimType] nvarchar(max) NULL,
+    [ClaimValue] nvarchar(max) NULL,
+    CONSTRAINT [PK_AspNetRoleClaims] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_AspNetRoleClaims_AspNetRoles_RoleId] FOREIGN KEY ([RoleId]) REFERENCES [AspNetRoles] ([Id]) ON DELETE CASCADE
+);" (0723d8ff)
+2020-05-29T19:21:52.2706375+02:00  [INF] Executed DbCommand ("34"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE [AspNetUserClaims] (
+    [Id] int NOT NULL IDENTITY,
+    [UserId] nvarchar(450) NOT NULL,
+    [ClaimType] nvarchar(max) NULL,
+    [ClaimValue] nvarchar(max) NULL,
+    CONSTRAINT [PK_AspNetUserClaims] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_AspNetUserClaims_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);" (0723d8ff)
+2020-05-29T19:21:52.4198771+02:00  [INF] Executed DbCommand ("128"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE [AspNetUserLogins] (
+    [LoginProvider] nvarchar(450) NOT NULL,
+    [ProviderKey] nvarchar(450) NOT NULL,
+    [ProviderDisplayName] nvarchar(max) NULL,
+    [UserId] nvarchar(450) NOT NULL,
+    CONSTRAINT [PK_AspNetUserLogins] PRIMARY KEY ([LoginProvider], [ProviderKey]),
+    CONSTRAINT [FK_AspNetUserLogins_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);" (0723d8ff)
+2020-05-29T19:21:52.7349161+02:00  [INF] Executed DbCommand ("93"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE [AspNetUserRoles] (
+    [UserId] nvarchar(450) NOT NULL,
+    [RoleId] nvarchar(450) NOT NULL,
+    CONSTRAINT [PK_AspNetUserRoles] PRIMARY KEY ([UserId], [RoleId]),
+    CONSTRAINT [FK_AspNetUserRoles_AspNetRoles_RoleId] FOREIGN KEY ([RoleId]) REFERENCES [AspNetRoles] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_AspNetUserRoles_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);" (0723d8ff)
+2020-05-29T19:21:52.8965347+02:00  [INF] Executed DbCommand ("11"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE [AspNetUserTokens] (
+    [UserId] nvarchar(450) NOT NULL,
+    [LoginProvider] nvarchar(450) NOT NULL,
+    [Name] nvarchar(450) NOT NULL,
+    [Value] nvarchar(max) NULL,
+    CONSTRAINT [PK_AspNetUserTokens] PRIMARY KEY ([UserId], [LoginProvider], [Name]),
+    CONSTRAINT [FK_AspNetUserTokens_AspNetUsers_UserId] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers] ([Id]) ON DELETE CASCADE
+);" (0723d8ff)
+2020-05-29T19:21:52.9263526+02:00  [INF] Executed DbCommand ("10"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE [Invoices] (
+    [InvoiceId] int NOT NULL IDENTITY,
+    [DateCreated] datetime2 NOT NULL,
+    [CustomerId] int NOT NULL,
+    CONSTRAINT [PK_Invoices] PRIMARY KEY ([InvoiceId]),
+    CONSTRAINT [FK_Invoices_Customers_CustomerId] FOREIGN KEY ([CustomerId]) REFERENCES [Customers] ([CustomerId]) ON DELETE CASCADE
+);" (0723d8ff)
+2020-05-29T19:21:52.9943657+02:00  [INF] Executed DbCommand ("12"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE TABLE [InvoiceIteams] (
+    [InvoiceIteamId] int NOT NULL IDENTITY,
+    [InvoiceId] int NOT NULL,
+    [ProductId] int NOT NULL,
+    [Quantity] decimal(18,2) NOT NULL,
+    CONSTRAINT [PK_InvoiceIteams] PRIMARY KEY ([InvoiceIteamId]),
+    CONSTRAINT [FK_InvoiceIteams_Invoices_InvoiceId] FOREIGN KEY ([InvoiceId]) REFERENCES [Invoices] ([InvoiceId]) ON DELETE CASCADE,
+    CONSTRAINT [FK_InvoiceIteams_ProductTable_ProductId] FOREIGN KEY ([ProductId]) REFERENCES [ProductTable] ([ProductId]) ON DELETE CASCADE
+);" (0723d8ff)
+2020-05-29T19:21:54.0474160+02:00  [INF] Executed DbCommand ("1,042"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'CustomerId', N'Address', N'Email', N'IsRetail', N'Name') AND [object_id] = OBJECT_ID(N'[Customers]'))
+    SET IDENTITY_INSERT [Customers] ON;
+INSERT INTO [Customers] ([CustomerId], [Address], [Email], [IsRetail], [Name])
+VALUES (1, N'Drink Store Address', N'drinkstore@gmail.com', CAST(0 AS bit), N'DrinkStore'),
+(2, N'Ivan Address', N'ivan@gmail.com', CAST(1 AS bit), N'Ivan');
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'CustomerId', N'Address', N'Email', N'IsRetail', N'Name') AND [object_id] = OBJECT_ID(N'[Customers]'))
+    SET IDENTITY_INSERT [Customers] OFF;" (0723d8ff)
+2020-05-29T19:21:54.3956540+02:00  [INF] Executed DbCommand ("252"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'ProductId', N'Name', N'Price') AND [object_id] = OBJECT_ID(N'[ProductTable]'))
+    SET IDENTITY_INSERT [ProductTable] ON;
+INSERT INTO [ProductTable] ([ProductId], [Name], [Price])
+VALUES (1, N'Beer', 100.0),
+(2, N'Vodka', 500.0),
+(3, N'Tequila', 1200.0);
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'ProductId', N'Name', N'Price') AND [object_id] = OBJECT_ID(N'[ProductTable]'))
+    SET IDENTITY_INSERT [ProductTable] OFF;" (0723d8ff)
+2020-05-29T19:21:55.1944588+02:00  [INF] Executed DbCommand ("352"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'InvoiceId', N'CustomerId', N'DateCreated') AND [object_id] = OBJECT_ID(N'[Invoices]'))
+    SET IDENTITY_INSERT [Invoices] ON;
+INSERT INTO [Invoices] ([InvoiceId], [CustomerId], [DateCreated])
+VALUES (1, 1, '2020-05-29T00:00:00.0000000+02:00');
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'InvoiceId', N'CustomerId', N'DateCreated') AND [object_id] = OBJECT_ID(N'[Invoices]'))
+    SET IDENTITY_INSERT [Invoices] OFF;" (0723d8ff)
+2020-05-29T19:21:55.9719957+02:00  [INF] Executed DbCommand ("311"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'InvoiceId', N'CustomerId', N'DateCreated') AND [object_id] = OBJECT_ID(N'[Invoices]'))
+    SET IDENTITY_INSERT [Invoices] ON;
+INSERT INTO [Invoices] ([InvoiceId], [CustomerId], [DateCreated])
+VALUES (2, 2, '2020-05-29T00:00:00.0000000+02:00');
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'InvoiceId', N'CustomerId', N'DateCreated') AND [object_id] = OBJECT_ID(N'[Invoices]'))
+    SET IDENTITY_INSERT [Invoices] OFF;" (0723d8ff)
+2020-05-29T19:21:56.4731018+02:00  [INF] Executed DbCommand ("190"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'InvoiceIteamId', N'InvoiceId', N'ProductId', N'Quantity') AND [object_id] = OBJECT_ID(N'[InvoiceIteams]'))
+    SET IDENTITY_INSERT [InvoiceIteams] ON;
+INSERT INTO [InvoiceIteams] ([InvoiceIteamId], [InvoiceId], [ProductId], [Quantity])
+VALUES (1, 1, 1, 10.0),
+(2, 1, 2, 2.0),
+(3, 2, 1, 20.0),
+(4, 2, 3, 3.0);
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'InvoiceIteamId', N'InvoiceId', N'ProductId', N'Quantity') AND [object_id] = OBJECT_ID(N'[InvoiceIteams]'))
+    SET IDENTITY_INSERT [InvoiceIteams] OFF;" (0723d8ff)
+2020-05-29T19:21:56.5959133+02:00  [INF] Executed DbCommand ("67"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE INDEX [IX_AspNetRoleClaims_RoleId] ON [AspNetRoleClaims] ([RoleId]);" (0723d8ff)
+2020-05-29T19:21:56.8782784+02:00  [INF] Executed DbCommand ("112"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE UNIQUE INDEX [RoleNameIndex] ON [AspNetRoles] ([NormalizedName]) WHERE [NormalizedName] IS NOT NULL;" (0723d8ff)
+2020-05-29T19:21:56.9645633+02:00  [INF] Executed DbCommand ("10"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE INDEX [IX_AspNetUserClaims_UserId] ON [AspNetUserClaims] ([UserId]);" (0723d8ff)
+2020-05-29T19:21:57.0417844+02:00  [INF] Executed DbCommand ("62"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE INDEX [IX_AspNetUserLogins_UserId] ON [AspNetUserLogins] ([UserId]);" (0723d8ff)
+2020-05-29T19:21:57.1129879+02:00  [INF] Executed DbCommand ("21"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE INDEX [IX_AspNetUserRoles_RoleId] ON [AspNetUserRoles] ([RoleId]);" (0723d8ff)
+2020-05-29T19:21:57.2027174+02:00  [INF] Executed DbCommand ("11"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE INDEX [EmailIndex] ON [AspNetUsers] ([NormalizedEmail]);" (0723d8ff)
+2020-05-29T19:21:57.3749861+02:00  [INF] Executed DbCommand ("84"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE UNIQUE INDEX [UserNameIndex] ON [AspNetUsers] ([NormalizedUserName]) WHERE [NormalizedUserName] IS NOT NULL;" (0723d8ff)
+2020-05-29T19:21:57.4462216+02:00  [INF] Executed DbCommand ("36"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE INDEX [IX_InvoiceIteams_InvoiceId] ON [InvoiceIteams] ([InvoiceId]);" (0723d8ff)
+2020-05-29T19:21:57.4886683+02:00  [INF] Executed DbCommand ("29"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE INDEX [IX_InvoiceIteams_ProductId] ON [InvoiceIteams] ([ProductId]);" (0723d8ff)
+2020-05-29T19:21:57.6692276+02:00  [INF] Executed DbCommand ("67"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""CREATE INDEX [IX_Invoices_CustomerId] ON [Invoices] ([CustomerId]);" (0723d8ff)
+2020-05-29T19:22:30.4876715+02:00  [INF] User profile is available. Using '"C:\Users\Ivan\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2020-05-29T19:22:34.0250448+02:00  [WRN] No type was specified for the decimal column '"Quantity"' on entity type '"InvoiceIteam"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'. (3a0db05f)
+2020-05-29T19:22:34.0658101+02:00  [WRN] No type was specified for the decimal column '"Price"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'. (3a0db05f)
+2020-05-29T19:22:34.2235322+02:00  [INF] Entity Framework Core "3.1.3" initialized '"ShopContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "using lazy-loading proxies " (9958f5bb)
+2020-05-29T19:22:35.6285201+02:00  [INF] Executed DbCommand ("119"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2020-05-29T19:22:37.5689205+02:00  [INF] Executed DbCommand ("1,875"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2020-05-29T19:22:44.7589766+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-05-29T19:22:44.7974457+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2020-05-29T19:22:44.8097989+02:00  [INF] Content root path: "C:\GitRoot\Fiscal\Fiscal\WebShop" (b5d60022)
+2020-05-29T19:22:44.9125827+02:00 80000013-0000-f700-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/   (ca22a1cb)
+2020-05-29T19:22:45.2981004+02:00 80000013-0000-f700-b63f-84710c7967bb [INF] Executing endpoint '"WebShop.Controllers.HomeController.Index (WebShop)"' (500cc934)
+2020-05-29T19:22:45.4452003+02:00 80000013-0000-f700-b63f-84710c7967bb [INF] Route matched with "{action = \"Index\", controller = \"Home\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "WebShop.Controllers.HomeController" ("WebShop"). (122b2fdf)
+2020-05-29T19:22:45.6641583+02:00 80000013-0000-f700-b63f-84710c7967bb [INF] Executing ViewResult, running view "Index". (c83d0e25)
+2020-05-29T19:22:47.1927107+02:00 80000013-0000-f700-b63f-84710c7967bb [INF] Executed ViewResult - view "Index" executed in 1643.8901ms. (f66409e9)
+2020-05-29T19:22:47.2239736+02:00 80000013-0000-f700-b63f-84710c7967bb [INF] Executed action "WebShop.Controllers.HomeController.Index (WebShop)" in 1681.3468ms (afa2e885)
+2020-05-29T19:22:47.3711360+02:00 80000013-0000-f700-b63f-84710c7967bb [INF] Executed endpoint '"WebShop.Controllers.HomeController.Index (WebShop)"' (99874f2b)
+2020-05-29T19:22:47.3767817+02:00 80000068-0003-fc00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/css/style.css   (ca22a1cb)
+2020-05-29T19:22:47.3881640+02:00 80000045-0003-fa00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/jquery-validation/dist/jquery.validate.js   (ca22a1cb)
+2020-05-29T19:22:47.3881640+02:00 80000048-0003-f300-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/jquery/dist/jquery.js   (ca22a1cb)
+2020-05-29T19:22:47.3921891+02:00 8000002f-0003-fd00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/bootstrap/dist/css/bootstrap.css   (ca22a1cb)
+2020-05-29T19:22:47.4081941+02:00 80000013-0000-f700-b63f-84710c7967bb [INF] Request finished in 2552.7681ms 200 text/html; charset=utf-8 (791a596a)
+2020-05-29T19:22:47.4343318+02:00 80000068-0003-fc00-b63f-84710c7967bb [INF] Sending file. Request path: '"/css/style.css"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\wwwroot\css\style.css"' (27b0a520)
+2020-05-29T19:22:47.4434431+02:00 80000068-0003-fc00-b63f-84710c7967bb [INF] Request finished in 72.7986ms 200 text/css (791a596a)
+2020-05-29T19:22:47.4455535+02:00 80000046-0003-fb00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/scripts/functions.js   (ca22a1cb)
+2020-05-29T19:22:47.4643200+02:00 80000046-0003-fb00-b63f-84710c7967bb [INF] Sending file. Request path: '"/scripts/functions.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\wwwroot\scripts\functions.js"' (27b0a520)
+2020-05-29T19:22:47.5233622+02:00 80000046-0003-fb00-b63f-84710c7967bb [INF] Request finished in 23.9265ms 200 application/javascript (791a596a)
+2020-05-29T19:22:47.6395973+02:00 80000069-0003-fc00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/@aspnet/signalr/dist/browser/signalr.js   (ca22a1cb)
+2020-05-29T19:22:47.6950236+02:00 80000014-0000-f700-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js   (ca22a1cb)
+2020-05-29T19:22:47.8777638+02:00 80000048-0003-f300-b63f-84710c7967bb [INF] Sending file. Request path: '"/jquery/dist/jquery.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\jquery\dist\jquery.js"' (27b0a520)
+2020-05-29T19:22:47.9039433+02:00 80000048-0003-f300-b63f-84710c7967bb [INF] Request finished in 518.6063ms 200 application/javascript (791a596a)
+2020-05-29T19:22:47.9039246+02:00 80000047-0003-fb00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/bootstrap/dist/js/bootstrap.js   (ca22a1cb)
+2020-05-29T19:22:47.9289703+02:00 80000045-0003-fa00-b63f-84710c7967bb [INF] Sending file. Request path: '"/jquery-validation/dist/jquery.validate.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\jquery-validation\dist\jquery.validate.js"' (27b0a520)
+2020-05-29T19:22:47.9942609+02:00 80000045-0003-fa00-b63f-84710c7967bb [INF] Request finished in 565.5246ms 200 application/javascript (791a596a)
+2020-05-29T19:22:48.1296036+02:00 80000014-0000-f700-b63f-84710c7967bb [INF] Sending file. Request path: '"/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js"' (27b0a520)
+2020-05-29T19:22:48.2479934+02:00 80000049-0003-f300-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/popper.js/dist/umd/popper.js   (ca22a1cb)
+2020-05-29T19:22:48.2828651+02:00 80000014-0000-f700-b63f-84710c7967bb [INF] Request finished in 512.4667ms 200 application/javascript (791a596a)
+2020-05-29T19:22:48.3996193+02:00 80000069-0003-fc00-b63f-84710c7967bb [INF] Sending file. Request path: '"/@aspnet/signalr/dist/browser/signalr.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\@aspnet\signalr\dist\browser\signalr.js"' (27b0a520)
+2020-05-29T19:22:48.4944014+02:00 8000002f-0003-fd00-b63f-84710c7967bb [INF] Sending file. Request path: '"/bootstrap/dist/css/bootstrap.css"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\bootstrap\dist\css\bootstrap.css"' (27b0a520)
+2020-05-29T19:22:48.5110284+02:00 80000069-0003-fc00-b63f-84710c7967bb [INF] Request finished in 919.5555ms 200 application/javascript (791a596a)
+2020-05-29T19:22:48.6271695+02:00 8000002f-0003-fd00-b63f-84710c7967bb [INF] Request finished in 1133.7273ms 200 text/css (791a596a)
+2020-05-29T19:22:48.6389023+02:00 80000049-0003-f300-b63f-84710c7967bb [INF] Sending file. Request path: '"/popper.js/dist/umd/popper.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\popper.js\dist\umd\popper.js"' (27b0a520)
+2020-05-29T19:22:48.6418162+02:00 80000054-0002-f800-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/@aspnet/signalr/dist/browser/signalr.js.map   (ca22a1cb)
+2020-05-29T19:22:48.6499134+02:00 80000049-0003-f300-b63f-84710c7967bb [INF] Request finished in 644.3042ms 200 application/javascript (791a596a)
+2020-05-29T19:22:48.6828605+02:00 80000047-0003-fb00-b63f-84710c7967bb [INF] Sending file. Request path: '"/bootstrap/dist/js/bootstrap.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\bootstrap\dist\js\bootstrap.js"' (27b0a520)
+2020-05-29T19:22:48.6898171+02:00 80000047-0003-fb00-b63f-84710c7967bb [INF] Request finished in 995.8548ms 200 application/javascript (791a596a)
+2020-05-29T19:22:48.7716844+02:00 80000054-0002-f800-b63f-84710c7967bb [INF] Sending file. Request path: '"/@aspnet/signalr/dist/browser/signalr.js.map"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\@aspnet\signalr\dist\browser\signalr.js.map"' (27b0a520)
+2020-05-29T19:22:48.7771082+02:00 80000054-0002-f800-b63f-84710c7967bb [INF] Request finished in 142.6105ms 200 text/plain (791a596a)
+2020-05-29T19:22:48.8754083+02:00 80000005-0003-f200-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/bootstrap/dist/js/bootstrap.js.map   (ca22a1cb)
+2020-05-29T19:22:48.9131752+02:00 80000005-0003-f200-b63f-84710c7967bb [INF] Sending file. Request path: '"/bootstrap/dist/js/bootstrap.js.map"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\bootstrap\dist\js\bootstrap.js.map"' (27b0a520)
+2020-05-29T19:22:48.9171635+02:00 80000005-0003-f200-b63f-84710c7967bb [INF] Request finished in 41.7426ms 200 text/plain (791a596a)
+2020-05-29T19:22:49.0183020+02:00 80000007-0003-f200-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/popper.js/dist/umd/popper.js.map   (ca22a1cb)
+2020-05-29T19:22:49.0835831+02:00 80000007-0003-f200-b63f-84710c7967bb [INF] Sending file. Request path: '"/popper.js/dist/umd/popper.js.map"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\popper.js\dist\umd\popper.js.map"' (27b0a520)
+2020-05-29T19:22:49.0961240+02:00 80000007-0003-f200-b63f-84710c7967bb [INF] Request finished in 70.1447ms 200 text/plain (791a596a)
+2020-05-29T19:22:49.7336613+02:00 80000048-0003-fb00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/favicon.ico   (ca22a1cb)
+2020-05-29T19:22:49.8243578+02:00 80000048-0003-fb00-b63f-84710c7967bb [INF] Request finished in 343.197ms 404 text/plain (791a596a)
+2020-05-29T19:22:55.1574553+02:00 80000049-0003-fb00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/product/index   (ca22a1cb)
+2020-05-29T19:22:55.2044348+02:00 80000049-0003-fb00-b63f-84710c7967bb [INF] Executing endpoint '"WebShop.Controllers.ProductController.Index (WebShop)"' (500cc934)
+2020-05-29T19:22:55.2131840+02:00 80000049-0003-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"Index\", controller = \"Product\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "WebShop.Controllers.ProductController" ("WebShop"). (122b2fdf)
+2020-05-29T19:22:55.2666199+02:00 80000049-0003-fb00-b63f-84710c7967bb [INF] Entity Framework Core "3.1.3" initialized '"ShopContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "using lazy-loading proxies " (9958f5bb)
+2020-05-29T19:22:55.8395443+02:00 80000049-0003-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("65"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [ProductTable] AS [p]" (0723d8ff)
+2020-05-29T19:23:01.2769396+02:00 80000049-0003-fb00-b63f-84710c7967bb [INF] Information log (aa2e7038)
+2020-05-29T19:23:01.2826540+02:00 80000049-0003-fb00-b63f-84710c7967bb [WRN] Warning log (005aafc8)
+2020-05-29T19:23:01.2871982+02:00 80000049-0003-fb00-b63f-84710c7967bb [ERR] Error log (d1918764)
+2020-05-29T19:23:01.2915867+02:00 80000049-0003-fb00-b63f-84710c7967bb [FTL] Critical log (f958a3f4)
+2020-05-29T19:23:01.3892633+02:00 80000049-0003-fb00-b63f-84710c7967bb [INF] Entity Framework Core "3.1.3" initialized '"ShopContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "using lazy-loading proxies " (9958f5bb)
+2020-05-29T19:23:01.4951727+02:00 80000049-0003-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("6"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[ProductId], [p].[Name], [p].[Price]
+FROM [ProductTable] AS [p]" (0723d8ff)
+2020-05-29T19:23:01.6167298+02:00 80000049-0003-fb00-b63f-84710c7967bb [INF] Executing ViewResult, running view "Index". (c83d0e25)
+2020-05-29T19:23:02.1456767+02:00 80000049-0003-fb00-b63f-84710c7967bb [INF] Executed ViewResult - view "Index" executed in 523.3982ms. (f66409e9)
+2020-05-29T19:23:02.3288377+02:00 80000049-0003-fb00-b63f-84710c7967bb [INF] Executed action "WebShop.Controllers.ProductController.Index (WebShop)" in 6909.0272ms (afa2e885)
+2020-05-29T19:23:02.3472698+02:00 80000049-0003-fb00-b63f-84710c7967bb [INF] Executed endpoint '"WebShop.Controllers.ProductController.Index (WebShop)"' (99874f2b)
+2020-05-29T19:23:02.3488976+02:00 800001b0-0000-f800-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/jquery-validation/dist/jquery.validate.js   (ca22a1cb)
+2020-05-29T19:23:02.3592879+02:00 80000142-0000-fa00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js   (ca22a1cb)
+2020-05-29T19:23:02.4559140+02:00 80000066-0000-f900-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/scripts/functions.js   (ca22a1cb)
+2020-05-29T19:23:02.4890793+02:00 800000ac-0000-fc00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/jquery/dist/jquery.js   (ca22a1cb)
+2020-05-29T19:23:02.5262209+02:00 80000066-0000-f900-b63f-84710c7967bb [INF] Sending file. Request path: '"/scripts/functions.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\wwwroot\scripts\functions.js"' (27b0a520)
+2020-05-29T19:23:02.6461017+02:00 80000066-0000-f900-b63f-84710c7967bb [INF] Request finished in 188.7409ms 200 application/javascript (791a596a)
+2020-05-29T19:23:02.6777151+02:00 80000016-0000-f700-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/css/style.css   (ca22a1cb)
+2020-05-29T19:23:02.6874895+02:00 800001b0-0000-f800-b63f-84710c7967bb [INF] Sending file. Request path: '"/jquery-validation/dist/jquery.validate.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\jquery-validation\dist\jquery.validate.js"' (27b0a520)
+2020-05-29T19:23:02.7085794+02:00 80000067-0000-f900-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/bootstrap/dist/css/bootstrap.css   (ca22a1cb)
+2020-05-29T19:23:02.7127659+02:00 80000016-0000-f700-b63f-84710c7967bb [INF] Sending file. Request path: '"/css/style.css"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\wwwroot\css\style.css"' (27b0a520)
+2020-05-29T19:23:02.7251758+02:00 80000016-0000-f700-b63f-84710c7967bb [INF] Request finished in 374.9578ms 200 text/css (791a596a)
+2020-05-29T19:23:02.7496350+02:00 800000ac-0000-fc00-b63f-84710c7967bb [INF] Sending file. Request path: '"/jquery/dist/jquery.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\jquery\dist\jquery.js"' (27b0a520)
+2020-05-29T19:23:02.7712203+02:00 800001b0-0000-f800-b63f-84710c7967bb [INF] Request finished in 352.8418ms 200 application/javascript (791a596a)
+2020-05-29T19:23:02.7985597+02:00 800000ac-0000-fc00-b63f-84710c7967bb [INF] Request finished in 412.1499ms 200 application/javascript (791a596a)
+2020-05-29T19:23:02.8984753+02:00 800001b1-0000-f800-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/bootstrap/dist/js/bootstrap.js   (ca22a1cb)
+2020-05-29T19:23:02.9173877+02:00 800000ad-0000-fc00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/popper.js/dist/umd/popper.js   (ca22a1cb)
+2020-05-29T19:23:02.9391440+02:00 80000049-0003-fb00-b63f-84710c7967bb [INF] Request finished in 7737.1142ms 200 text/html; charset=utf-8 (791a596a)
+2020-05-29T19:23:02.9577785+02:00 80000017-0000-f700-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/@aspnet/signalr/dist/browser/signalr.js   (ca22a1cb)
+2020-05-29T19:23:02.9626531+02:00 80000067-0000-f900-b63f-84710c7967bb [INF] Sending file. Request path: '"/bootstrap/dist/css/bootstrap.css"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\bootstrap\dist\css\bootstrap.css"' (27b0a520)
+2020-05-29T19:23:02.9842974+02:00 80000067-0000-f900-b63f-84710c7967bb [INF] Request finished in 283.4411ms 200 text/css (791a596a)
+2020-05-29T19:23:03.0212266+02:00 80000142-0000-fa00-b63f-84710c7967bb [INF] Sending file. Request path: '"/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js"' (27b0a520)
+2020-05-29T19:23:03.0700415+02:00 80000142-0000-fa00-b63f-84710c7967bb [INF] Request finished in 685.4385ms 200 application/javascript (791a596a)
+2020-05-29T19:23:03.2333489+02:00 800000ad-0000-fc00-b63f-84710c7967bb [INF] Sending file. Request path: '"/popper.js/dist/umd/popper.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\popper.js\dist\umd\popper.js"' (27b0a520)
+2020-05-29T19:23:03.2822509+02:00 80000017-0000-f700-b63f-84710c7967bb [INF] Sending file. Request path: '"/@aspnet/signalr/dist/browser/signalr.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\@aspnet\signalr\dist\browser\signalr.js"' (27b0a520)
+2020-05-29T19:23:03.3370799+02:00 800000ad-0000-fc00-b63f-84710c7967bb [INF] Request finished in 417.7833ms 200 application/javascript (791a596a)
+2020-05-29T19:23:03.3537427+02:00 80000017-0000-f700-b63f-84710c7967bb [INF] Request finished in 508.1273ms 200 application/javascript (791a596a)
+2020-05-29T19:23:03.3890862+02:00 800001b1-0000-f800-b63f-84710c7967bb [INF] Sending file. Request path: '"/bootstrap/dist/js/bootstrap.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\bootstrap\dist\js\bootstrap.js"' (27b0a520)
+2020-05-29T19:23:03.4085930+02:00 800001b1-0000-f800-b63f-84710c7967bb [INF] Request finished in 596.401ms 200 application/javascript (791a596a)
+2020-05-29T19:23:03.4277300+02:00 80000056-0002-f800-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/@aspnet/signalr/dist/browser/signalr.js.map   (ca22a1cb)
+2020-05-29T19:23:03.4491108+02:00 80000056-0002-f800-b63f-84710c7967bb [INF] Sending file. Request path: '"/@aspnet/signalr/dist/browser/signalr.js.map"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\@aspnet\signalr\dist\browser\signalr.js.map"' (27b0a520)
+2020-05-29T19:23:03.4560547+02:00 80000056-0002-f800-b63f-84710c7967bb [INF] Request finished in 55.6946ms 200 text/plain (791a596a)
+2020-05-29T19:23:03.5281900+02:00 80000058-0002-f800-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/bootstrap/dist/js/bootstrap.js.map   (ca22a1cb)
+2020-05-29T19:23:03.5392377+02:00 80000058-0002-f800-b63f-84710c7967bb [INF] Sending file. Request path: '"/bootstrap/dist/js/bootstrap.js.map"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\bootstrap\dist\js\bootstrap.js.map"' (27b0a520)
+2020-05-29T19:23:03.5443272+02:00 80000058-0002-f800-b63f-84710c7967bb [INF] Request finished in 14.4889ms 200 text/plain (791a596a)
+2020-05-29T19:23:03.7626662+02:00 800000ab-0001-fa00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/popper.js/dist/umd/popper.js.map   (ca22a1cb)
+2020-05-29T19:23:04.1327096+02:00 800000ab-0001-fa00-b63f-84710c7967bb [INF] Sending file. Request path: '"/popper.js/dist/umd/popper.js.map"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\popper.js\dist\umd\popper.js.map"' (27b0a520)
+2020-05-29T19:23:04.2666944+02:00 800000ab-0001-fa00-b63f-84710c7967bb [INF] Request finished in 493.8336ms 200 text/plain (791a596a)
+2020-05-29T19:25:45.7365908+02:00  [INF] User profile is available. Using '"C:\Users\Ivan\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2020-05-29T19:25:49.6776743+02:00  [WRN] No type was specified for the decimal column '"Quantity"' on entity type '"InvoiceIteam"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'. (3a0db05f)
+2020-05-29T19:25:49.6815439+02:00  [WRN] No type was specified for the decimal column '"Price"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'. (3a0db05f)
+2020-05-29T19:25:49.7621158+02:00  [INF] Entity Framework Core "3.1.3" initialized '"ShopContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "using lazy-loading proxies " (9958f5bb)
+2020-05-29T19:25:50.5012093+02:00  [INF] Executed DbCommand ("47"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2020-05-29T19:25:50.5919352+02:00  [INF] Executed DbCommand ("57"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2020-05-29T19:28:28.1380534+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-05-29T19:28:28.1413669+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2020-05-29T19:28:28.1462153+02:00  [INF] Content root path: "C:\GitRoot\Fiscal\Fiscal\WebShop" (b5d60022)
+2020-05-29T19:28:28.1868717+02:00 800001b3-0000-f800-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/   (ca22a1cb)
+2020-05-29T19:28:28.3836797+02:00 800001b3-0000-f800-b63f-84710c7967bb [INF] Executing endpoint '"WebShop.Controllers.HomeController.Index (WebShop)"' (500cc934)
+2020-05-29T19:28:28.4273250+02:00 800001b3-0000-f800-b63f-84710c7967bb [INF] Route matched with "{action = \"Index\", controller = \"Home\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "WebShop.Controllers.HomeController" ("WebShop"). (122b2fdf)
+2020-05-29T19:28:28.4836707+02:00 800001b3-0000-f800-b63f-84710c7967bb [INF] Executing ViewResult, running view "Index". (c83d0e25)
+2020-05-29T19:28:28.9386375+02:00 800001b3-0000-f800-b63f-84710c7967bb [INF] Executed ViewResult - view "Index" executed in 470.8058ms. (f66409e9)
+2020-05-29T19:28:28.9429612+02:00 800001b3-0000-f800-b63f-84710c7967bb [INF] Executed action "WebShop.Controllers.HomeController.Index (WebShop)" in 494.3565ms (afa2e885)
+2020-05-29T19:28:28.9482349+02:00 800001b3-0000-f800-b63f-84710c7967bb [INF] Executed endpoint '"WebShop.Controllers.HomeController.Index (WebShop)"' (99874f2b)
+2020-05-29T19:28:28.9711468+02:00 800001b3-0000-f800-b63f-84710c7967bb [INF] Request finished in 786.654ms 200 text/html; charset=utf-8 (791a596a)
+2020-05-29T19:28:29.0265646+02:00 8000004b-0003-f300-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/scripts/functions.js   (ca22a1cb)
+2020-05-29T19:28:29.0309106+02:00 8000004b-0003-fb00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/css/style.css   (ca22a1cb)
+2020-05-29T19:28:29.0324255+02:00 8000005a-0002-f800-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/jquery/dist/jquery.js   (ca22a1cb)
+2020-05-29T19:28:29.0354202+02:00 80000031-0003-fd00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/jquery-validation/dist/jquery.validate.js   (ca22a1cb)
+2020-05-29T19:28:29.0510224+02:00 80000047-0003-fa00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/bootstrap/dist/css/bootstrap.css   (ca22a1cb)
+2020-05-29T19:28:29.0746608+02:00 8000004b-0003-fb00-b63f-84710c7967bb [INF] Sending file. Request path: '"/css/style.css"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\wwwroot\css\style.css"' (27b0a520)
+2020-05-29T19:28:29.0732957+02:00 8000004b-0003-f300-b63f-84710c7967bb [INF] Sending file. Request path: '"/scripts/functions.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\wwwroot\scripts\functions.js"' (27b0a520)
+2020-05-29T19:28:29.0868059+02:00 8000004b-0003-f300-b63f-84710c7967bb [INF] Request finished in 62.3063ms 200 application/javascript (791a596a)
+2020-05-29T19:28:29.0868560+02:00 8000004b-0003-fb00-b63f-84710c7967bb [INF] Request finished in 62.2533ms 200 text/css (791a596a)
+2020-05-29T19:28:29.0914002+02:00 800001b4-0000-f800-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js   (ca22a1cb)
+2020-05-29T19:28:29.1263501+02:00 8000004c-0003-f300-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/@aspnet/signalr/dist/browser/signalr.js   (ca22a1cb)
+2020-05-29T19:28:29.1286206+02:00 800001b4-0000-f800-b63f-84710c7967bb [INF] Sending file. Request path: '"/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js"' (27b0a520)
+2020-05-29T19:28:29.1489757+02:00 800001b4-0000-f800-b63f-84710c7967bb [INF] Request finished in 41.5621ms 200 application/javascript (791a596a)
+2020-05-29T19:28:29.1638761+02:00 80000031-0003-fd00-b63f-84710c7967bb [INF] Sending file. Request path: '"/jquery-validation/dist/jquery.validate.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\jquery-validation\dist\jquery.validate.js"' (27b0a520)
+2020-05-29T19:28:29.1710418+02:00 8000004c-0003-fb00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/bootstrap/dist/js/bootstrap.js   (ca22a1cb)
+2020-05-29T19:28:29.1760695+02:00 800001b5-0000-f800-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/popper.js/dist/umd/popper.js   (ca22a1cb)
+2020-05-29T19:28:29.1848583+02:00 80000031-0003-fd00-b63f-84710c7967bb [INF] Request finished in 138.9887ms 200 application/javascript (791a596a)
+2020-05-29T19:28:29.1991138+02:00 80000047-0003-fa00-b63f-84710c7967bb [INF] Sending file. Request path: '"/bootstrap/dist/css/bootstrap.css"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\bootstrap\dist\css\bootstrap.css"' (27b0a520)
+2020-05-29T19:28:29.2178690+02:00 800001b5-0000-f800-b63f-84710c7967bb [INF] Sending file. Request path: '"/popper.js/dist/umd/popper.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\popper.js\dist\umd\popper.js"' (27b0a520)
+2020-05-29T19:28:29.2232311+02:00 8000005a-0002-f800-b63f-84710c7967bb [INF] Sending file. Request path: '"/jquery/dist/jquery.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\jquery\dist\jquery.js"' (27b0a520)
+2020-05-29T19:28:29.2269785+02:00 800001b5-0000-f800-b63f-84710c7967bb [INF] Request finished in 51.8231ms 200 application/javascript (791a596a)
+2020-05-29T19:28:29.2344610+02:00 8000005a-0002-f800-b63f-84710c7967bb [INF] Request finished in 197.1197ms 200 application/javascript (791a596a)
+2020-05-29T19:28:29.2371902+02:00 80000047-0003-fa00-b63f-84710c7967bb [INF] Request finished in 169.1489ms 200 text/css (791a596a)
+2020-05-29T19:28:29.2433493+02:00 8000004c-0003-f300-b63f-84710c7967bb [INF] Sending file. Request path: '"/@aspnet/signalr/dist/browser/signalr.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\@aspnet\signalr\dist\browser\signalr.js"' (27b0a520)
+2020-05-29T19:28:29.2555205+02:00 8000004c-0003-f300-b63f-84710c7967bb [INF] Request finished in 138.5602ms 200 application/javascript (791a596a)
+2020-05-29T19:28:29.2646539+02:00 8000004c-0003-fb00-b63f-84710c7967bb [INF] Sending file. Request path: '"/bootstrap/dist/js/bootstrap.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\bootstrap\dist\js\bootstrap.js"' (27b0a520)
+2020-05-29T19:28:29.2717976+02:00 8000004c-0003-fb00-b63f-84710c7967bb [INF] Request finished in 122.6906ms 200 application/javascript (791a596a)
+2020-05-29T19:28:29.5677731+02:00 80000144-0000-fa00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/@aspnet/signalr/dist/browser/signalr.js.map   (ca22a1cb)
+2020-05-29T19:28:29.5985969+02:00 80000144-0000-fa00-b63f-84710c7967bb [INF] Sending file. Request path: '"/@aspnet/signalr/dist/browser/signalr.js.map"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\@aspnet\signalr\dist\browser\signalr.js.map"' (27b0a520)
+2020-05-29T19:28:29.6032938+02:00 80000144-0000-fa00-b63f-84710c7967bb [INF] Request finished in 35.0045ms 200 text/plain (791a596a)
+2020-05-29T19:28:29.7576883+02:00 8000014b-0002-fa00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/bootstrap/dist/js/bootstrap.js.map   (ca22a1cb)
+2020-05-29T19:28:29.8039828+02:00 8000014b-0002-fa00-b63f-84710c7967bb [INF] Sending file. Request path: '"/bootstrap/dist/js/bootstrap.js.map"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\bootstrap\dist\js\bootstrap.js.map"' (27b0a520)
+2020-05-29T19:28:29.8182682+02:00 8000014b-0002-fa00-b63f-84710c7967bb [INF] Request finished in 54.9834ms 200 text/plain (791a596a)
+2020-05-29T19:28:29.8890395+02:00 8000014d-0002-fa00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/popper.js/dist/umd/popper.js.map   (ca22a1cb)
+2020-05-29T19:28:29.9053571+02:00 8000014d-0002-fa00-b63f-84710c7967bb [INF] Sending file. Request path: '"/popper.js/dist/umd/popper.js.map"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\popper.js\dist\umd\popper.js.map"' (27b0a520)
+2020-05-29T19:28:29.9085317+02:00 8000014d-0002-fa00-b63f-84710c7967bb [INF] Request finished in 21.082ms 200 text/plain (791a596a)
+2020-05-29T19:28:30.0056645+02:00 8000004d-0003-fb00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/favicon.ico   (ca22a1cb)
+2020-05-29T19:28:30.0638484+02:00 8000004d-0003-fb00-b63f-84710c7967bb [INF] Request finished in 54.0339ms 404 text/plain (791a596a)
+2020-05-29T19:28:36.1915600+02:00 8000004e-0003-fb00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/product/index/   (ca22a1cb)
+2020-05-29T19:28:36.2292461+02:00 8000004e-0003-fb00-b63f-84710c7967bb [INF] Executing endpoint '"WebShop.Controllers.ProductController.Index (WebShop)"' (500cc934)
+2020-05-29T19:28:36.2376455+02:00 8000004e-0003-fb00-b63f-84710c7967bb [INF] Route matched with "{action = \"Index\", controller = \"Product\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "WebShop.Controllers.ProductController" ("WebShop"). (122b2fdf)
+2020-05-29T19:28:36.2853366+02:00 8000004e-0003-fb00-b63f-84710c7967bb [INF] Entity Framework Core "3.1.3" initialized '"ShopContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "using lazy-loading proxies " (9958f5bb)
+2020-05-29T19:28:36.6755839+02:00 8000004e-0003-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("9"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [ProductTable] AS [p]" (0723d8ff)
+2020-05-29T19:28:36.7077466+02:00 8000004e-0003-fb00-b63f-84710c7967bb [INF] Information log (aa2e7038)
+2020-05-29T19:28:36.7168809+02:00 8000004e-0003-fb00-b63f-84710c7967bb [WRN] Warning log (005aafc8)
+2020-05-29T19:28:36.7206394+02:00 8000004e-0003-fb00-b63f-84710c7967bb [ERR] Error log (d1918764)
+2020-05-29T19:28:36.7238420+02:00 8000004e-0003-fb00-b63f-84710c7967bb [FTL] Critical log (f958a3f4)
+2020-05-29T19:28:36.8028177+02:00 8000004e-0003-fb00-b63f-84710c7967bb [INF] Entity Framework Core "3.1.3" initialized '"ShopContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "using lazy-loading proxies " (9958f5bb)
+2020-05-29T19:28:36.8740733+02:00 8000004e-0003-fb00-b63f-84710c7967bb [INF] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[ProductId], [p].[Name], [p].[Price]
+FROM [ProductTable] AS [p]" (0723d8ff)
+2020-05-29T19:28:36.9911736+02:00 8000004e-0003-fb00-b63f-84710c7967bb [INF] Executing ViewResult, running view "Index". (c83d0e25)
+2020-05-29T19:28:38.1411894+02:00 8000004e-0003-fb00-b63f-84710c7967bb [INF] Executed ViewResult - view "Index" executed in 1147.3533ms. (f66409e9)
+2020-05-29T19:28:38.1457946+02:00 8000004e-0003-fb00-b63f-84710c7967bb [INF] Executed action "WebShop.Controllers.ProductController.Index (WebShop)" in 1889.3001ms (afa2e885)
+2020-05-29T19:28:38.1488743+02:00 8000004e-0003-fb00-b63f-84710c7967bb [INF] Executed endpoint '"WebShop.Controllers.ProductController.Index (WebShop)"' (99874f2b)
+2020-05-29T19:28:38.1845879+02:00 8000004e-0003-fb00-b63f-84710c7967bb [INF] Request finished in 1980.0126ms 200 text/html; charset=utf-8 (791a596a)
+2020-05-29T19:28:38.2071655+02:00 8000004f-0003-fb00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/css/style.css   (ca22a1cb)
+2020-05-29T19:28:38.2152336+02:00 8000004d-0003-f300-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/jquery/dist/jquery.js   (ca22a1cb)
+2020-05-29T19:28:38.2180471+02:00 8000005b-0002-f800-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/scripts/functions.js   (ca22a1cb)
+2020-05-29T19:28:38.2232122+02:00 80000032-0003-fd00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/@aspnet/signalr/dist/browser/signalr.js   (ca22a1cb)
+2020-05-29T19:28:38.2481095+02:00 8000005b-0002-f800-b63f-84710c7967bb [INF] Sending file. Request path: '"/scripts/functions.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\wwwroot\scripts\functions.js"' (27b0a520)
+2020-05-29T19:28:38.2541185+02:00 80000048-0003-fa00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/jquery-validation/dist/jquery.validate.js   (ca22a1cb)
+2020-05-29T19:28:38.2688400+02:00 8000005b-0002-f800-b63f-84710c7967bb [INF] Request finished in 44.9761ms 200 application/javascript (791a596a)
+2020-05-29T19:28:38.2787086+02:00 8000004f-0003-fb00-b63f-84710c7967bb [INF] Sending file. Request path: '"/css/style.css"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\wwwroot\css\style.css"' (27b0a520)
+2020-05-29T19:28:38.3327818+02:00 800001b6-0000-f800-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js   (ca22a1cb)
+2020-05-29T19:28:38.3365794+02:00 80000048-0003-fa00-b63f-84710c7967bb [INF] Sending file. Request path: '"/jquery-validation/dist/jquery.validate.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\jquery-validation\dist\jquery.validate.js"' (27b0a520)
+2020-05-29T19:28:38.3425313+02:00 8000004f-0003-fb00-b63f-84710c7967bb [INF] Request finished in 82.558ms 200 text/css (791a596a)
+2020-05-29T19:28:38.3478709+02:00 80000048-0003-fa00-b63f-84710c7967bb [INF] Request finished in 131.9977ms 200 application/javascript (791a596a)
+2020-05-29T19:28:38.3824934+02:00 8000005c-0002-f800-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/bootstrap/dist/css/bootstrap.css   (ca22a1cb)
+2020-05-29T19:28:38.3888651+02:00 80000032-0003-fd00-b63f-84710c7967bb [INF] Sending file. Request path: '"/@aspnet/signalr/dist/browser/signalr.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\@aspnet\signalr\dist\browser\signalr.js"' (27b0a520)
+2020-05-29T19:28:38.3993783+02:00 80000032-0003-fd00-b63f-84710c7967bb [INF] Request finished in 183.9897ms 200 application/javascript (791a596a)
+2020-05-29T19:28:38.4035718+02:00 80000050-0003-fb00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/bootstrap/dist/js/bootstrap.js   (ca22a1cb)
+2020-05-29T19:28:38.4133439+02:00 80000049-0003-fa00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/popper.js/dist/umd/popper.js   (ca22a1cb)
+2020-05-29T19:28:38.4262935+02:00 8000004d-0003-f300-b63f-84710c7967bb [INF] Sending file. Request path: '"/jquery/dist/jquery.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\jquery\dist\jquery.js"' (27b0a520)
+2020-05-29T19:28:38.4390890+02:00 8000004d-0003-f300-b63f-84710c7967bb [INF] Request finished in 223.1989ms 200 application/javascript (791a596a)
+2020-05-29T19:28:38.4569289+02:00 8000005c-0002-f800-b63f-84710c7967bb [INF] Sending file. Request path: '"/bootstrap/dist/css/bootstrap.css"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\bootstrap\dist\css\bootstrap.css"' (27b0a520)
+2020-05-29T19:28:38.4672809+02:00 800001b6-0000-f800-b63f-84710c7967bb [INF] Sending file. Request path: '"/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js"' (27b0a520)
+2020-05-29T19:28:38.4866671+02:00 80000050-0003-fb00-b63f-84710c7967bb [INF] Sending file. Request path: '"/bootstrap/dist/js/bootstrap.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\bootstrap\dist\js\bootstrap.js"' (27b0a520)
+2020-05-29T19:28:38.4963756+02:00 8000005c-0002-f800-b63f-84710c7967bb [INF] Request finished in 195.4222ms 200 text/css (791a596a)
+2020-05-29T19:28:38.5110457+02:00 800001b6-0000-f800-b63f-84710c7967bb [INF] Request finished in 263.1582ms 200 application/javascript (791a596a)
+2020-05-29T19:28:38.5173897+02:00 80000049-0003-fa00-b63f-84710c7967bb [INF] Sending file. Request path: '"/popper.js/dist/umd/popper.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\popper.js\dist\umd\popper.js"' (27b0a520)
+2020-05-29T19:28:38.5213720+02:00 80000050-0003-fb00-b63f-84710c7967bb [INF] Request finished in 103.7814ms 200 application/javascript (791a596a)
+2020-05-29T19:28:38.5845896+02:00 80000049-0003-fa00-b63f-84710c7967bb [INF] Request finished in 140.2335ms 200 application/javascript (791a596a)
+2020-05-29T19:28:38.6028554+02:00 8000006b-0003-fc00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/@aspnet/signalr/dist/browser/signalr.js.map   (ca22a1cb)
+2020-05-29T19:28:38.6143404+02:00 8000006b-0003-fc00-b63f-84710c7967bb [INF] Sending file. Request path: '"/@aspnet/signalr/dist/browser/signalr.js.map"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\@aspnet\signalr\dist\browser\signalr.js.map"' (27b0a520)
+2020-05-29T19:28:38.6263022+02:00 8000006b-0003-fc00-b63f-84710c7967bb [INF] Request finished in 15.2009ms 200 text/plain (791a596a)
+2020-05-29T19:28:38.6807186+02:00 8000006d-0003-fc00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/bootstrap/dist/js/bootstrap.js.map   (ca22a1cb)
+2020-05-29T19:28:38.6900954+02:00 8000006d-0003-fc00-b63f-84710c7967bb [INF] Sending file. Request path: '"/bootstrap/dist/js/bootstrap.js.map"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\bootstrap\dist\js\bootstrap.js.map"' (27b0a520)
+2020-05-29T19:28:38.6938894+02:00 8000006d-0003-fc00-b63f-84710c7967bb [INF] Request finished in 13.2369ms 200 text/plain (791a596a)
+2020-05-29T19:28:38.7458518+02:00 800000ad-0001-fa00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/popper.js/dist/umd/popper.js.map   (ca22a1cb)
+2020-05-29T19:28:38.7560110+02:00 800000ad-0001-fa00-b63f-84710c7967bb [INF] Sending file. Request path: '"/popper.js/dist/umd/popper.js.map"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\popper.js\dist\umd\popper.js.map"' (27b0a520)
+2020-05-29T19:28:38.7613803+02:00 800000ad-0001-fa00-b63f-84710c7967bb [INF] Request finished in 14.1161ms 200 text/plain (791a596a)
+2020-05-29T19:29:16.7541513+02:00  [INF] User profile is available. Using '"C:\Users\Ivan\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2020-05-29T19:29:19.9938691+02:00  [WRN] No type was specified for the decimal column '"Quantity"' on entity type '"InvoiceIteam"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'. (3a0db05f)
+2020-05-29T19:29:20.0176782+02:00  [WRN] No type was specified for the decimal column '"Price"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'. (3a0db05f)
+2020-05-29T19:29:20.0918975+02:00  [INF] Entity Framework Core "3.1.3" initialized '"ShopContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "using lazy-loading proxies " (9958f5bb)
+2020-05-29T19:29:20.7716161+02:00  [INF] Executed DbCommand ("47"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2020-05-29T19:29:20.8831315+02:00  [INF] Executed DbCommand ("62"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2020-05-29T19:29:25.6073184+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-05-29T19:29:25.6105821+02:00  [INF] Hosting environment: "Production" (c3307c92)
+2020-05-29T19:29:25.6134266+02:00  [INF] Content root path: "C:\GitRoot\Fiscal\Fiscal\WebShop" (b5d60022)
+2020-05-29T19:29:25.6489792+02:00 800000af-0001-fa00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/   (ca22a1cb)
+2020-05-29T19:29:25.8539594+02:00 800000af-0001-fa00-b63f-84710c7967bb [INF] Executing endpoint '"WebShop.Controllers.HomeController.Index (WebShop)"' (500cc934)
+2020-05-29T19:29:25.8995299+02:00 800000af-0001-fa00-b63f-84710c7967bb [INF] Route matched with "{action = \"Index\", controller = \"Home\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "WebShop.Controllers.HomeController" ("WebShop"). (122b2fdf)
+2020-05-29T19:29:25.9464967+02:00 800000af-0001-fa00-b63f-84710c7967bb [INF] Executing ViewResult, running view "Index". (c83d0e25)
+2020-05-29T19:29:26.4360470+02:00 800000af-0001-fa00-b63f-84710c7967bb [INF] Executed ViewResult - view "Index" executed in 497.4505ms. (f66409e9)
+2020-05-29T19:29:26.4424262+02:00 800000af-0001-fa00-b63f-84710c7967bb [INF] Executed action "WebShop.Controllers.HomeController.Index (WebShop)" in 523.9653ms (afa2e885)
+2020-05-29T19:29:26.4478475+02:00 800000af-0001-fa00-b63f-84710c7967bb [INF] Executed endpoint '"WebShop.Controllers.HomeController.Index (WebShop)"' (99874f2b)
+2020-05-29T19:29:26.4661054+02:00 800000af-0001-fa00-b63f-84710c7967bb [INF] Request finished in 815.6051ms 200 text/html; charset=utf-8 (791a596a)
+2020-05-29T19:29:26.5141435+02:00 80000052-0003-fb00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/css/style.min.css   (ca22a1cb)
+2020-05-29T19:29:26.5151914+02:00 80000034-0003-fd00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/scripts/scripts.min.js   (ca22a1cb)
+2020-05-29T19:29:26.5460415+02:00 80000052-0003-fb00-b63f-84710c7967bb [INF] Sending file. Request path: '"/css/style.min.css"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\wwwroot\css\style.min.css"' (27b0a520)
+2020-05-29T19:29:26.5544069+02:00 80000052-0003-fb00-b63f-84710c7967bb [INF] Request finished in 46.7436ms 200 text/css (791a596a)
+2020-05-29T19:29:26.7306788+02:00 80000034-0003-fd00-b63f-84710c7967bb [INF] Sending file. Request path: '"/scripts/scripts.min.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\wwwroot\scripts\scripts.min.js"' (27b0a520)
+2020-05-29T19:29:26.7361040+02:00 80000034-0003-fd00-b63f-84710c7967bb [INF] Request finished in 230.6619ms 200 application/javascript (791a596a)
+2020-05-29T19:29:26.9363606+02:00 80000035-0003-fd00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/favicon.ico   (ca22a1cb)
+2020-05-29T19:29:26.9940551+02:00 80000035-0003-fd00-b63f-84710c7967bb [INF] Request finished in 57.1447ms 404 text/plain (791a596a)
+2020-05-29T19:29:31.7172762+02:00 80000036-0003-fd00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/product/index   (ca22a1cb)
+2020-05-29T19:29:31.7586679+02:00 80000036-0003-fd00-b63f-84710c7967bb [INF] Executing endpoint '"WebShop.Controllers.ProductController.Index (WebShop)"' (500cc934)
+2020-05-29T19:29:31.7683638+02:00 80000036-0003-fd00-b63f-84710c7967bb [INF] Route matched with "{action = \"Index\", controller = \"Product\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "WebShop.Controllers.ProductController" ("WebShop"). (122b2fdf)
+2020-05-29T19:29:31.8074618+02:00 80000036-0003-fd00-b63f-84710c7967bb [INF] Entity Framework Core "3.1.3" initialized '"ShopContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "using lazy-loading proxies " (9958f5bb)
+2020-05-29T19:29:32.1716218+02:00 80000036-0003-fd00-b63f-84710c7967bb [INF] Executed DbCommand ("10"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [ProductTable] AS [p]" (0723d8ff)
+2020-05-29T19:29:32.1915848+02:00 80000036-0003-fd00-b63f-84710c7967bb [INF] Information log (aa2e7038)
+2020-05-29T19:29:32.1917099+02:00 80000036-0003-fd00-b63f-84710c7967bb [WRN] Warning log (005aafc8)
+2020-05-29T19:29:32.1918031+02:00 80000036-0003-fd00-b63f-84710c7967bb [ERR] Error log (d1918764)
+2020-05-29T19:29:32.1940834+02:00 80000036-0003-fd00-b63f-84710c7967bb [FTL] Critical log (f958a3f4)
+2020-05-29T19:29:32.2591864+02:00 80000036-0003-fd00-b63f-84710c7967bb [INF] Entity Framework Core "3.1.3" initialized '"ShopContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "using lazy-loading proxies " (9958f5bb)
+2020-05-29T19:29:32.3346649+02:00 80000036-0003-fd00-b63f-84710c7967bb [INF] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[ProductId], [p].[Name], [p].[Price]
+FROM [ProductTable] AS [p]" (0723d8ff)
+2020-05-29T19:29:32.4247246+02:00 80000036-0003-fd00-b63f-84710c7967bb [INF] Executing ViewResult, running view "Index". (c83d0e25)
+2020-05-29T19:29:32.6916648+02:00 80000036-0003-fd00-b63f-84710c7967bb [INF] Executed ViewResult - view "Index" executed in 268.723ms. (f66409e9)
+2020-05-29T19:29:32.7069140+02:00 80000036-0003-fd00-b63f-84710c7967bb [INF] Executed action "WebShop.Controllers.ProductController.Index (WebShop)" in 908.6657ms (afa2e885)
+2020-05-29T19:29:32.7312739+02:00 80000036-0003-fd00-b63f-84710c7967bb [INF] Executed endpoint '"WebShop.Controllers.ProductController.Index (WebShop)"' (99874f2b)
+2020-05-29T19:29:32.7447455+02:00 80000053-0003-fb00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/css/style.min.css   (ca22a1cb)
+2020-05-29T19:29:32.7507034+02:00 800000b0-0001-fa00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/scripts/scripts.min.js   (ca22a1cb)
+2020-05-29T19:29:32.7659683+02:00 80000053-0003-fb00-b63f-84710c7967bb [INF] Sending file. Request path: '"/css/style.min.css"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\wwwroot\css\style.min.css"' (27b0a520)
+2020-05-29T19:29:32.7741344+02:00 80000053-0003-fb00-b63f-84710c7967bb [INF] Request finished in 32.8339ms 200 text/css (791a596a)
+2020-05-29T19:29:32.7777794+02:00 800000b0-0001-fa00-b63f-84710c7967bb [INF] Sending file. Request path: '"/scripts/scripts.min.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\wwwroot\scripts\scripts.min.js"' (27b0a520)
+2020-05-29T19:29:32.7823724+02:00 800000b0-0001-fa00-b63f-84710c7967bb [INF] Request finished in 39.4763ms 200 application/javascript (791a596a)
+2020-05-29T19:29:32.7897522+02:00 80000036-0003-fd00-b63f-84710c7967bb [INF] Request finished in 1071.2808ms 200 text/html; charset=utf-8 (791a596a)
+2020-05-29T19:32:11.1110910+02:00  [INF] User profile is available. Using '"C:\Users\Ivan\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2020-05-29T19:32:15.7027553+02:00  [WRN] No type was specified for the decimal column '"Quantity"' on entity type '"InvoiceIteam"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'. (3a0db05f)
+2020-05-29T19:32:15.7409141+02:00  [WRN] No type was specified for the decimal column '"Price"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'. (3a0db05f)
+2020-05-29T19:32:15.8924495+02:00  [INF] Entity Framework Core "3.1.3" initialized '"ShopContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "using lazy-loading proxies " (9958f5bb)
+2020-05-29T19:32:17.9713142+02:00  [INF] Executed DbCommand ("53"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2020-05-29T19:32:18.6631945+02:00  [INF] Executed DbCommand ("654"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2020-05-29T19:32:23.1404222+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-05-29T19:32:23.1473405+02:00  [INF] Hosting environment: "Production" (c3307c92)
+2020-05-29T19:32:23.1606565+02:00  [INF] Content root path: "C:\GitRoot\Fiscal\Fiscal\WebShop" (b5d60022)
+2020-05-29T19:32:23.2101017+02:00 8000005e-0002-f800-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/   (ca22a1cb)
+2020-05-29T19:32:23.4917882+02:00 8000005e-0002-f800-b63f-84710c7967bb [INF] Executing endpoint '"WebShop.Controllers.HomeController.Index (WebShop)"' (500cc934)
+2020-05-29T19:32:23.5583822+02:00 8000005e-0002-f800-b63f-84710c7967bb [INF] Route matched with "{action = \"Index\", controller = \"Home\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "WebShop.Controllers.HomeController" ("WebShop"). (122b2fdf)
+2020-05-29T19:32:23.6566621+02:00 8000005e-0002-f800-b63f-84710c7967bb [INF] Executing ViewResult, running view "Index". (c83d0e25)
+2020-05-29T19:32:24.1322424+02:00 8000005e-0002-f800-b63f-84710c7967bb [INF] Executed ViewResult - view "Index" executed in 515.7926ms. (f66409e9)
+2020-05-29T19:32:24.1385968+02:00 8000005e-0002-f800-b63f-84710c7967bb [INF] Executed action "WebShop.Controllers.HomeController.Index (WebShop)" in 546.3285ms (afa2e885)
+2020-05-29T19:32:24.1434255+02:00 8000005e-0002-f800-b63f-84710c7967bb [INF] Executed endpoint '"WebShop.Controllers.HomeController.Index (WebShop)"' (99874f2b)
+2020-05-29T19:32:24.2038944+02:00 8000005e-0002-f800-b63f-84710c7967bb [INF] Request finished in 955.2978ms 200 text/html; charset=utf-8 (791a596a)
+2020-05-29T19:32:24.2055663+02:00 800001da-0001-fc00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/scripts/scripts.min.js   (ca22a1cb)
+2020-05-29T19:32:24.2109040+02:00 800000b2-0001-fa00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/css/style.min.css   (ca22a1cb)
+2020-05-29T19:32:24.4731529+02:00 800000b2-0001-fa00-b63f-84710c7967bb [INF] Sending file. Request path: '"/css/style.min.css"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\wwwroot\css\style.min.css"' (27b0a520)
+2020-05-29T19:32:24.4800308+02:00 800000b2-0001-fa00-b63f-84710c7967bb [INF] Request finished in 283.5004ms 200 text/css (791a596a)
+2020-05-29T19:32:24.7338526+02:00 800001da-0001-fc00-b63f-84710c7967bb [INF] Sending file. Request path: '"/scripts/scripts.min.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\wwwroot\scripts\scripts.min.js"' (27b0a520)
+2020-05-29T19:32:24.7388362+02:00 800001da-0001-fc00-b63f-84710c7967bb [INF] Request finished in 542.2158ms 200 application/javascript (791a596a)
+2020-05-29T19:32:25.0257708+02:00 800001db-0001-fc00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/favicon.ico   (ca22a1cb)
+2020-05-29T19:32:25.0873040+02:00 800001db-0001-fc00-b63f-84710c7967bb [INF] Request finished in 54.9902ms 404 text/plain (791a596a)
+2020-05-29T19:32:31.2861821+02:00 800001dc-0001-fc00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/product/index   (ca22a1cb)
+2020-05-29T19:32:31.3392529+02:00 800001dc-0001-fc00-b63f-84710c7967bb [INF] Executing endpoint '"WebShop.Controllers.ProductController.Index (WebShop)"' (500cc934)
+2020-05-29T19:32:31.3483092+02:00 800001dc-0001-fc00-b63f-84710c7967bb [INF] Route matched with "{action = \"Index\", controller = \"Product\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "WebShop.Controllers.ProductController" ("WebShop"). (122b2fdf)
+2020-05-29T19:32:31.4080499+02:00 800001dc-0001-fc00-b63f-84710c7967bb [INF] Entity Framework Core "3.1.3" initialized '"ShopContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "using lazy-loading proxies " (9958f5bb)
+2020-05-29T19:32:31.9887011+02:00 800001dc-0001-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("96"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [ProductTable] AS [p]" (0723d8ff)
+2020-05-29T19:32:32.0236952+02:00 800001dc-0001-fc00-b63f-84710c7967bb [INF] Information log (aa2e7038)
+2020-05-29T19:32:32.0239054+02:00 800001dc-0001-fc00-b63f-84710c7967bb [WRN] Warning log (005aafc8)
+2020-05-29T19:32:32.0240102+02:00 800001dc-0001-fc00-b63f-84710c7967bb [ERR] Error log (d1918764)
+2020-05-29T19:32:32.0280680+02:00 800001dc-0001-fc00-b63f-84710c7967bb [FTL] Critical log (f958a3f4)
+2020-05-29T19:32:32.1081533+02:00 800001dc-0001-fc00-b63f-84710c7967bb [INF] Entity Framework Core "3.1.3" initialized '"ShopContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "using lazy-loading proxies " (9958f5bb)
+2020-05-29T19:32:32.1802621+02:00 800001dc-0001-fc00-b63f-84710c7967bb [INF] Executed DbCommand ("8"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[ProductId], [p].[Name], [p].[Price]
+FROM [ProductTable] AS [p]" (0723d8ff)
+2020-05-29T19:32:32.3205858+02:00 800001dc-0001-fc00-b63f-84710c7967bb [INF] Executing ViewResult, running view "Index". (c83d0e25)
+2020-05-29T19:32:33.0559311+02:00 800001dc-0001-fc00-b63f-84710c7967bb [INF] Executed ViewResult - view "Index" executed in 660.6838ms. (f66409e9)
+2020-05-29T19:32:33.1087393+02:00 800001b8-0000-f800-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/css/style.min.css   (ca22a1cb)
+2020-05-29T19:32:33.1063442+02:00 800001dc-0001-fc00-b63f-84710c7967bb [INF] Executed action "WebShop.Controllers.ProductController.Index (WebShop)" in 1692.3785ms (afa2e885)
+2020-05-29T19:32:33.1282751+02:00 80000146-0000-fa00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/scripts/scripts.min.js   (ca22a1cb)
+2020-05-29T19:32:33.2272302+02:00 800001dc-0001-fc00-b63f-84710c7967bb [INF] Executed endpoint '"WebShop.Controllers.ProductController.Index (WebShop)"' (99874f2b)
+2020-05-29T19:32:33.5453131+02:00 800001b8-0000-f800-b63f-84710c7967bb [INF] Sending file. Request path: '"/css/style.min.css"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\wwwroot\css\style.min.css"' (27b0a520)
+2020-05-29T19:32:33.5552675+02:00 800001b8-0000-f800-b63f-84710c7967bb [INF] Request finished in 468.1878ms 200 text/css (791a596a)
+2020-05-29T19:32:33.5764890+02:00 80000146-0000-fa00-b63f-84710c7967bb [INF] Sending file. Request path: '"/scripts/scripts.min.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\wwwroot\scripts\scripts.min.js"' (27b0a520)
+2020-05-29T19:32:33.5887269+02:00 80000146-0000-fa00-b63f-84710c7967bb [INF] Request finished in 500.2358ms 200 application/javascript (791a596a)
+2020-05-29T19:32:33.5973979+02:00 800001dc-0001-fc00-b63f-84710c7967bb [INF] Request finished in 2308.6346ms 200 text/html; charset=utf-8 (791a596a)

@@ -1,0 +1,19 @@
+﻿@using WebShop.Models;
+@model Product
+
+
+<td>
+    @Html.DisplayFor(p => Model.Name)
+</td>
+<td>
+    @Html.DisplayFor(p => Model.Price)
+</td>
+<td>
+    <a asp-action="Details" asp-route-id="@Model.ProductId">Details</a>
+</td>
+<td>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId })
+</td>
+<td>
+    @Html.ActionLink("Delete", "Delete", new { id = Model.ProductId })
+</td>

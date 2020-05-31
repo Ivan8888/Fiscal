@@ -1,0 +1,243 @@
+2020-05-31T12:55:43.7548620+02:00  [INF] User profile is available. Using '"C:\Users\Ivan\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2020-05-31T12:55:46.0698786+02:00  [FTL] Application startup exception (6c57a5ba)
+System.InvalidOperationException: Application is running inside IIS process but is not configured to use IIS server.
+   at Microsoft.AspNetCore.Server.IIS.Core.IISServerSetupFilter.<>c__DisplayClass2_0.<Configure>b__0(IApplicationBuilder app)
+   at Microsoft.AspNetCore.HostFilteringStartupFilter.<>c__DisplayClass0_0.<Configure>b__0(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+2020-05-31T12:55:46.1092879+02:00  [INF] Dispose (1a9b9e7b)
+2020-05-31T12:56:55.7803466+02:00  [INF] User profile is available. Using '"C:\Users\Ivan\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2020-05-31T12:56:56.2494924+02:00  [FTL] Application startup exception (6c57a5ba)
+System.InvalidOperationException: Application is running inside IIS process but is not configured to use IIS server.
+   at Microsoft.AspNetCore.Server.IIS.Core.IISServerSetupFilter.<>c__DisplayClass2_0.<Configure>b__0(IApplicationBuilder app)
+   at Microsoft.AspNetCore.HostFilteringStartupFilter.<>c__DisplayClass0_0.<Configure>b__0(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+2020-05-31T12:57:42.5902494+02:00  [INF] User profile is available. Using '"C:\Users\Ivan\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2020-05-31T12:57:46.1135681+02:00  [WRN] No type was specified for the decimal column '"Quantity"' on entity type '"InvoiceIteam"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'. (3a0db05f)
+2020-05-31T12:57:46.1168809+02:00  [WRN] No type was specified for the decimal column '"Price"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'. (3a0db05f)
+2020-05-31T12:57:46.1901727+02:00  [INF] Entity Framework Core "3.1.3" initialized '"ShopContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "using lazy-loading proxies " (9958f5bb)
+2020-05-31T12:57:52.6857225+02:00  [INF] Executed DbCommand ("47"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2020-05-31T12:57:52.8077753+02:00  [INF] Executed DbCommand ("79"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2020-05-31T12:57:53.2262137+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-05-31T12:57:53.2286394+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2020-05-31T12:57:53.2309368+02:00  [INF] Content root path: "C:\GitRoot\Fiscal\Fiscal\WebShop" (b5d60022)
+2020-05-31T12:57:53.2741190+02:00 8000004e-0003-fa00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/   (ca22a1cb)
+2020-05-31T12:57:53.6777680+02:00 8000004e-0003-fa00-b63f-84710c7967bb [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+Microsoft.AspNetCore.Routing.Matching.AmbiguousMatchException: The request matched multiple endpoints. Matches: 
+
+WebShop.Areas.SecondArea.Controllers.HomeController.Index (WebShop)
+WebShop.Controllers.HomeController.Index (WebShop)
+WebShop.Areas.FirstArea.Controllers.HomeController.Index (WebShop)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ReportAmbiguity(CandidateState[] candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ProcessFinalCandidates(HttpContext httpContext, CandidateState[] candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.Select(HttpContext httpContext, CandidateState[] candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DfaMatcher.MatchAsync(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.Matching.DataSourceDependentMatcher.MatchAsync(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-05-31T12:57:53.8232627+02:00 8000004e-0003-fa00-b63f-84710c7967bb [INF] Request finished in 550.8091ms 500 text/html; charset=utf-8 (791a596a)
+2020-05-31T12:57:54.1695817+02:00 8000004f-0003-fa00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/favicon.ico   (ca22a1cb)
+2020-05-31T12:57:54.3263774+02:00 8000004f-0003-fa00-b63f-84710c7967bb [INF] Request finished in 166.0673ms 404 text/plain (791a596a)
+2020-05-31T12:58:31.7627962+02:00 800000b7-0001-fa00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/firstarea   (ca22a1cb)
+2020-05-31T12:58:31.8233245+02:00 800000b7-0001-fa00-b63f-84710c7967bb [INF] Request finished in 65.5286ms 404 text/plain (791a596a)
+2020-05-31T13:00:46.3741848+02:00  [INF] User profile is available. Using '"C:\Users\Ivan\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2020-05-31T13:00:50.0468096+02:00  [WRN] No type was specified for the decimal column '"Quantity"' on entity type '"InvoiceIteam"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'. (3a0db05f)
+2020-05-31T13:00:50.0493418+02:00  [WRN] No type was specified for the decimal column '"Price"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'. (3a0db05f)
+2020-05-31T13:00:50.1423817+02:00  [INF] Entity Framework Core "3.1.3" initialized '"ShopContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "using lazy-loading proxies " (9958f5bb)
+2020-05-31T13:00:51.5801594+02:00  [INF] Executed DbCommand ("66"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2020-05-31T13:00:53.0799821+02:00  [INF] Executed DbCommand ("1,454"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2020-05-31T13:00:53.5525909+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-05-31T13:00:53.5558584+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2020-05-31T13:00:53.5602198+02:00  [INF] Content root path: "C:\GitRoot\Fiscal\Fiscal\WebShop" (b5d60022)
+2020-05-31T13:00:53.6243106+02:00 80000064-0002-f800-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/   (ca22a1cb)
+2020-05-31T13:00:54.0018026+02:00 80000064-0002-f800-b63f-84710c7967bb [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+Microsoft.AspNetCore.Routing.Matching.AmbiguousMatchException: The request matched multiple endpoints. Matches: 
+
+WebShop.Areas.SecondArea.Controllers.HomeController.Index (WebShop)
+WebShop.Controllers.HomeController.Index (WebShop)
+WebShop.Areas.FirstArea.Controllers.HomeController.Index (WebShop)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ReportAmbiguity(CandidateState[] candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ProcessFinalCandidates(HttpContext httpContext, CandidateState[] candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.Select(HttpContext httpContext, CandidateState[] candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DfaMatcher.MatchAsync(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.Matching.DataSourceDependentMatcher.MatchAsync(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-05-31T13:00:54.1174092+02:00 80000064-0002-f800-b63f-84710c7967bb [INF] Request finished in 513.0459ms 500 text/html; charset=utf-8 (791a596a)
+2020-05-31T13:00:54.3868793+02:00 80000065-0002-f800-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/favicon.ico   (ca22a1cb)
+2020-05-31T13:00:54.5780697+02:00 80000065-0002-f800-b63f-84710c7967bb [INF] Request finished in 193.5798ms 404 text/plain (791a596a)
+2020-05-31T13:01:20.6646559+02:00 80000067-0002-f800-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/FirstArea   (ca22a1cb)
+2020-05-31T13:01:20.7475551+02:00 80000067-0002-f800-b63f-84710c7967bb [INF] Request finished in 86.2639ms 404 text/plain (791a596a)
+2020-05-31T13:03:41.2939778+02:00  [INF] User profile is available. Using '"C:\Users\Ivan\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2020-05-31T13:03:44.8472132+02:00  [WRN] No type was specified for the decimal column '"Quantity"' on entity type '"InvoiceIteam"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'. (3a0db05f)
+2020-05-31T13:03:44.8494869+02:00  [WRN] No type was specified for the decimal column '"Price"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'. (3a0db05f)
+2020-05-31T13:03:44.9038591+02:00  [INF] Entity Framework Core "3.1.3" initialized '"ShopContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "using lazy-loading proxies " (9958f5bb)
+2020-05-31T13:03:46.0544785+02:00  [INF] Executed DbCommand ("72"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2020-05-31T13:03:46.6675746+02:00  [INF] Executed DbCommand ("546"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2020-05-31T13:03:47.2307261+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-05-31T13:03:47.2333545+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2020-05-31T13:03:47.2359575+02:00  [INF] Content root path: "C:\GitRoot\Fiscal\Fiscal\WebShop" (b5d60022)
+2020-05-31T13:03:47.2773595+02:00 80000069-0002-f800-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/   (ca22a1cb)
+2020-05-31T13:03:47.7428585+02:00 80000069-0002-f800-b63f-84710c7967bb [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+Microsoft.AspNetCore.Routing.Matching.AmbiguousMatchException: The request matched multiple endpoints. Matches: 
+
+WebShop.Controllers.HomeController.Index (WebShop)
+WebShop.Areas.SecondArea.Controllers.HomeController.Index (WebShop)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ReportAmbiguity(CandidateState[] candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ProcessFinalCandidates(HttpContext httpContext, CandidateState[] candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.Select(HttpContext httpContext, CandidateState[] candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DfaMatcher.MatchAsync(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.Matching.DataSourceDependentMatcher.MatchAsync(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-05-31T13:03:47.9573481+02:00 80000069-0002-f800-b63f-84710c7967bb [INF] Request finished in 664.6893ms 500 text/html; charset=utf-8 (791a596a)
+2020-05-31T13:03:48.5331136+02:00 8000006a-0002-f800-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/favicon.ico   (ca22a1cb)
+2020-05-31T13:03:49.0884590+02:00 8000006a-0002-f800-b63f-84710c7967bb [INF] Request finished in 653.3571ms 404 text/plain (791a596a)
+2020-05-31T13:04:22.1279704+02:00 80000038-0003-fd00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/FirstArea   (ca22a1cb)
+2020-05-31T13:04:22.2235069+02:00 80000038-0003-fd00-b63f-84710c7967bb [INF] Executing endpoint '"WebShop.Areas.FirstArea.Controllers.HomeController.Index (WebShop)"' (500cc934)
+2020-05-31T13:04:22.3417942+02:00 80000038-0003-fd00-b63f-84710c7967bb [INF] Route matched with "{area = \"FirstArea\", action = \"Index\", controller = \"Home\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "WebShop.Areas.FirstArea.Controllers.HomeController" ("WebShop"). (122b2fdf)
+2020-05-31T13:04:22.4034478+02:00 80000038-0003-fd00-b63f-84710c7967bb [INF] Executing ViewResult, running view "Index". (c83d0e25)
+2020-05-31T13:04:22.4913447+02:00 80000038-0003-fd00-b63f-84710c7967bb [INF] Executed ViewResult - view "Index" executed in 92.3872ms. (f66409e9)
+2020-05-31T13:04:22.6014696+02:00 80000038-0003-fd00-b63f-84710c7967bb [INF] Executed action "WebShop.Areas.FirstArea.Controllers.HomeController.Index (WebShop)" in 133.1394ms (afa2e885)
+2020-05-31T13:04:22.6121287+02:00 80000038-0003-fd00-b63f-84710c7967bb [INF] Executed endpoint '"WebShop.Areas.FirstArea.Controllers.HomeController.Index (WebShop)"' (99874f2b)
+2020-05-31T13:04:22.6289251+02:00 80000038-0003-fd00-b63f-84710c7967bb [INF] Request finished in 498.0831ms 200 text/html; charset=utf-8 (791a596a)
+2020-05-31T13:05:19.8583418+02:00  [INF] User profile is available. Using '"C:\Users\Ivan\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2020-05-31T13:05:24.9567950+02:00  [WRN] No type was specified for the decimal column '"Quantity"' on entity type '"InvoiceIteam"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'. (3a0db05f)
+2020-05-31T13:05:24.9679093+02:00  [WRN] No type was specified for the decimal column '"Price"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'. (3a0db05f)
+2020-05-31T13:05:25.1435225+02:00  [INF] Entity Framework Core "3.1.3" initialized '"ShopContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "using lazy-loading proxies " (9958f5bb)
+2020-05-31T13:05:27.6767401+02:00  [INF] Executed DbCommand ("65"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2020-05-31T13:05:28.4215096+02:00  [INF] Executed DbCommand ("668"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2020-05-31T13:05:29.3832324+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-05-31T13:05:29.3966156+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2020-05-31T13:05:29.4001135+02:00  [INF] Content root path: "C:\GitRoot\Fiscal\Fiscal\WebShop" (b5d60022)
+2020-05-31T13:05:29.4628934+02:00 800001bb-0000-f800-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/   (ca22a1cb)
+2020-05-31T13:05:29.7027376+02:00 800001bb-0000-f800-b63f-84710c7967bb [INF] Executing endpoint '"WebShop.Controllers.HomeController.Index (WebShop)"' (500cc934)
+2020-05-31T13:05:29.7795630+02:00 800001bb-0000-f800-b63f-84710c7967bb [INF] Route matched with "{action = \"Index\", controller = \"Home\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "WebShop.Controllers.HomeController" ("WebShop"). (122b2fdf)
+2020-05-31T13:05:34.3572719+02:00 800001bb-0000-f800-b63f-84710c7967bb [INF] Executing ViewResult, running view "Index". (c83d0e25)
+2020-05-31T13:05:35.5945470+02:00 800001bb-0000-f800-b63f-84710c7967bb [INF] Executed ViewResult - view "Index" executed in 1483.1229ms. (f66409e9)
+2020-05-31T13:05:35.5985416+02:00 800001bb-0000-f800-b63f-84710c7967bb [INF] Executed action "WebShop.Controllers.HomeController.Index (WebShop)" in 5684.0005ms (afa2e885)
+2020-05-31T13:05:35.6083379+02:00 800001bb-0000-f800-b63f-84710c7967bb [INF] Executed endpoint '"WebShop.Controllers.HomeController.Index (WebShop)"' (99874f2b)
+2020-05-31T13:05:35.6219077+02:00 800001bb-0000-f800-b63f-84710c7967bb [INF] Request finished in 6171.612ms 200 text/html; charset=utf-8 (791a596a)
+2020-05-31T13:05:35.6929204+02:00 800000ba-0001-fa00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/css/style.css   (ca22a1cb)
+2020-05-31T13:05:35.6970985+02:00 80000013-0001-f800-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/scripts/functions.js   (ca22a1cb)
+2020-05-31T13:05:35.6990558+02:00 800001e4-0001-fc00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/bootstrap/dist/css/bootstrap.css   (ca22a1cb)
+2020-05-31T13:05:35.7203312+02:00 80000167-0001-fd00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/jquery/dist/jquery.js   (ca22a1cb)
+2020-05-31T13:05:35.7522593+02:00 800000ba-0001-fa00-b63f-84710c7967bb [INF] Sending file. Request path: '"/css/style.css"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\wwwroot\css\style.css"' (27b0a520)
+2020-05-31T13:05:35.7556806+02:00 80000013-0001-f800-b63f-84710c7967bb [INF] Sending file. Request path: '"/scripts/functions.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\wwwroot\scripts\functions.js"' (27b0a520)
+2020-05-31T13:05:35.7597519+02:00 800000ba-0001-fa00-b63f-84710c7967bb [INF] Request finished in 70.9543ms 200 text/css (791a596a)
+2020-05-31T13:05:35.7615824+02:00 80000013-0001-f800-b63f-84710c7967bb [INF] Request finished in 67.7257ms 200 application/javascript (791a596a)
+2020-05-31T13:05:35.7720884+02:00 800001bc-0000-f800-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js   (ca22a1cb)
+2020-05-31T13:05:35.7769373+02:00 80000178-0001-f900-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/jquery-validation/dist/jquery.validate.js   (ca22a1cb)
+2020-05-31T13:05:35.8298956+02:00 80000178-0001-f900-b63f-84710c7967bb [INF] Sending file. Request path: '"/jquery-validation/dist/jquery.validate.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\jquery-validation\dist\jquery.validate.js"' (27b0a520)
+2020-05-31T13:05:35.8314075+02:00 800001bc-0000-f800-b63f-84710c7967bb [INF] Sending file. Request path: '"/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js"' (27b0a520)
+2020-05-31T13:05:35.8419235+02:00 800000bb-0001-fa00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/@aspnet/signalr/dist/browser/signalr.js   (ca22a1cb)
+2020-05-31T13:05:35.8432200+02:00 80000014-0001-f800-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/bootstrap/dist/js/bootstrap.js   (ca22a1cb)
+2020-05-31T13:05:35.8615255+02:00 800001bc-0000-f800-b63f-84710c7967bb [INF] Request finished in 86.5269ms 200 application/javascript (791a596a)
+2020-05-31T13:05:35.8702235+02:00 80000178-0001-f900-b63f-84710c7967bb [INF] Request finished in 86.5357ms 200 application/javascript (791a596a)
+2020-05-31T13:05:35.8901393+02:00 800001bd-0000-f800-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/popper.js/dist/umd/popper.js   (ca22a1cb)
+2020-05-31T13:05:35.8960620+02:00 800001e4-0001-fc00-b63f-84710c7967bb [INF] Sending file. Request path: '"/bootstrap/dist/css/bootstrap.css"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\bootstrap\dist\css\bootstrap.css"' (27b0a520)
+2020-05-31T13:05:35.9094529+02:00 800001e4-0001-fc00-b63f-84710c7967bb [INF] Request finished in 208.1967ms 200 text/css (791a596a)
+2020-05-31T13:05:35.9243429+02:00 800000bb-0001-fa00-b63f-84710c7967bb [INF] Sending file. Request path: '"/@aspnet/signalr/dist/browser/signalr.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\@aspnet\signalr\dist\browser\signalr.js"' (27b0a520)
+2020-05-31T13:05:36.0538683+02:00 800000bb-0001-fa00-b63f-84710c7967bb [INF] Request finished in 92.0725ms 200 application/javascript (791a596a)
+2020-05-31T13:05:36.0642687+02:00 80000167-0001-fd00-b63f-84710c7967bb [INF] Sending file. Request path: '"/jquery/dist/jquery.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\jquery\dist\jquery.js"' (27b0a520)
+2020-05-31T13:05:36.0851935+02:00 800001bd-0000-f800-b63f-84710c7967bb [INF] Sending file. Request path: '"/popper.js/dist/umd/popper.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\popper.js\dist\umd\popper.js"' (27b0a520)
+2020-05-31T13:05:36.1141381+02:00 80000167-0001-fd00-b63f-84710c7967bb [INF] Request finished in 376.7301ms 200 application/javascript (791a596a)
+2020-05-31T13:05:36.1310151+02:00 800001bd-0000-f800-b63f-84710c7967bb [INF] Request finished in 214.845ms 200 application/javascript (791a596a)
+2020-05-31T13:05:36.1755505+02:00 80000014-0001-f800-b63f-84710c7967bb [INF] Sending file. Request path: '"/bootstrap/dist/js/bootstrap.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\bootstrap\dist\js\bootstrap.js"' (27b0a520)
+2020-05-31T13:05:36.1794093+02:00 80000014-0001-f800-b63f-84710c7967bb [INF] Request finished in 335.7791ms 200 application/javascript (791a596a)
+2020-05-31T13:05:36.4145787+02:00 800000af-0000-fc00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/@aspnet/signalr/dist/browser/signalr.js.map   (ca22a1cb)
+2020-05-31T13:05:36.6042453+02:00 800000af-0000-fc00-b63f-84710c7967bb [INF] Sending file. Request path: '"/@aspnet/signalr/dist/browser/signalr.js.map"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\@aspnet\signalr\dist\browser\signalr.js.map"' (27b0a520)
+2020-05-31T13:05:36.6117865+02:00 800000af-0000-fc00-b63f-84710c7967bb [INF] Request finished in 194.2904ms 200 text/plain (791a596a)
+2020-05-31T13:05:36.7630762+02:00 8000010f-0001-fb00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/bootstrap/dist/js/bootstrap.js.map   (ca22a1cb)
+2020-05-31T13:05:36.8648901+02:00 8000010f-0001-fb00-b63f-84710c7967bb [INF] Sending file. Request path: '"/bootstrap/dist/js/bootstrap.js.map"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\bootstrap\dist\js\bootstrap.js.map"' (27b0a520)
+2020-05-31T13:05:36.8702796+02:00 8000010f-0001-fb00-b63f-84710c7967bb [INF] Request finished in 111.2423ms 200 text/plain (791a596a)
+2020-05-31T13:05:36.9595219+02:00 800000b1-0000-fc00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/popper.js/dist/umd/popper.js.map   (ca22a1cb)
+2020-05-31T13:05:37.0533686+02:00 800000b1-0000-fc00-b63f-84710c7967bb [INF] Sending file. Request path: '"/popper.js/dist/umd/popper.js.map"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\popper.js\dist\umd\popper.js.map"' (27b0a520)
+2020-05-31T13:05:37.0647324+02:00 800000b1-0000-fc00-b63f-84710c7967bb [INF] Request finished in 111.4953ms 200 text/plain (791a596a)
+2020-05-31T13:05:37.2188951+02:00 800000b3-0000-fc00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/favicon.ico   (ca22a1cb)
+2020-05-31T13:05:37.2898995+02:00 800000b3-0000-fc00-b63f-84710c7967bb [INF] Request finished in 74.1602ms 404 text/plain (791a596a)
+2020-05-31T13:05:42.4570787+02:00 800000b4-0000-fc00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/firstarea   (ca22a1cb)
+2020-05-31T13:05:42.5068448+02:00 800000b4-0000-fc00-b63f-84710c7967bb [INF] Executing endpoint '"WebShop.Areas.FirstArea.Controllers.HomeController.Index (WebShop)"' (500cc934)
+2020-05-31T13:05:42.5288746+02:00 800000b4-0000-fc00-b63f-84710c7967bb [INF] Route matched with "{area = \"FirstArea\", action = \"Index\", controller = \"Home\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "WebShop.Areas.FirstArea.Controllers.HomeController" ("WebShop"). (122b2fdf)
+2020-05-31T13:05:42.5685936+02:00 800000b4-0000-fc00-b63f-84710c7967bb [INF] Executing ViewResult, running view "Index". (c83d0e25)
+2020-05-31T13:05:42.5867931+02:00 800000b4-0000-fc00-b63f-84710c7967bb [INF] Executed ViewResult - view "Index" executed in 20.1014ms. (f66409e9)
+2020-05-31T13:05:42.5914605+02:00 800000b4-0000-fc00-b63f-84710c7967bb [INF] Executed action "WebShop.Areas.FirstArea.Controllers.HomeController.Index (WebShop)" in 37.5958ms (afa2e885)
+2020-05-31T13:05:42.5971966+02:00 800000b4-0000-fc00-b63f-84710c7967bb [INF] Executed endpoint '"WebShop.Areas.FirstArea.Controllers.HomeController.Index (WebShop)"' (99874f2b)
+2020-05-31T13:05:42.6009141+02:00 800000b4-0000-fc00-b63f-84710c7967bb [INF] Request finished in 145.8253ms 200 text/html; charset=utf-8 (791a596a)
+2020-05-31T13:05:51.7532764+02:00 800000b6-0000-fc00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/secondarea   (ca22a1cb)
+2020-05-31T13:05:52.3415391+02:00 800000b6-0000-fc00-b63f-84710c7967bb [INF] Executing endpoint '"WebShop.Areas.SecondArea.Controllers.HomeController.Index (WebShop)"' (500cc934)
+2020-05-31T13:05:52.3629954+02:00 800000b6-0000-fc00-b63f-84710c7967bb [INF] Route matched with "{area = \"SecondArea\", action = \"Index\", controller = \"Home\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "WebShop.Areas.SecondArea.Controllers.HomeController" ("WebShop"). (122b2fdf)
+2020-05-31T13:05:52.4111489+02:00 800000b6-0000-fc00-b63f-84710c7967bb [INF] Executing ViewResult, running view "Index". (c83d0e25)
+2020-05-31T13:05:52.4302065+02:00 800000b6-0000-fc00-b63f-84710c7967bb [INF] Executed ViewResult - view "Index" executed in 24.2644ms. (f66409e9)
+2020-05-31T13:05:52.4344245+02:00 800000b6-0000-fc00-b63f-84710c7967bb [INF] Executed action "WebShop.Areas.SecondArea.Controllers.HomeController.Index (WebShop)" in 38.3528ms (afa2e885)
+2020-05-31T13:05:52.4395797+02:00 800000b6-0000-fc00-b63f-84710c7967bb [INF] Executed endpoint '"WebShop.Areas.SecondArea.Controllers.HomeController.Index (WebShop)"' (99874f2b)
+2020-05-31T13:05:52.4901577+02:00 800000b6-0000-fc00-b63f-84710c7967bb [INF] Request finished in 692.6264ms 200 text/html; charset=utf-8 (791a596a)

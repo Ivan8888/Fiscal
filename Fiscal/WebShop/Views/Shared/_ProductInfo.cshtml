@@ -1,0 +1,19 @@
+﻿@using WebShop.Models;
+@model IEnumerable<Product>
+
+@{ 
+    Product product = Model.Where(p => p.ProductId == ViewBag.Id).SingleOrDefault();
+}
+
+<td>
+    @Html.DisplayFor(p => product.Name)
+</td>
+<td>
+    @Html.DisplayFor(p => product.Price)
+</td>
+<td>
+    @Html.ActionLink("Edit", "Edit", new { id = product.ProductId })
+</td>
+<td>
+    @Html.ActionLink("Delete", "Delete", new { id = product.ProductId })
+</td>

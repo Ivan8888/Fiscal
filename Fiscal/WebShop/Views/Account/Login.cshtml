@@ -1,0 +1,17 @@
+﻿@using WebShop.ViewModels
+@model LoginViewModel
+
+<form asp-action="Login" method="post">
+    <div>
+        <label asp-for="UserName"></label>
+        <input asp-for="UserName" />
+    </div>
+    <div>
+        <label asp-for="Password"></label>
+        <input asp-for="Password" />
+    </div>
+
+    <input type="submit" name="Login"/>
+</form>
+
+@Html.ActionLink("Register", "Register", "Account")

@@ -1,0 +1,24 @@
+﻿@model Product
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<form asp-action="Edit" asp-controller="Product" method="post">
+    <div asp-validation-summary="ModelOnly"></div>
+
+    <label asp-for="Name"></label>
+    <input asp-for="Name" />
+    <span asp-validation-for="Name"></span>
+    <br />
+
+    <label asp-for="Price"></label>
+    <input asp-for="Price" />
+    <span asp-validation-for="Price"></span>
+    <br />
+
+    <input type="submit" name="Edit"/>
+</form>
+

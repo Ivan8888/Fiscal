@@ -1,0 +1,44 @@
+[
+  {
+    "outputFileName": "wwwroot/css/style.min.css",
+    // An array of relative input css file paths.
+    "inputFiles": [
+      "wwwroot/css/style.css",
+      "node_modules/bootstrap/dist/css/bootstrap.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/scripts/scripts.min.js",
+    "inputFiles": [
+      // An array of relative input js file paths including jQuery.
+      "wwwroot/scripts/functions.js",
+      "node_modules/jquery/dist/jquery.js",
+      "node_modules/jquery-validation/dist/jquery.validate.js",
+      "node_modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js",
+      "node_modules/@aspnet/signalr/dist/browser/signalr.js",
+      "node_modules/bootstrap/dist/js/bootstrap.js",
+      "node_modules/popper.js/dist/umd/popper.js"
+    ],
+    // Optionally specify minification options
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    // Optionally generate .map file
+    "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/scripts/signalr_code.min.js",
+    "inputFiles": [
+      // An array of relative input js file paths including jQuery.
+      "wwwroot/scripts/signalr_code.js"
+    ],
+    // Optionally specify minification options
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    // Optionally generate .map file
+    "sourceMap": false
+  }
+]
