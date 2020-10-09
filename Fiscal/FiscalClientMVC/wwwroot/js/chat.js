@@ -1,10 +1,6 @@
 ﻿(function () {
     var connection = new signalR.HubConnectionBuilder()
-        .withUrl("/chathub",
-            {
-                transport: signalR.HttpTransportType.WebSockets | signalR.HttpTransportType.ServerSentEvents,
-                serverTimeoutInMilliseconds: 20000
-            })
+        .withUrl("/chathub")
         .build();
 
     connection.start();
