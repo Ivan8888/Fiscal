@@ -9,6 +9,7 @@ using WebShop.Data;
 using WebShop.Models;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Caching.Distributed;
+using WebShop.CustomModelBinders;
 
 namespace WebShop.Controllers
 {
@@ -68,9 +69,11 @@ namespace WebShop.Controllers
             return View(customer);
         }
 
-        public IActionResult Create()
+        //this is implementation of custom model binder
+        [ActionName("Create")]
+        public IActionResult CreateInGet(/*[ModelBinder(BinderType = typeof(CustomerModelBinder))]*/ Customer customer)
         {
-            return View();
+            return View(customer);
         }
 
         // POST: Customers/Create

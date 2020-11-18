@@ -1,0 +1,23 @@
+﻿@using Microsoft.AspNetCore.Identity 
+@inject UserManager<AppUser> _userManager
+
+@{
+    <h1>This is index page of home controller</h1>
+
+    <h3>Number of session visit is: @ViewBag.visit</h3>
+
+    if (User.Identity.IsAuthenticated)
+    {
+        <a asp-action="Logout" asp-controller="Account">Logout</a>
+        AppUser user = await _userManager.FindByNameAsync(User.Identity.Name); 
+        <br />
+        <p>Current user is: @string.Format("{0} {1}", user.FirstName, user.LastName) </p>
+    }
+    else
+    {
+        <a asp-action="Login" asp-controller="Account">Login</a>
+        <br />
+    }
+
+    @Html.ActionLink("Register", "Register", "Account");
+}

@@ -20,6 +20,7 @@ using System.Security.Claims;
 using WebShop.AuthorizationReq;
 using Microsoft.AspNetCore.Authorization;
 using WebShop.Hubs;
+using WebShop.CustomModelBinders;
 
 namespace WebShop
 {
@@ -33,7 +34,11 @@ namespace WebShop
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc()/*.AddSessionStateTempDataProvider()*/;
+            //services.AddMvc().AddSessionStateTempDataProvider();
+
+            services.AddMvc(o => {
+                o.ModelBinderProviders.Insert(0, new CustomerModelBinderProvider());
+            });
 
             services.AddDbContext<ShopContext>(o => o
             .UseLazyLoadingProxies()
@@ -147,10 +152,23 @@ namespace WebShop
             app.UseEndpoints(endpoints => {
                 //endpoints.MapHub<ChatHub>("/chathub");
 
-                endpoints.MapControllerRoute(
-                    name: "AreaRoute",
-                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                //endpoints.MapControllerRoute(
+                //    name: "AreaRoute",
+                //    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                //    );
+
+                endpoints.MapAreaControllerRoute(
+                    name:"FirstArea",
+                    areaName: "FirstArea",
+                    pattern: "First/{controller=Home}/{action=Index}/{id?}"
                     );
+
+                endpoints.MapAreaControllerRoute(
+                    name: "SecondArea",
+                    areaName: "SecondArea",
+                    pattern: "Second/{controller=Home}/{action=Index}/{id?}"
+                    );
+
 
                 endpoints.MapControllerRoute(
                     name: "Default",

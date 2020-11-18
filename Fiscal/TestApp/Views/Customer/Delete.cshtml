@@ -1,0 +1,12 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using TestApp.Models
+@model Customer
+
+@{
+    <form asp-action="Delete">
+        <label>Do you want to delete customer: @Model.Name with address @Model.Address </label>
+        <input type ="submit" name="Delete"/>
+    </form>
+
+    <a asp-action="Index">Back to list</a>
+}

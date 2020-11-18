@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using FiscalServer.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using FiscalServer.CustomFormaters.Output;
 
 namespace FiscalServer
 {
@@ -33,7 +34,12 @@ namespace FiscalServer
             //services.AddControllers(mvcOptions =>
             //mvcOptions.OutputFormatters.Add(new XmlSerializerOutputFormatter()));
 
-            services.AddMvc();
+            services.AddMvc(o => {
+                o.OutputFormatters.Add(new XmlSerializerOutputFormatter());
+                o.OutputFormatters.Add(new CustomProductOutputFormater());
+
+                o.InputFormatters.Add(new XmlSerializerInputFormatter(o));
+            });
 
             //services.AddControllers().AddXmlSerializerFormatters();
         }

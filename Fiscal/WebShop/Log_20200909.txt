@@ -1,0 +1,71 @@
+2020-09-09T22:13:43.4961222+02:00  [INF] User profile is available. Using '"C:\Users\Ivan\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2020-09-09T22:13:50.5877416+02:00  [WRN] No type was specified for the decimal column '"Quantity"' on entity type '"InvoiceIteam"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'. (3a0db05f)
+2020-09-09T22:13:50.5925357+02:00  [WRN] No type was specified for the decimal column '"Price"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'. (3a0db05f)
+2020-09-09T22:13:50.6958428+02:00  [INF] Entity Framework Core "3.1.3" initialized '"ShopContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "using lazy-loading proxies " (9958f5bb)
+2020-09-09T22:13:53.0791307+02:00  [INF] Executed DbCommand ("74"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2020-09-09T22:13:53.3208311+02:00  [INF] Executed DbCommand ("169"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2020-09-09T22:13:53.8877593+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-09-09T22:13:53.8980136+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2020-09-09T22:13:53.9016282+02:00  [INF] Content root path: "C:\GitRoot\Fiscal\Fiscal\WebShop" (b5d60022)
+2020-09-09T22:13:54.0194746+02:00 80000002-0001-f500-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/   (ca22a1cb)
+2020-09-09T22:13:54.7149359+02:00 80000002-0001-f500-b63f-84710c7967bb [INF] Executing endpoint '"WebShop.Controllers.HomeController.Index (WebShop)"' (500cc934)
+2020-09-09T22:13:54.8430502+02:00 80000002-0001-f500-b63f-84710c7967bb [INF] Route matched with "{action = \"Index\", controller = \"Home\", area = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Index()" on controller "WebShop.Controllers.HomeController" ("WebShop"). (122b2fdf)
+2020-09-09T22:13:54.9019479+02:00 80000002-0001-f500-b63f-84710c7967bb [INF] Executing ViewResult, running view "Index". (c83d0e25)
+2020-09-09T22:13:55.6808940+02:00 80000002-0001-f500-b63f-84710c7967bb [INF] Executed ViewResult - view "Index" executed in 791.7822ms. (f66409e9)
+2020-09-09T22:13:55.6939881+02:00 80000002-0001-f500-b63f-84710c7967bb [INF] Executed action "WebShop.Controllers.HomeController.Index (WebShop)" in 818.5342ms (afa2e885)
+2020-09-09T22:13:55.7032114+02:00 80000002-0001-f500-b63f-84710c7967bb [INF] Executed endpoint '"WebShop.Controllers.HomeController.Index (WebShop)"' (99874f2b)
+2020-09-09T22:13:55.7270560+02:00 80000002-0001-f500-b63f-84710c7967bb [INF] Request finished in 1771.0443ms 200 text/html; charset=utf-8 (791a596a)
+2020-09-09T22:13:55.7959584+02:00 80000019-0002-ff00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/css/style.css   (ca22a1cb)
+2020-09-09T22:13:55.8021662+02:00 80000004-0002-fc00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/bootstrap/dist/css/bootstrap.css   (ca22a1cb)
+2020-09-09T22:13:55.8048133+02:00 80000005-0002-f900-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/jquery-validation/dist/jquery.validate.js   (ca22a1cb)
+2020-09-09T22:13:55.8052710+02:00 80000004-0002-fa00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/jquery/dist/jquery.js   (ca22a1cb)
+2020-09-09T22:13:55.8878320+02:00 80000019-0002-ff00-b63f-84710c7967bb [INF] Sending file. Request path: '"/css/style.css"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\wwwroot\css\style.css"' (27b0a520)
+2020-09-09T22:13:55.9465960+02:00 80000019-0002-ff00-b63f-84710c7967bb [INF] Request finished in 102.5852ms 200 text/css (791a596a)
+2020-09-09T22:13:55.9708377+02:00 80000005-0002-f900-b63f-84710c7967bb [INF] Sending file. Request path: '"/jquery-validation/dist/jquery.validate.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\jquery-validation\dist\jquery.validate.js"' (27b0a520)
+2020-09-09T22:13:55.9787987+02:00 80000003-0001-f500-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js   (ca22a1cb)
+2020-09-09T22:13:55.9791422+02:00 8000000d-0002-fe00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/scripts/functions.js   (ca22a1cb)
+2020-09-09T22:13:56.0360273+02:00 80000005-0002-f900-b63f-84710c7967bb [INF] Request finished in 192.0806ms 200 application/javascript (791a596a)
+2020-09-09T22:13:56.1187019+02:00 80000006-0002-f900-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/@aspnet/signalr/dist/browser/signalr.js   (ca22a1cb)
+2020-09-09T22:13:56.1312177+02:00 8000001a-0002-ff00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/bootstrap/dist/js/bootstrap.js   (ca22a1cb)
+2020-09-09T22:13:56.1726442+02:00 8000000d-0002-fe00-b63f-84710c7967bb [INF] Sending file. Request path: '"/scripts/functions.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\wwwroot\scripts\functions.js"' (27b0a520)
+2020-09-09T22:13:56.2193598+02:00 8000000d-0002-fe00-b63f-84710c7967bb [INF] Request finished in 209.0753ms 200 application/javascript (791a596a)
+2020-09-09T22:13:56.2481794+02:00 80000004-0002-fc00-b63f-84710c7967bb [INF] Sending file. Request path: '"/bootstrap/dist/css/bootstrap.css"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\bootstrap\dist\css\bootstrap.css"' (27b0a520)
+2020-09-09T22:13:56.2520414+02:00 8000000e-0002-fe00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/popper.js/dist/umd/popper.js   (ca22a1cb)
+2020-09-09T22:13:56.2641591+02:00 80000003-0001-f500-b63f-84710c7967bb [INF] Sending file. Request path: '"/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js"' (27b0a520)
+2020-09-09T22:13:56.2708945+02:00 80000006-0002-f900-b63f-84710c7967bb [INF] Sending file. Request path: '"/@aspnet/signalr/dist/browser/signalr.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\@aspnet\signalr\dist\browser\signalr.js"' (27b0a520)
+2020-09-09T22:13:56.2812251+02:00 80000004-0002-fa00-b63f-84710c7967bb [INF] Sending file. Request path: '"/jquery/dist/jquery.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\jquery\dist\jquery.js"' (27b0a520)
+2020-09-09T22:13:56.2866621+02:00 80000006-0002-f900-b63f-84710c7967bb [INF] Request finished in 183.9828ms 200 application/javascript (791a596a)
+2020-09-09T22:13:56.2918367+02:00 80000004-0002-fa00-b63f-84710c7967bb [INF] Request finished in 495.8994ms 200 application/javascript (791a596a)
+2020-09-09T22:13:56.3413270+02:00 80000003-0001-f500-b63f-84710c7967bb [INF] Request finished in 316.3089ms 200 application/javascript (791a596a)
+2020-09-09T22:13:56.4045436+02:00 80000004-0002-fc00-b63f-84710c7967bb [INF] Request finished in 459.1599ms 200 text/css (791a596a)
+2020-09-09T22:13:56.4267399+02:00 8000000e-0002-fe00-b63f-84710c7967bb [INF] Sending file. Request path: '"/popper.js/dist/umd/popper.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\popper.js\dist\umd\popper.js"' (27b0a520)
+2020-09-09T22:13:56.4308045+02:00 8000001a-0002-ff00-b63f-84710c7967bb [INF] Sending file. Request path: '"/bootstrap/dist/js/bootstrap.js"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\bootstrap\dist\js\bootstrap.js"' (27b0a520)
+2020-09-09T22:13:56.4366163+02:00 8000000e-0002-fe00-b63f-84710c7967bb [INF] Request finished in 184.8437ms 200 application/javascript (791a596a)
+2020-09-09T22:13:56.4385589+02:00 8000001a-0002-ff00-b63f-84710c7967bb [INF] Request finished in 312.9219ms 200 application/javascript (791a596a)
+2020-09-09T22:13:56.9803417+02:00 80000013-0000-f900-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/@aspnet/signalr/dist/browser/signalr.js.map   (ca22a1cb)
+2020-09-09T22:13:57.0994955+02:00 80000013-0000-f900-b63f-84710c7967bb [INF] Sending file. Request path: '"/@aspnet/signalr/dist/browser/signalr.js.map"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\@aspnet\signalr\dist\browser\signalr.js.map"' (27b0a520)
+2020-09-09T22:13:57.1088570+02:00 80000013-0000-f900-b63f-84710c7967bb [INF] Request finished in 278.08ms 200 text/plain (791a596a)
+2020-09-09T22:13:57.2159870+02:00 80000002-0001-f400-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/bootstrap/dist/js/bootstrap.js.map   (ca22a1cb)
+2020-09-09T22:13:57.2700305+02:00 80000002-0001-f400-b63f-84710c7967bb [INF] Sending file. Request path: '"/bootstrap/dist/js/bootstrap.js.map"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\bootstrap\dist\js\bootstrap.js.map"' (27b0a520)
+2020-09-09T22:13:57.2880099+02:00 80000002-0001-f400-b63f-84710c7967bb [INF] Request finished in 62.3453ms 200 text/plain (791a596a)
+2020-09-09T22:13:57.3608532+02:00 80000015-0000-f900-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/node_modules/popper.js/dist/umd/popper.js.map   (ca22a1cb)
+2020-09-09T22:13:57.4543159+02:00 80000015-0000-f900-b63f-84710c7967bb [INF] Sending file. Request path: '"/popper.js/dist/umd/popper.js.map"'. Physical path: '"C:\GitRoot\Fiscal\Fiscal\WebShop\node_modules\popper.js\dist\umd\popper.js.map"' (27b0a520)
+2020-09-09T22:13:57.5303208+02:00 80000015-0000-f900-b63f-84710c7967bb [INF] Request finished in 98.2742ms 200 text/plain (791a596a)
+2020-09-09T22:13:57.7601269+02:00 8000001b-0002-ff00-b63f-84710c7967bb [INF] Request starting HTTP/1.1 GET http://localhost:50914/favicon.ico   (ca22a1cb)
+2020-09-09T22:13:57.8120725+02:00 8000001b-0002-ff00-b63f-84710c7967bb [INF] Request finished in 69.9052ms 404 text/plain (791a596a)

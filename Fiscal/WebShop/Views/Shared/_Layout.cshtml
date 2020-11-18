@@ -52,6 +52,23 @@
     }
     <br />
 
+    <a asp-area="FirstArea" asp-controller="Home" asp-action="Index">First Area Index</a>
+    <br />
+    <a asp-area="SecondArea" asp-controller="Home" asp-action="Index">Second Area Index</a>
+    <br />
+    <a asp-area="" asp-controller="Home" asp-action="Index">No Area Index</a>
+    <br />
+    <br />
+    <p>html helpers</p>
+    <br />
+    <br />
+    @Html.ActionLink("First Area Index", "Index", "Home", new { area = "FirstArea" })
+    <br />
+    @Html.ActionLink("Second Area Index", "Index", "Home", new { area = "SecondArea" })
+    <br />
+    @Html.ActionLink("No Area Index", "Index", "Home", new { area = "" })
+    <br />
+
     @RenderSection("section1", false)
 
     <div>

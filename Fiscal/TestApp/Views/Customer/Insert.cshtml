@@ -1,0 +1,39 @@
+﻿@using TestApp.Models
+@model Customer
+
+@{
+    <h1>Insert new customer</h1>
+
+    @using (Html.BeginForm("Insert", "Customer", FormMethod.Post))
+    {
+        <div>
+            @Html.ValidationSummary(true, "Pogrešno uneti podaci za customera")
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Name)
+            @Html.EditorFor(m => m.Name)
+            @Html.ValidationMessageFor(m => m.Name)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => m.Address)
+            @Html.EditorFor(m => m.Address)
+            @Html.ValidationMessageFor(m => m.Address)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => m.Email)
+            @Html.EditorFor(m => m.Email)
+            @Html.ValidationMessageFor(m => m.Email)
+        </div>
+        <div>
+            @Html.LabelFor(m => m.IsRetail)
+            @Html.EditorFor(m => m.IsRetail)
+            @Html.ValidationMessageFor(m => m.IsRetail)
+        </div>
+
+        <input type="submit" value="Create" />
+    }
+
+    @Html.ActionLink("Back to list", "Index", "Customer");
+}

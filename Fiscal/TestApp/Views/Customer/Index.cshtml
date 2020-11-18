@@ -1,0 +1,30 @@
+﻿@model IEnumerable<TestApp.Models.Customer>
+
+@{
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Email</th>
+            <th>IsRetail</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.CustomerId</td>
+                <td>@c.Name</td>
+                <td>@c.Address</td>
+                <td>@c.Email</td>
+                <td>@c.IsRetail</td>
+                <td>@Html.ActionLink("Edit", "Edit", new { id = c.CustomerId})</td>
+                <td>@Html.ActionLink("Delete", "Delete", new { id = c.CustomerId})</td>
+            </tr>
+        }
+    </table>
+    <br />
+
+    @Html.ActionLink("Insert New", "Insert");
+}
