@@ -1,0 +1,20 @@
+﻿@model SupplierViewModel
+
+@{
+    <div>
+        <p>@Model.Name</p>
+        <p>@Model.OfficeAddress</p>
+        <p>@Model.Email</p>
+
+        <ul>
+            @foreach (var p in Model.Products)
+            {
+                <li>
+                    @p.ProductName  @p.Price
+                </li>
+            }
+        </ul>
+    </div>
+
+    <a asp-action="Edit" asp-route-id="@Model.SupplierId">Edit supplier</a>
+}

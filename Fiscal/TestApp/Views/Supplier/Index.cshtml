@@ -1,0 +1,28 @@
+﻿@model IEnumerable<TestApp.ViewModels.SupplierViewModel>
+
+@{
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Email</th>
+        </tr>
+        @foreach (var s in Model)
+        {
+            <tr>
+                <td>@s.SupplierId</td>
+                <td>@s.Name</td>
+                <td>@s.OfficeAddress</td>
+                <td>@s.Email</td>
+                <td>@Html.ActionLink("Details", "Details", new { id = s.SupplierId })</td>
+                <td>@Html.ActionLink("Edit", "Edit", new { id = s.SupplierId })</td>
+                <td>@Html.ActionLink("Delete", "Delete", new { id = s.SupplierId })</td>
+            </tr>
+        }
+    </table>
+    <br />
+
+    @Html.ActionLink("Insert New", "Insert");
+}
+

@@ -21,6 +21,8 @@ using WebShop.Data;
 using System.Security.Claims;
 using TestApp.Authorization;
 using Microsoft.AspNetCore.Authorization;
+using AutoMapper;
+using System.Reflection;
 
 namespace TestApp
 {
@@ -99,6 +101,8 @@ namespace TestApp
                 options.IdleTimeout = TimeSpan.FromMinutes(5);
                 options.Cookie.Name = "session_cookie";
             });
+
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -114,7 +118,7 @@ namespace TestApp
             //    p.WithOrigins("https://www.google.com");
             //});
 
-            if (env.IsDevelopment())
+            if (!env.IsDevelopment())
             {
                 dbcontext.Database.EnsureDeleted();
                 dbcontext.Database.EnsureCreated();

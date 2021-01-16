@@ -17,6 +17,7 @@ namespace TestApp.Data
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<InvoiceItem> InvoiceItems { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,19 +26,25 @@ namespace TestApp.Data
                 {
                     ProductId = 1,
                     Name = "Beer",
-                    Price = 100
+                    Price = 100,
+                    Description = "",
+                    SupplierId = 1
                 },
                 new Product
                 {
                     ProductId = 2,
                     Name = "Vodka",
-                    Price = 500
+                    Price = 500,
+                    Description = "",
+                    SupplierId = 1
                 },
                 new Product
                 {
                     ProductId = 3,
                     Name = "Tequila",
-                    Price = 1200
+                    Price = 1200,
+                    Description = "",
+                    SupplierId = 2
                 }
             );
 
@@ -45,9 +52,9 @@ namespace TestApp.Data
                 new Customer
                 {
                     CustomerId = 1,
-                    Name = "DrinkStore",
-                    Address = "Drink Store Address",
-                    Email = "drinkstore@gmail.com",
+                    Name = "Beer pub",
+                    Address = "Beer pub address",
+                    Email = "beerpub@gmail.com",
                     IsRetail = false
                 },
                 new Customer
@@ -57,6 +64,25 @@ namespace TestApp.Data
                     Address = "Ivan Address",
                     Email = "ivan@gmail.com",
                     IsRetail = true
+                }
+            );
+
+            modelBuilder.Entity<Supplier>().HasData(
+                new Supplier
+                {
+                    SupplierId = 1,
+                    Name = "DrinkStore",
+                    Address = "Drink Store Address",
+                    Email = "drinkstore@gmail.com",
+                    PhoneNumber = "011/1111-11111"
+                },
+                new Supplier
+                {
+                    SupplierId = 2,
+                    Name = "E Diskont",
+                    Address = "E diskont Address",
+                    Email = "ediskont@gmail.com",
+                    PhoneNumber = "011/2222-22222"
                 }
             );
 

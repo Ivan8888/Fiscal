@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewData["Title"] = "Edit";
+}
+
+@model SupplierViewModel;
+
+<h1>Edit</h1>
+
+<div>
+    <form method="post">
+        <input type="hidden" asp-for="SupplierId" />
+        <div>
+            <label asp-for="Name"></label>
+            <input asp-for="Name" />
+        </div>
+        <div>
+            <label asp-for="OfficeAddress"></label>
+            <input asp-for="OfficeAddress" />
+        </div>
+        <div>
+            <label asp-for="Email"></label>
+            <input asp-for="Email" />
+        </div>
+
+        <button type="submit" title="Edit"></button>
+    </form>
+</div>
+
+
+
