@@ -43,19 +43,40 @@ namespace TestApp.Controllers
         public IActionResult Edit(int id)
         {
             var s = _context.Suppliers.SingleOrDefault(s => s.SupplierId == id);
-            var res = _mapper.Map<SupplierViewModel>(s);
+            if(s == null)
+            {
+                s = new Supplier();
+            }
 
+            var res = _mapper.Map<SupplierViewModel>(s);
             return View(res);
         }
 
         [HttpPost]
         public IActionResult Edit(int id, SupplierViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
             Supplier supplier_old = _context.Suppliers.SingleOrDefault(s => s.SupplierId == id);
             if(supplier_old != null)
             {
+                //edit
                 _mapper.Map(model, supplier_old);
 
+                int num = _context.SaveChanges();
+                if (num > 0)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+            else
+            {
+                //insert
+                var sup = _mapper.Map<Supplier>(model);
+                _context.Add(sup);
                 int num = _context.SaveChanges();
                 if (num > 0)
                 {

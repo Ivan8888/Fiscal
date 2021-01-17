@@ -23,6 +23,8 @@ using TestApp.Authorization;
 using Microsoft.AspNetCore.Authorization;
 using AutoMapper;
 using System.Reflection;
+using FluentValidation.AspNetCore;
+using TestApp.Validators;
 
 namespace TestApp
 {
@@ -95,7 +97,9 @@ namespace TestApp
 
             services.AddMemoryCache();
 
-            services.AddMvc().AddSessionStateTempDataProvider();
+            services.AddMvc()
+                .AddSessionStateTempDataProvider()
+                .AddFluentValidation(v => v.RegisterValidatorsFromAssemblyContaining<SupplierVewModelValidator>());
 
             services.AddSession(options => {
                 options.IdleTimeout = TimeSpan.FromMinutes(5);
@@ -110,7 +114,7 @@ namespace TestApp
         {
             logger.LogInformation($"Work environment is: {env.EnvironmentName}");
 
-            app.UseCors("FromGoogle");
+            app.UseCors();
 
             app.UseSession();
 
@@ -118,7 +122,7 @@ namespace TestApp
             //    p.WithOrigins("https://www.google.com");
             //});
 
-            if (!env.IsDevelopment())
+            if (env.IsDevelopment())
             {
                 dbcontext.Database.EnsureDeleted();
                 dbcontext.Database.EnsureCreated();

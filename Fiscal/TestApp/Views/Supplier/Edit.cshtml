@@ -9,21 +9,30 @@
 
 <div>
     <form method="post">
-        <input type="hidden" asp-for="SupplierId" />
+        <div asp-validation-summary="All"></div>
+
+        <div>
+            <label asp-for="SupplierId"></label>
+            <input asp-for="SupplierId" />
+            <span asp-validation-for="SupplierId"></span>
+        </div>
         <div>
             <label asp-for="Name"></label>
             <input asp-for="Name" />
+            <span asp-validation-for="Name"></span>
         </div>
         <div>
             <label asp-for="OfficeAddress"></label>
             <input asp-for="OfficeAddress" />
+            <span asp-validation-for="OfficeAddress"></span>
         </div>
         <div>
             <label asp-for="Email"></label>
             <input asp-for="Email" />
+            <span asp-validation-for="Email"></span>
         </div>
 
-        <button type="submit" title="Edit"></button>
+        <button type="submit" name="Edit"></button>
     </form>
 </div>
 

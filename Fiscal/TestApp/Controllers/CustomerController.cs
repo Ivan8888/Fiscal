@@ -41,7 +41,7 @@ namespace TestApp.Controllers
 
         //[Authorize(Policy = "RequireEmail")]
         //[Authorize(Policy = "JustAdultUsers")]
-        [DisableCors]
+        //[DisableCors]
         public IActionResult Index()
         {
             List<Customer> customers = _context.Customers.ToList();
@@ -107,6 +107,11 @@ namespace TestApp.Controllers
         //[Route("{id:int}")]
         public async Task<IActionResult> Edit(Customer customer, int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
             Customer customerToUpdate = _context.Customers.Single(c => c.CustomerId == id);
 
             if (await TryUpdateModelAsync<Customer>(customerToUpdate, "", c => c.Name, c => c.Address, c => c.Email))

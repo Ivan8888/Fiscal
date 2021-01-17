@@ -134,6 +134,13 @@ namespace TestApp.Data
 
             //Fluent API
             modelBuilder.Entity<Product>().ToTable("ProductTable");
+            //fluent API validation, important with this validation is created just on storage, not on server object(entity) for validation 
+            //on entity we need to use validation data anotation or ....
+            //this kind of fluent API of course can't be used with view models
+            //modelBuilder.Entity<Supplier>()
+            //    .Property(p => p.Name)
+            //    .IsRequired()
+            //    .HasMaxLength(15);
 
             base.OnModelCreating(modelBuilder);
         }
