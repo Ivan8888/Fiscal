@@ -99,7 +99,8 @@ namespace TestApp
 
             services.AddMvc()
                 .AddSessionStateTempDataProvider()
-                .AddFluentValidation(v => v.RegisterValidatorsFromAssemblyContaining<SupplierVewModelValidator>());
+                .AddFluentValidation(v => v.RegisterValidatorsFromAssemblyContaining<SupplierViewModelValidator>())
+                /*.AddFluentValidation(v => v.RegisterValidatorsFromAssemblyContaining<ProductViewModelValidator>())*/;
 
             services.AddSession(options => {
                 options.IdleTimeout = TimeSpan.FromMinutes(5);
@@ -154,6 +155,12 @@ namespace TestApp
             {
                 FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "StaticFolder")),
                 RequestPath = "/staticfolder"
+            });
+
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "node_modules")),
+                RequestPath = "/node_modules"
             });
 
             app.UseRouting();
